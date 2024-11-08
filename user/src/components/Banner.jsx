@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Carousel from 'react-multi-carousel';
 import { Link } from 'react-router-dom';
 import 'react-multi-carousel/lib/styles.css'
@@ -6,10 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { get_banners } from '../store/reducers/homeReducer';
 
 const Banner = () => {
-
     const dispatch = useDispatch()
-    const {banners} = useSelector(state => state.home)
- 
+    const { banners } = useSelector(state => state.home)
+
     const responsive = {
         superLargeDesktop: {
             breakpoint: { max: 4000, min: 3000 },
@@ -31,7 +30,7 @@ const Banner = () => {
 
     useEffect(() => {
         dispatch(get_banners())
-    },[])
+    }, [])
 
     return (
         <div className='w-full md-lg:mt-6'>
@@ -39,23 +38,23 @@ const Banner = () => {
                 <div className='w-full flex flex-wrap md-lg:gap-8'>
                     <div className='w-full'>
                         <div className='my-8'>
-                <Carousel
-                    autoPlay={true}
-                    infinite={true}
-                    arrows={true}
-                    showDots={true}
-                    responsive={responsive}
-                >
-                {
-                   banners.length > 0 && banners.map((b, i) => <Link key={i} to={`product/details/${b.link}`}>
-                        <img src={ b.banner} alt="" />
-                    </Link> )
-                }
-                </Carousel>        
+                            <Carousel
+                                autoPlay={true}
+                                infinite={true}
+                                arrows={true}
+                                showDots={true}
+                                responsive={responsive}
+                            >
+                                {banners.length > 0 && banners.map((b, i) =>
+                                    <Link key={i} to={`product/details/${b.link}`}>
+                                        <img src={b.banner} alt="" />
+                                    </Link>
+                                )}
+                            </Carousel>
                         </div>
                     </div>
-                </div> 
-            </div> 
+                </div>
+            </div>
         </div>
     );
 };

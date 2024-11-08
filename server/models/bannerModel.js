@@ -1,18 +1,18 @@
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const bannerSchema = new Schema({
     productId: {
         type: Schema.ObjectId,
-        required : true
+        required: true
     },
     banner: {
         type: String,
-        required : true
+        required: true
     },
     link: {
         type: String,
-        required : true  
-    } 
-},{ timestamps: true })
+        required: true
+    }
+}, { timestamps: true })
 
-module.exports = model('banners',bannerSchema)
+module.exports = model('banners', bannerSchema)

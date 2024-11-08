@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link, useNavigate, useParams } from 'react-router-dom';
@@ -23,7 +23,6 @@ import { add_to_card, messageClear, add_to_wishlist } from '../store/reducers/ca
 
 
 const Details = () => {
-
     const navigate = useNavigate()
     const { slug } = useParams()
     const dispatch = useDispatch()
@@ -44,7 +43,6 @@ const Details = () => {
             toast.error(errorMessage)
             dispatch(messageClear())
         }
-
     }, [successMessage, errorMessage])
 
     const images = [1, 2, 3, 4, 5, 6]
@@ -127,7 +125,6 @@ const Details = () => {
         } else {
             navigate('/login')
         }
-
     }
 
     const buynow = () => {
@@ -162,13 +159,12 @@ const Details = () => {
         })
     }
 
-
     return (
         <div>
             <Header />
             <section
                 style={{
-                    backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/images/banner/shop.png)`,
+                    backgroundImage: `url(${import.meta.env.VITE_BASE_URL}/images/banner/shop.png)`,
                 }}
                 className='h-[220px] mt-6 bg-cover bg-no-repeat relative bg-left'
             >
@@ -198,7 +194,6 @@ const Details = () => {
                             <span className='pt-1'><IoIosArrowForward /></span>
                             <span>{product.name} </span>
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -211,23 +206,20 @@ const Details = () => {
                                 <img className='h-[400px] w-full' src={image ? image : product.images?.[0]} alt="" />
                             </div>
                             <div className='py-3'>
-                                {
-                                    product.images && <Carousel
+                                {product.images &&
+                                    <Carousel
                                         autoPlay={true}
                                         infinite={true}
                                         responsive={responsive}
                                         transitionDuration={500}
                                     >
-                                        {
-                                            product.images.map((img, i) => {
-                                                return (
-                                                    <div key={i} onClick={() => setImage(img)}>
-                                                        <img className='h-[120px] cursor-pointer' src={img} alt="" />
-                                                    </div>
-                                                )
-                                            })
-                                        }
-
+                                        {product.images.map((img, i) => {
+                                            return (
+                                                <div key={i} onClick={() => setImage(img)}>
+                                                    <img className='h-[120px] cursor-pointer' src={img} alt="" />
+                                                </div>
+                                            )
+                                        })}
                                     </Carousel>
                                 }
                             </div>
@@ -245,12 +237,13 @@ const Details = () => {
                             </div>
 
                             <div className='text-2xl text-red-500 font-bold flex gap-3'>
-                                {
-                                    product.discount !== 0 ? <>
+                                {product.discount !== 0
+                                    ? <>
                                         Price : <h2 className='line-through'>${product.price}</h2>
                                         <h2>${product.price - Math.floor((product.price * product.discount) / 100)} (-{product.discount}%) </h2>
 
-                                    </> : <h2> Price : ${product.price} </h2>
+                                    </>
+                                    : <h2> Price : ${product.price} </h2>
                                 }
                             </div>
 
@@ -260,8 +253,8 @@ const Details = () => {
                             </div>
 
                             <div className='flex gap-3 pb-10 border-b'>
-                                {
-                                    product.stock ? <>
+                                {product.stock
+                                    ? <>
                                         <div className='flex bg-slate-200 h-[50px] justify-center items-center text-xl'>
                                             <div onClick={dec} className='px-6 cursor-pointer'>-</div>
                                             <div className='px-6'>{quantity}</div>
@@ -270,8 +263,8 @@ const Details = () => {
                                         <div>
                                             <button onClick={add_card} className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#059473] text-white'>Add To Card</button>
                                         </div>
-
-                                    </> : ''
+                                    </>
+                                    : ''
                                 }
 
                                 <div>
@@ -281,10 +274,8 @@ const Details = () => {
                                 </div>
                             </div>
 
-
                             <div className='flex py-5 gap-5'>
                                 <div className='w-[150px] text-black font-bold text-xl flex flex-col gap-5'>
-
                                     <span>Availability</span>
                                     <span>Share On</span>
                                 </div>
@@ -307,25 +298,22 @@ const Details = () => {
                                             <a className='w-[38px] h-[38px] hover:bg-[#059473] hover:text-white flex justify-center items-center bg-blue-500 rounded-full text-white' href="#"> <FaGithub /> </a>
                                         </li>
                                     </ul>
-
                                 </div>
                             </div>
 
                             <div className='flex gap-3'>
-                                {
-                                    product.stock ? <button onClick={buynow} className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#247462] text-white'>Buy Now</button> : ''
+                                {product.stock
+                                    ? <button onClick={buynow} className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#247462] text-white'>Buy Now</button>
+                                    : ''
                                 }
                                 <Link to={`/dashboard/chat/${product.sellerId}`} className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-red-500/40 bg-red-500 text-white'>
                                     Chat Seller
                                 </Link>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             </section>
-
 
             <section>
                 <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto pb-16'>
@@ -334,13 +322,13 @@ const Details = () => {
                             <div className='pr-4 md-lg:pr-0'>
                                 <div className='grid grid-cols-2'>
                                     <button onClick={() => setState('reviews')} className={`py-1 hover:text-white px-5 hover:bg-[#059473] ${state === 'reviews' ? 'bg-[#059473] text-white' : 'bg-slate-200 text-slate-700'} rounded-sm`}>Reviews </button>
-
                                     <button onClick={() => setState('description')} className={`py-1 hover:text-white px-5 hover:bg-[#059473] ${state === 'description' ? 'bg-[#059473] text-white' : 'bg-slate-200 text-slate-700'} rounded-sm`}>Description </button>
                                 </div>
 
                                 <div>
-                                    {
-                                        state === 'reviews' ? <Reviews product={product} /> : <p className='py-5 text-slate-600'>
+                                    {state === 'reviews'
+                                        ? <Reviews product={product} />
+                                        : <p className='py-5 text-slate-600'>
                                             {product.description}
                                         </p>
                                     }
@@ -354,39 +342,34 @@ const Details = () => {
                                     <h2 className='font-bold'>From {product.shopName}</h2>
                                 </div>
                                 <div className='flex flex-col gap-5 mt-3 border p-3'>
-                                    {
-                                        moreProducts.map((p, i) => {
-                                            return (
-                                                <Link className='block'>
-                                                    <div className='relative h-[270px]'>
-                                                        <img className='w-full h-full' src={p.images[0]} alt="" />
-                                                        {
-                                                            p.discount !== 0 && <div className='flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2'>{p.discount}%
-                                                            </div>
-                                                        }
-                                                    </div>
-
-                                                    <h2 className='text-slate-600 py-1 font-bold'>{p.name} </h2>
-                                                    <div className='flex gap-2'>
-                                                        <h2 className='text-lg font-bold text-slate-600'>${p.price}</h2>
-                                                        <div className='flex items-center gap-2'>
-                                                            <Rating ratings={p.rating} />
+                                    {moreProducts.map((p, i) => {
+                                        return (
+                                            <Link className='block'>
+                                                <div className='relative h-[270px]'>
+                                                    <img className='w-full h-full' src={p.images[0]} alt="" />
+                                                    {p.discount !== 0 &&
+                                                        <div className='flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2'>
+                                                            {p.discount}%
                                                         </div>
+                                                    }
+                                                </div>
+
+                                                <h2 className='text-slate-600 py-1 font-bold'>{p.name} </h2>
+                                                <div className='flex gap-2'>
+                                                    <h2 className='text-lg font-bold text-slate-600'>${p.price}</h2>
+                                                    <div className='flex items-center gap-2'>
+                                                        <Rating ratings={p.rating} />
                                                     </div>
-
-                                                </Link>
-                                            )
-                                        })
-                                    }
-
+                                                </div>
+                                            </Link>
+                                        )
+                                    })}
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
-
 
             <section>
                 <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto'>
@@ -411,57 +394,45 @@ const Details = () => {
                             modules={[Pagination]}
                             className='mySwiper'
                         >
-
-                            {
-                                relatedProducts.map((p, i) => {
-                                    return (
-
-                                        <SwiperSlide key={i}>
-                                            <Link className='block'>
-                                                <div className='relative h-[270px]'>
-                                                    <div className='w-full h-full'>
-                                                        <img className='w-full h-full' src={p.images[0]} alt="" />
-                                                        <div className='absolute h-full w-full top-0 left-0 bg-[#000] opacity-25 hover:opacity-50 transition-all duration-500'>
-                                                        </div>
-                                                    </div>
-                                                    {
-                                                        p.discount !== 0 && <div className='flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2'>{p.discount}%
-                                                        </div>
-                                                    }
-                                                </div>
-
-                                                <div className='p-4 flex flex-col gap-1'>
-                                                    <h2 className='text-slate-600 text-lg font-bold'>{p.name} </h2>
-                                                    <div className='flex justify-start items-center gap-3'>
-                                                        <h2 className='text-lg font-bold text-slate-600'>${p.price}</h2>
-                                                        <div className='flex'>
-                                                            <Rating ratings={p.rating} />
-                                                        </div>
+                            {relatedProducts.map((p, i) => {
+                                return (
+                                    <SwiperSlide key={i}>
+                                        <Link className='block'>
+                                            <div className='relative h-[270px]'>
+                                                <div className='w-full h-full'>
+                                                    <img className='w-full h-full' src={p.images[0]} alt="" />
+                                                    <div className='absolute h-full w-full top-0 left-0 bg-[#000] opacity-25 hover:opacity-50 transition-all duration-500'>
                                                     </div>
                                                 </div>
+                                                {p.discount !== 0 &&
+                                                    <div className='flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2'>
+                                                        {p.discount}%
+                                                    </div>
+                                                }
+                                            </div>
 
-                                            </Link>
-
-                                        </SwiperSlide>
-
-                                    )
-                                })
-                            }
-
+                                            <div className='p-4 flex flex-col gap-1'>
+                                                <h2 className='text-slate-600 text-lg font-bold'>{p.name} </h2>
+                                                <div className='flex justify-start items-center gap-3'>
+                                                    <h2 className='text-lg font-bold text-slate-600'>${p.price}</h2>
+                                                    <div className='flex'>
+                                                        <Rating ratings={p.rating} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </SwiperSlide>
+                                )
+                            })}
                         </Swiper>
                     </div>
 
                     <div className='w-full flex justify-center items-center py-8'>
                         <div className='custom_bullet justify-center gap-3 !w-auto'>
                         </div>
-
                     </div>
-
                 </div>
             </section>
-
-
-
 
             <Footer />
         </div>

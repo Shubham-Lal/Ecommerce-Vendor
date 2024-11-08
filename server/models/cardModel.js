@@ -1,18 +1,18 @@
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const cardSchema = new Schema({
     userId: {
         type: Schema.ObjectId,
-        required : true
+        required: true
     },
     productId: {
         type: Schema.ObjectId,
-        required : true
+        required: true
     },
     quantity: {
         type: Number,
-        required : true, 
-    } 
-},{ timestamps: true })
+        required: true,
+    }
+}, { timestamps: true })
 
-module.exports = model('cardProducts',cardSchema)
+module.exports = model('cardProducts', cardSchema)

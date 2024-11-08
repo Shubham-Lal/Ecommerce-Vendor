@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { FaList } from 'react-icons/fa';
@@ -14,7 +14,6 @@ import { useDispatch } from 'react-redux';
 import { user_reset } from '../store/reducers/authReducer'
 import { reset_count } from '../store/reducers/cardReducer'
 
-
 const Dashboard = () => {
     const [filterShow, setFilterShow] = useState(false)
 
@@ -28,9 +27,8 @@ const Dashboard = () => {
             dispatch(user_reset())
             dispatch(reset_count())
             navigate('/login')
-
-        } catch (error) {
         }
+        catch (error) { }
     }
 
     return (
@@ -46,9 +44,7 @@ const Dashboard = () => {
                 <div className='h-full mx-auto'>
                     <div className='py-5 flex md-lg:w-[90%] mx-auto relative'>
                         <div className={`rounded-md z-50 md-lg:absolute ${filterShow ? '-left-4' : '-left-[360px]'} w-[270px] ml-4 bg-white`}>
-
                             <ul className='py-2 text-slate-600 px-4'>
-
                                 <li className='flex justify-start items-center gap-2 py-2'>
                                     <span className='text-xl'><IoIosHome /></span>
                                     <Link to='/dashboard' className='block' >Dashboard </Link>
@@ -73,25 +69,16 @@ const Dashboard = () => {
                                     <span className='text-xl'><IoMdLogOut /></span>
                                     <div className='block' >Logout </div>
                                 </li>
-
                             </ul>
                         </div>
-
 
                         <div className='w-[calc(100%-270px)] md-lg:w-full'>
                             <div className='mx-4 md-lg:mx-0'>
                                 <Outlet />
                             </div>
                         </div>
-
                     </div>
                 </div>
-
-
-
-
-
-
             </div>
 
             <Footer />

@@ -7,6 +7,7 @@ const { createToken } = require('../utiles/tokenCreate')
 const cloudinary = require('cloudinary').v2
 const formidable = require("formidable")
 
+
 class authControllers {
 
     admin_login = async (req, res) => {
@@ -27,21 +28,14 @@ class authControllers {
                 } else {
                     responseReturn(res, 404, { error: "Password Wrong" })
                 }
-
-
-
-
             } else {
                 responseReturn(res, 404, { error: "Email not Found" })
             }
-
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { error: error.message })
         }
-
     }
-    // End Method 
-
 
     seller_login = async (req, res) => {
         const { email, password } = req.body
@@ -66,14 +60,11 @@ class authControllers {
             } else {
                 responseReturn(res, 404, { error: "Email not Found" })
             }
-
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { error: error.message })
         }
-
     }
-    // End Method 
-
 
     seller_register = async (req, res) => {
         const { email, name, password } = req.body
@@ -100,17 +91,11 @@ class authControllers {
 
                 responseReturn(res, 201, { token, message: 'Register Success' })
             }
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { error: 'Internal Server Error' })
         }
     }
-    // End Method 
-
-
-
-
-
-
 
     getUser = async (req, res) => {
         const { id, role } = req;
@@ -123,13 +108,11 @@ class authControllers {
                 const seller = await sellerModel.findById(id)
                 responseReturn(res, 200, { userInfo: seller })
             }
-
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { error: 'Internal Server Error' })
         }
-
-
-    } // End getUser Method 
+    }
 
     profile_image_upload = async (req, res) => {
         const { id } = req
@@ -155,15 +138,12 @@ class authControllers {
                     responseReturn(res, 404, { error: 'Image Upload Failed' })
                 }
 
-            } catch (error) {
+            }
+            catch (error) {
                 responseReturn(res, 500, { error: error.message })
             }
-
-
         })
     }
-
-    // End Method 
 
     profile_info_add = async (req, res) => {
         const { division, district, shopName, sub_district } = req.body;
@@ -180,14 +160,11 @@ class authControllers {
             })
             const userInfo = await sellerModel.findById(id)
             responseReturn(res, 201, { message: 'Profile info Add Successfully', userInfo })
-
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { error: error.message })
         }
-
-
     }
-    // End Method 
 
     logout = async (req, res) => {
         try {
@@ -196,12 +173,11 @@ class authControllers {
                 httpOnly: true
             })
             responseReturn(res, 200, { message: 'logout Success' })
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { error: error.message })
         }
     }
-    // End Method 
-
 }
 
 module.exports = new authControllers()

@@ -44,7 +44,6 @@ class ChatController {
                     })
                 }
 
-
                 const checkCustomer = await sellerCustomerModel.findOne({
                     $and: [
                         {
@@ -114,11 +113,9 @@ class ChatController {
                 })
             }
 
-        } catch (error) {
-
         }
+        catch (error) { }
     }
-    // End Method 
 
     customer_message_add = async (req, res) => {
         const { userId, text, sellerId, name } = req.body
@@ -150,8 +147,6 @@ class ChatController {
 
             )
 
-
-
             const data1 = await sellerCustomerModel.findOne({ myId: sellerId })
             let myFriends1 = data1.myFriends
             let index1 = myFriends1.findIndex(f => f.fdId === userId)
@@ -171,11 +166,9 @@ class ChatController {
             )
 
             responseReturn(res, 201, { message })
-
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
 
     get_customers = async (req, res) => {
         const { sellerId } = req.params
@@ -184,10 +177,9 @@ class ChatController {
             responseReturn(res, 200, {
                 customers: data.myFriends
             })
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
 
     get_customers_seller_message = async (req, res) => {
         const { customerId } = req.params
@@ -223,12 +215,9 @@ class ChatController {
                 currentCustomer
             })
 
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    // End Method 
-
 
     seller_message_add = async (req, res) => {
         const { senderId, receverId, text, name } = req.body
@@ -259,8 +248,6 @@ class ChatController {
 
             )
 
-
-
             const data1 = await sellerCustomerModel.findOne({ myId: receverId })
             let myFriends1 = data1.myFriends
             let index1 = myFriends1.findIndex(f => f.fdId === senderId)
@@ -280,12 +267,9 @@ class ChatController {
             )
 
             responseReturn(res, 201, { message })
-
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
-
 
     get_sellers = async (req, res) => {
         try {
@@ -293,10 +277,9 @@ class ChatController {
             responseReturn(res, 200, {
                 sellers
             })
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
 
     seller_admin_message_insert = async (req, res) => {
         const { senderId, receverId, message, senderName } = req.body
@@ -309,10 +292,9 @@ class ChatController {
                 senderName
             })
             responseReturn(res, 200, { message: messageData })
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
 
     get_admin_messages = async (req, res) => {
         const { receverId } = req.params
@@ -351,11 +333,9 @@ class ChatController {
                 currentSeller
             })
 
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
-
 
     get_seller_messages = async (req, res) => {
         const receverId = ""
@@ -388,15 +368,9 @@ class ChatController {
             responseReturn(res, 200, {
                 messages
             })
-
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
-
-
 }
 
-
 module.exports = new ChatController()
-

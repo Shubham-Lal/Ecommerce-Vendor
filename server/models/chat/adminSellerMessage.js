@@ -1,27 +1,27 @@
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const adminSellerMsgSchema = new Schema({
     senderName: {
         type: String,
-        required : true
+        required: true
     },
     senderId: {
         type: String,
-        default : ''
+        default: ''
     },
     receverId: {
         type: String,
-        default : ''
+        default: ''
     },
     message: {
         type: String,
-        required : true
+        required: true
     },
     status: {
         type: String,
-        default : 'unseen'
-    } 
-     
-}, {timestamps: true})
+        default: 'unseen'
+    }
 
-module.exports = model('seller_admin_messages',adminSellerMsgSchema)
+}, { timestamps: true })
+
+module.exports = model('seller_admin_messages', adminSellerMsgSchema)

@@ -1,14 +1,13 @@
 const authOrderModel = require('../../models/authOrder')
 const customerOrder = require('../../models/customerOrder')
-
 const myShopWallet = require('../../models/myShopWallet')
 const sellerWallet = require('../../models/sellerWallet')
-
 const cardModel = require('../../models/cardModel')
 const moment = require("moment")
 const { responseReturn } = require('../../utiles/response')
 const { mongo: { ObjectId } } = require('mongoose')
 const stripe = require('stripe')('sk_test_51Oml5cGAwoXiNtjJZbPFBKav0pyrR8GSwzUaLHLhInsyeCa4HI8kKf2IcNeUXc8jc8XVzBJyqjKnDLX9MlRjohrL003UDGPZgQ')
+
 
 class orderController {
 
@@ -26,11 +25,9 @@ class orderController {
                 })
             }
             return true
-        } catch (error) {
         }
+        catch (error) { }
     }
-
-    // end method 
 
     place_order = async (req, res) => {
         const { price, products, shipping_fee, shippingInfo, userId } = req.body
@@ -94,14 +91,9 @@ class orderController {
             }, 15000)
 
             responseReturn(res, 200, { message: "Order Placed Success", orderId: order.id })
-
-
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-
-    // End Method 
 
     get_customer_dashboard_data = async (req, res) => {
         const { userId } = req.params
@@ -126,11 +118,9 @@ class orderController {
                 cancelledOrder
             })
 
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    // End Method 
 
     get_orders = async (req, res) => {
         const { customerId, status } = req.params
@@ -151,11 +141,9 @@ class orderController {
                 orders
             })
 
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    // End Method 
 
     get_order_details = async (req, res) => {
         const { orderId } = req.params
@@ -165,11 +153,9 @@ class orderController {
             responseReturn(res, 200, {
                 order
             })
-
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
 
     get_admin_orders = async (req, res) => {
         let { page, searchValue, parPage } = req.query
@@ -206,11 +192,9 @@ class orderController {
 
                 responseReturn(res, 200, { orders, totalOrder: totalOrder.length })
             }
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    // End Method 
 
     get_admin_order = async (req, res) => {
         const { orderId } = req.params
@@ -230,11 +214,9 @@ class orderController {
                 }
             ])
             responseReturn(res, 200, { order: order[0] })
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
-
 
     admin_order_status_update = async (req, res) => {
         const { orderId } = req.params
@@ -245,12 +227,11 @@ class orderController {
                 delivery_status: status
             })
             responseReturn(res, 200, { message: 'order Status change success' })
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { message: 'internal server error' })
         }
-
     }
-    // End Method 
 
     get_seller_orders = async (req, res) => {
         const { sellerId } = req.params
@@ -273,12 +254,11 @@ class orderController {
                 responseReturn(res, 200, { orders, totalOrder })
             }
 
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { message: 'internal server error' })
         }
-
     }
-    // End Method 
 
     get_seller_order = async (req, res) => {
         const { orderId } = req.params
@@ -286,10 +266,9 @@ class orderController {
         try {
             const order = await authOrderModel.findById(orderId)
             responseReturn(res, 200, { order })
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
 
     seller_order_status_update = async (req, res) => {
         const { orderId } = req.params
@@ -300,13 +279,11 @@ class orderController {
                 delivery_status: status
             })
             responseReturn(res, 200, { message: 'order status updated successfully' })
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { message: 'internal server error' })
         }
-
-
     }
-    // End Method 
 
     create_payment = async (req, res) => {
         const { price } = req.body
@@ -319,10 +296,9 @@ class orderController {
                 }
             })
             responseReturn(res, 200, { clientSecret: payment.client_secret })
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
 
     order_confirm = async (req, res) => {
         const { orderId } = req.params
@@ -355,13 +331,9 @@ class orderController {
                 })
             }
             responseReturn(res, 200, { message: 'success' })
-
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    // End Method 
-
 }
 
 module.exports = new orderController()

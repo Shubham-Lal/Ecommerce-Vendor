@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FixedSizeList as List } from 'react-window';
 import { confirm_payment_request, get_payment_request, messageClear } from '../../store/Reducers/PaymentReducer';
@@ -14,7 +14,6 @@ const outerElementType = forwardRef((props, ref) => (
 ))
 
 const PaymentRequest = () => {
-
     const dispatch = useDispatch()
     const { successMessage, errorMessage, pendingWithdrows, loader } = useSelector(state => state.payment)
     const [paymentId, setPaymentId] = useState('')
@@ -39,7 +38,6 @@ const PaymentRequest = () => {
         }
     }, [successMessage, errorMessage])
 
-
     const Row = ({ index, style }) => {
         return (
             <div style={style} className='flex text-sm text-white font-medium'>
@@ -50,17 +48,11 @@ const PaymentRequest = () => {
                 </div>
                 <div className='w-[25%] p-2 whitespace-nowrap'> {moment(pendingWithdrows[index]?.createdAt).format('LL')} </div>
                 <div className='w-[25%] p-2 whitespace-nowrap'>
-
                     <button disabled={loader} onClick={() => confirm_request(pendingWithdrows[index]?._id)} className='bg-indigo-500 shadow-lg hover:shadow-indigo-500/50 px-3 py-[2px cursor-pointer text-white rounded-sm text-sm]'>{(loader && paymentId === pendingWithdrows[index]?._id) ? 'loading..' : 'Confirm'}</button>
                 </div>
-
             </div>
         )
     }
-
-
-
-
 
     return (
         <div className='px-2 lg:px-7 pt-5'>
@@ -75,26 +67,19 @@ const PaymentRequest = () => {
                             <div className='w-[25%] p-2'> Date </div>
                             <div className='w-[25%] p-2'> Action </div>
                         </div>
-                        {
-                            <List
-                                style={{ minWidth: '340px' }}
-                                className='List'
-                                height={350}
-                                itemCount={pendingWithdrows.length}
-                                itemSize={35}
-                                outerElementType={outerElementType}
-                            >
-                                {Row}
-
-                            </List>
-                        }
-
+                        {<List
+                            style={{ minWidth: '340px' }}
+                            className='List'
+                            height={350}
+                            itemCount={pendingWithdrows.length}
+                            itemSize={35}
+                            outerElementType={outerElementType}
+                        >
+                            {Row}
+                        </List>}
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     );
 };

@@ -1,9 +1,7 @@
 const sellerModel = require('../../models/sellerModel')
 const stripeModel = require('../../models/stripeModel')
-
 const sellerWallet = require('../../models/sellerWallet')
 const withdrowRequest = require('../../models/withdrowRequest')
-
 const { v4: uuidv4 } = require('uuid')
 const { responseReturn } = require('../../utiles/response')
 const { mongo: { ObjectId } } = require('mongoose')
@@ -53,12 +51,9 @@ class paymentController {
                 responseReturn(res, 201, { url: accountLink.url })
 
             }
-
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
-
 
     active_stripe_connect_account = async (req, res) => {
         const { activeCode } = req.params
@@ -76,12 +71,11 @@ class paymentController {
                 responseReturn(res, 404, { message: 'payment Active Fails' })
             }
 
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { message: 'Internal Server Error' })
         }
-
     }
-    // End Method 
 
     sumAmount = (data) => {
         let sum = 0;
@@ -90,7 +84,6 @@ class paymentController {
         }
         return sum
     }
-
 
     get_seller_payment_details = async (req, res) => {
         const { sellerId } = req.params
@@ -146,13 +139,9 @@ class paymentController {
                 pendingWithdrows,
                 successWithdrows
             })
-
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    // End Method 
-
 
     withdrowal_request = async (req, res) => {
         const { amount, sellerId } = req.body
@@ -163,21 +152,21 @@ class paymentController {
                 amount: parseInt(amount)
             })
             responseReturn(res, 200, { withdrowal, message: 'Withdrowal Request Send' })
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { message: 'Internal Server Error' })
         }
     }
-    // End Method 
 
     get_payment_request = async (req, res) => {
         try {
             const withdrowalRequest = await withdrowRequest.find({ status: 'pending' })
             responseReturn(res, 200, { withdrowalRequest })
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { message: 'Internal Server Error' })
         }
     }
-    // End Method 
 
     payment_request_confirm = async (req, res) => {
         const { paymentId } = req.body
@@ -195,14 +184,11 @@ class paymentController {
 
             await withdrowRequest.findByIdAndUpdate(paymentId, { status: 'success' })
             responseReturn(res, 200, { payment, message: 'Request Confirm Success' })
-
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { message: 'Internal Server Error' })
         }
     }
-    // End Method 
-
 }
-
 
 module.exports = new paymentController()

@@ -1,54 +1,54 @@
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const sellerSchema = new Schema({
     name: {
         type: String,
-        required : true
+        required: true
     },
     email: {
         type: String,
-        required : true
+        required: true
     },
     password: {
         type: String,
-        required : true,
+        required: true,
         select: false
-    },     
+    },
     role: {
         type: String,
-        default : 'seller'
+        default: 'seller'
     },
     status: {
         type: String,
-        default : 'pending'
+        default: 'pending'
     },
     payment: {
         type: String,
-        default : 'inactive'
+        default: 'inactive'
     },
     method: {
         type: String,
-        required : true
+        required: true
     },
     image: {
         type: String,
-        default : ''
+        default: ''
     },
     shopInfo: {
         type: Object,
-        default : {}
+        default: {}
     },
-},{ timestamps: true })
+}, { timestamps: true })
 
 sellerSchema.index({
     name: 'text',
-    email: 'text', 
-},{
+    email: 'text',
+}, {
     weights: {
         name: 5,
-        email: 4, 
+        email: 4,
     }
 
 })
 
-module.exports = model('sellers',sellerSchema)
+module.exports = model('sellers', sellerSchema)

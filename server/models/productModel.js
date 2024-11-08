@@ -1,63 +1,63 @@
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const productSchema = new Schema({
     sellerId: {
         type: Schema.ObjectId,
-        required : true
+        required: true
     },
     name: {
         type: String,
-        required : true
+        required: true
     },
     slug: {
         type: String,
-        required : true
+        required: true
     },
     category: {
         type: String,
-        required : true
+        required: true
     },
     brand: {
         type: String,
-        required : true
+        required: true
     },
     price: {
         type: Number,
-        required : true
+        required: true
     },
     stock: {
         type: Number,
-        required : true
+        required: true
     },
     discount: {
         type: Number,
-        required : true
+        required: true
     },
     description: {
         type: String,
-        required : true
+        required: true
     },
     shopName: {
         type: String,
-        required : true
+        required: true
     },
     images: {
         type: Array,
-        required : true
+        required: true
     },
     rating: {
         type: Number,
-        default : 0
-    } 
-     
-}, {timestamps: true})
+        default: 0
+    }
+
+}, { timestamps: true })
 
 productSchema.index({
     name: 'text',
     category: 'text',
     brand: 'text',
     description: 'text'
-},{
+}, {
     weights: {
         name: 5,
         category: 4,
@@ -67,4 +67,4 @@ productSchema.index({
 
 })
 
-module.exports = model('products',productSchema)
+module.exports = model('products', productSchema)

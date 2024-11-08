@@ -1,18 +1,18 @@
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const myShopWalletSchema = new Schema({
     amount: {
         type: Number,
-        required : true
+        required: true
     },
     month: {
         type: Number,
-        required : true
+        required: true
     },
     year: {
         type: Number,
-        required : true  
-    } 
-},{ timestamps: true })
+        required: true
+    }
+}, { timestamps: true })
 
-module.exports = model('myShopWallets',myShopWalletSchema)
+module.exports = model('myShopWallets', myShopWalletSchema)

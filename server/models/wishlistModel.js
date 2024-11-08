@@ -1,38 +1,38 @@
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const wishlistSchema = new Schema({
     userId: {
         type: String,
-        required : true
+        required: true
     },
     productId: {
         type: String,
-        required : true
+        required: true
     },
     name: {
         type: String,
-        required : true 
+        required: true
     },
     price: {
         type: Number,
-        required : true
-    }, 
+        required: true
+    },
     slug: {
         type: String,
-        required : true 
+        required: true
     },
     discount: {
         type: Number,
-        required : true 
+        required: true
     },
     image: {
         type: String,
-        required : true 
+        required: true
     },
     rating: {
         type: Number,
-        default : 0 
+        default: 0
     },
-},{ timestamps: true })
+}, { timestamps: true })
 
-module.exports = model('wishlists',wishlistSchema)
+module.exports = model('wishlists', wishlistSchema)

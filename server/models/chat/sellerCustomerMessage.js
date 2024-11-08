@@ -1,27 +1,27 @@
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const sellerCustomerMsgSchema = new Schema({
     senderName: {
         type: String,
-        required : true
+        required: true
     },
     senderId: {
         type: String,
-        required : true
+        required: true
     },
     receverId: {
         type: String,
-        required : true
+        required: true
     },
     message: {
         type: String,
-        required : true
+        required: true
     },
     status: {
         type: String,
-        default : 'unseen'
-    } 
-     
-}, {timestamps: true})
+        default: 'unseen'
+    }
 
-module.exports = model('seller_customer_msgs',sellerCustomerMsgSchema)
+}, { timestamps: true })
+
+module.exports = model('seller_customer_msgs', sellerCustomerMsgSchema)

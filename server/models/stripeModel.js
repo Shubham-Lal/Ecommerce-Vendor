@@ -1,18 +1,18 @@
-const {Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 const stripeSchema = new Schema({
     sellerId: {
         type: Schema.ObjectId,
-        required : true
+        required: true
     },
     stripeId: {
         type: String,
-        required : true
+        required: true
     },
     code: {
         type: String,
-        required : true  
-    } 
-},{ timestamps: true })
+        required: true
+    }
+}, { timestamps: true })
 
-module.exports = model('stripes',stripeSchema)
+module.exports = model('stripes', stripeSchema)

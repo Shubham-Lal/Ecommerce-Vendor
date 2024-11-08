@@ -1,6 +1,4 @@
-const formidable = require("formidable")
 const { responseReturn } = require("../../utiles/response")
-const cloudinary = require('cloudinary').v2
 const sellerModel = require('../../models/sellerModel')
 
 class sellerController {
@@ -17,26 +15,22 @@ class sellerController {
                 const totalSeller = await sellerModel.find({ status: 'pending' }).countDocuments()
                 responseReturn(res, 200, { sellers, totalSeller })
             }
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { error: error.message })
         }
-
     }
-
-
-    // end method 
 
     get_seller = async (req, res) => {
         const { sellerId } = req.params
         try {
             const seller = await sellerModel.findById(sellerId)
             responseReturn(res, 200, { seller })
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { error: error.message })
         }
     }
-
-    // end method 
 
     seller_status_update = async (req, res) => {
         const { sellerId, status } = req.body
@@ -44,12 +38,11 @@ class sellerController {
             await sellerModel.findByIdAndUpdate(sellerId, { status })
             const seller = await sellerModel.findById(sellerId)
             responseReturn(res, 200, { seller, message: 'Seller Status Updated Successfully' })
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { error: error.message })
         }
     }
-
-    // end method 
 
     get_active_sellers = async (req, res) => {
         let { page, searchValue, parPage } = req.query
@@ -81,12 +74,9 @@ class sellerController {
                 responseReturn(res, 200, { totalSeller, sellers })
             }
 
-        } catch (error) {
         }
-
-
+        catch (error) { }
     }
-    // end method 
 
     get_deactive_sellers = async (req, res) => {
         let { page, searchValue, parPage } = req.query
@@ -117,13 +107,9 @@ class sellerController {
                 }).countDocuments()
                 responseReturn(res, 200, { totalSeller, sellers })
             }
-
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // end method 
-
 }
-
 
 module.exports = new sellerController()

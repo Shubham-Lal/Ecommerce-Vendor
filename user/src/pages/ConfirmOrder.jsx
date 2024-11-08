@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js'
 import error from '../assets/error.png'
 import success from '../assets/success.png'
@@ -11,7 +11,6 @@ const load = async () => {
 }
 
 const ConfirmOrder = () => {
-
     const [loader, setLoader] = useState(true)
     const [stripe, setStripe] = useState('')
     const [message, setMessage] = useState(null)
@@ -37,7 +36,6 @@ const ConfirmOrder = () => {
                     break
                 default:
                     setMessage('failed')
-
             }
         })
     }, [stripe])
@@ -55,11 +53,11 @@ const ConfirmOrder = () => {
         const orderId = localStorage.getItem('orderId')
         if (orderId) {
             try {
-                await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/order/confirm/${orderId}`)
+                await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/order/confirm/${orderId}`)
                 localStorage.removeItem('orderId')
                 setLoader(false)
-            } catch (error) {
             }
+            catch (error) { }
         }
     }
 
@@ -69,19 +67,22 @@ const ConfirmOrder = () => {
         }
     }, [message])
 
-
     return (
         <div className='w-screen h-screen flex justify-center items-center flex-col gap-4'>
-            {
-                (message === 'failed' || message === 'processing') ? <>
+            {(message === 'failed' || message === 'processing')
+                ? <>
                     <img src={error} alt="" />
                     <Link className='px-5 py-2 bg-green-500 rounded-sm text-white' to="/dashboard/my-orders">Back to Dashboard </Link>
-                </> : message === 'succeeded' ? loader ? <FadeLoader /> : <>
-                    <img src={success} alt="" />
-                    <Link className='px-5 py-2 bg-green-500 rounded-sm text-white' to="/dashboard/my-orders">Back to Dashboard </Link>
-                </> : <FadeLoader />
+                </>
+                : message === 'succeeded'
+                    ? loader
+                        ? <FadeLoader />
+                        : <>
+                            <img src={success} alt="" />
+                            <Link className='px-5 py-2 bg-green-500 rounded-sm text-white' to="/dashboard/my-orders">Back to Dashboard </Link>
+                        </>
+                    : <FadeLoader />
             }
-
         </div>
     );
 };

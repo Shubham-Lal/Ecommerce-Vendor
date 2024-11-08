@@ -3,6 +3,7 @@ const { responseReturn } = require("../../utiles/response")
 const cloudinary = require('cloudinary').v2
 const productModel = require('../../models/productModel')
 
+
 class productController {
 
     add_product = async (req, res) => {
@@ -48,16 +49,12 @@ class productController {
                     brand: brand.trim()
                 })
                 responseReturn(res, 201, { message: 'Product Added Successfully' })
-
-            } catch (error) {
+            }
+            catch (error) {
                 responseReturn(res, 500, { error: error.message })
             }
-
         })
-
     }
-
-    /// end method 
 
     products_get = async (req, res) => {
         const { page, searchValue, parPage } = req.query
@@ -82,23 +79,18 @@ class productController {
                 const totalProduct = await productModel.find({ sellerId: id }).countDocuments()
                 responseReturn(res, 200, { products, totalProduct })
             }
-
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-
-    // End Method 
 
     product_get = async (req, res) => {
         const { productId } = req.params;
         try {
             const product = await productModel.findById(productId)
             responseReturn(res, 200, { product })
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
 
     product_update = async (req, res) => {
         let { name, description, stock, price, discount, brand, productId } = req.body;
@@ -111,14 +103,11 @@ class productController {
             })
             const product = await productModel.findById(productId)
             responseReturn(res, 200, { product, message: 'Product Updated Successfully' })
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { error: error.message })
         }
-
-
     }
-
-    // End Method 
 
     product_image_update = async (req, res) => {
         const form = formidable({ multiples: true })
@@ -149,25 +138,16 @@ class productController {
 
                         const product = await productModel.findById(productId)
                         responseReturn(res, 200, { product, message: 'Product Image Updated Successfully' })
-
                     } else {
                         responseReturn(res, 404, { error: 'Image Upload Failed' })
                     }
-
-
-                } catch (error) {
+                }
+                catch (error) {
                     responseReturn(res, 404, { error: error.message })
                 }
             }
-
-
-
         })
     }
-    // End Method 
-
-
-
 }
 
 module.exports = new productController()

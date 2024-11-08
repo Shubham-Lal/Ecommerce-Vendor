@@ -12,8 +12,8 @@ const { mongo: { ObjectId } } = require('mongoose')
 const cloudinary = require('cloudinary').v2
 const formidable = require("formidable")
 
-class dashboardController {
 
+class dashboardController {
 
     get_admin_dashboard_data = async (req, res) => {
         const { id } = req
@@ -40,13 +40,9 @@ class dashboardController {
                 totalSale: totalSale.length > 0 ? totalSale[0].totalAmount : 0,
 
             })
-
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    //end Method 
-
 
     get_seller_dashboard_data = async (req, res) => {
         const { id } = req
@@ -115,12 +111,9 @@ class dashboardController {
                 totalSale: totalSale.length > 0 ? totalSale[0].totalAmount : 0,
 
             })
-
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    //end Method 
 
     add_banner = async (req, res) => {
         const form = formidable({ multiples: true })
@@ -144,25 +137,23 @@ class dashboardController {
                     link: slug
                 })
                 responseReturn(res, 200, { banner, message: "Banner Add Success" })
-            } catch (error) {
+            }
+            catch (error) {
                 responseReturn(res, 500, { error: error.message })
             }
-
         })
     }
-    //end Method 
 
     get_banner = async (req, res) => {
         const { productId } = req.params
         try {
             const banner = await bannerModel.findOne({ productId: new ObjectId(productId) })
             responseReturn(res, 200, { banner })
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { error: error.message })
         }
-
     }
-    //end Method 
 
     update_banner = async (req, res) => {
         const { bannerId } = req.params
@@ -194,16 +185,14 @@ class dashboardController {
                 banner = await bannerModel.findById(bannerId)
                 responseReturn(res, 200, { banner, message: "Banner Updated Success" })
 
-            } catch (error) {
+            }
+            catch (error) {
                 responseReturn(res, 500, { error: error.message })
             }
-
         })
     }
-    //end Method 
 
     get_banners = async (req, res) => {
-
         try {
             const banners = await bannerModel.aggregate([
                 {
@@ -213,14 +202,11 @@ class dashboardController {
                 }
             ])
             responseReturn(res, 200, { banners })
-        } catch (error) {
+        }
+        catch (error) {
             responseReturn(res, 500, { error: error.message })
         }
-
     }
-    //end Method 
-
-
 }
 
 module.exports = new dashboardController()

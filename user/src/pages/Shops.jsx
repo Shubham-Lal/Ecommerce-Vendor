@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
@@ -15,13 +15,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { price_range_product, query_products } from '../store/reducers/homeReducer';
 
 const Shops = () => {
-
     const dispatch = useDispatch()
     const { products, categorys, priceRange, latest_product, totalProduct, parPage } = useSelector(state => state.home)
 
     useEffect(() => {
         dispatch(price_range_product())
     }, [])
+
     useEffect(() => {
         setState({
             values: [priceRange.low, priceRange.high]
@@ -33,7 +33,6 @@ const Shops = () => {
     const [state, setState] = useState({ values: [priceRange.low, priceRange.high] })
     const [rating, setRating] = useState('')
     const [styles, setStyles] = useState('grid')
-
 
     const [pageNumber, setPageNumber] = useState(1)
 
@@ -74,13 +73,12 @@ const Shops = () => {
         )
     }
 
-
     return (
         <div>
             <Header />
             <section
                 style={{
-                    backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/images/banner/shop.png)`,
+                    backgroundImage: `url(${import.meta.env.VITE_BASE_URL}/images/banner/shop.png)`,
                 }}
                 className='h-[220px] mt-6 bg-cover bg-no-repeat relative bg-left'
             >
@@ -110,12 +108,12 @@ const Shops = () => {
                         <div className={`w-3/12 md-lg:w-4/12 md:w-full pr-8 ${filter ? 'md:h-0 md:overflow-hidden md:mb-6' : 'md:h-auto md:overflow-auto md:mb-0'} `}>
                             <h2 className='text-3xl font-bold mb-3 text-slate-600'>Category </h2>
                             <div className='py-2'>
-                                {
-                                    categorys.map((c, i) => <div key={i} className='flex justify-start items-center gap-2 py-1'>
+                                {categorys.map((c, i) =>
+                                    <div key={i} className='flex justify-start items-center gap-2 py-1'>
                                         <input checked={category === c.name ? true : false} onChange={(e) => queryCategory(e, c.name)} type="checkbox" id={c.name} />
                                         <label className='text-slate-600 block cursor-pointer' htmlFor={c.name}>{c.name}</label>
-                                    </div>)
-                                }
+                                    </div>
+                                )}
                             </div>
 
                             <div className='py-2 flex flex-col gap-5'>
@@ -195,7 +193,6 @@ const Shops = () => {
                                 </div>
                             </div>
 
-
                             <div className='py-5 flex flex-col gap-4 md:hidden'>
                                 <Products title='Latest Product' products={latest_product} />
                             </div>
@@ -227,21 +224,12 @@ const Shops = () => {
                                 </div>
 
                                 <div>
-                                    {
-                                        totalProduct > parPage && <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} totalItem={totalProduct} parPage={parPage} showItem={Math.floor(totalProduct / parPage)} />
+                                    {totalProduct > parPage &&
+                                        <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} totalItem={totalProduct} parPage={parPage} showItem={Math.floor(totalProduct / parPage)} />
                                     }
                                 </div>
-
-
-
-
-
                             </div>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </section>

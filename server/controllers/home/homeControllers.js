@@ -6,6 +6,7 @@ const queryProducts = require('../../utiles/queryProducts')
 const moment = require('moment')
 const { mongo: { ObjectId } } = require('mongoose')
 
+
 class homeControllers {
 
     formateProduct = (products) => {
@@ -33,10 +34,9 @@ class homeControllers {
                 categorys
             })
 
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // end method 
 
     get_products = async (req, res) => {
         try {
@@ -64,11 +64,9 @@ class homeControllers {
                 topRated_product,
                 discount_product
             })
-
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // end method 
 
     price_range_product = async (req, res) => {
         try {
@@ -77,7 +75,7 @@ class homeControllers {
                 high: 0,
             }
             const products = await productModel.find({}).limit(9).sort({
-                createdAt: -1 // 1 for asc -1 is for Desc
+                createdAt: -1
             })
             const latest_product = this.formateProduct(products);
             const getForPrice = await productModel.find({}).sort({
@@ -92,12 +90,9 @@ class homeControllers {
                 priceRange
             })
 
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-
-    // end method 
 
     query_products = async (req, res) => {
         const parPage = 12
@@ -118,11 +113,9 @@ class homeControllers {
             })
 
 
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    // end method 
 
     product_details = async (req, res) => {
         const { slug } = req.params
@@ -161,10 +154,9 @@ class homeControllers {
                 moreProducts
             })
 
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // end method 
 
     submit_review = async (req, res) => {
         const { productId, rating, review, name } = req.body
@@ -198,10 +190,9 @@ class homeControllers {
             })
 
 
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // end method 
 
     get_reviews = async (req, res) => {
         const { productId } = req.params
@@ -277,13 +268,9 @@ class homeControllers {
                 totalReview: getAll.length,
                 rating_review
             })
-
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // end method
-
-
 }
 
 module.exports = new homeControllers()

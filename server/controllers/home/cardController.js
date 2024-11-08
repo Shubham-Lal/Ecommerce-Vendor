@@ -3,6 +3,7 @@ const { responseReturn } = require('../../utiles/response')
 const { mongo: { ObjectId } } = require('mongoose')
 const wishlistModel = require('../../models/wishlistModel')
 
+
 class cardController {
 
     add_to_card = async (req, res) => {
@@ -24,7 +25,8 @@ class cardController {
 
             if (product) {
                 responseReturn(res, 404, { error: "Product Already Added To Card" })
-            } else {
+            }
+            else {
                 const product = await cardModel.create({
                     userId,
                     productId,
@@ -32,11 +34,9 @@ class cardController {
                 })
                 responseReturn(res, 201, { message: "Added To Card Successfully", product })
             }
-
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
 
     get_card_products = async (req, res) => {
         const co = 5;
@@ -77,7 +77,7 @@ class cardController {
                 } else {
                     calculatePrice = calculatePrice + quantity * price
                 }
-            } // end for
+            }
             let p = []
             let unique = [...new Set(stockProduct.map(p => p.products[0].sellerId.toString()))]
             for (let i = 0; i < unique.length; i++) {
@@ -110,7 +110,6 @@ class cardController {
                                 productInfo: tempProduct
                             }]
                         }
-
                     }
                 }
             }
@@ -123,13 +122,9 @@ class cardController {
                 outOfStockProduct,
                 buy_product_item
             })
-
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    // End Method 
-
 
     delete_card_products = async (req, res) => {
         const { card_id } = req.params
@@ -137,11 +132,9 @@ class cardController {
             await cardModel.findByIdAndDelete(card_id)
             responseReturn(res, 200, { message: "Product Remove Successfully" })
 
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    // End Method 
 
     quantity_inc = async (req, res) => {
         const { card_id } = req.params
@@ -151,11 +144,9 @@ class cardController {
             await cardModel.findByIdAndUpdate(card_id, { quantity: quantity + 1 })
             responseReturn(res, 200, { message: "Qty Updated" })
 
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    // End Method 
 
     quantity_dec = async (req, res) => {
         const { card_id } = req.params
@@ -165,12 +156,9 @@ class cardController {
             await cardModel.findByIdAndUpdate(card_id, { quantity: quantity - 1 })
             responseReturn(res, 200, { message: "Qty Updated" })
 
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    // End Method 
-
 
     add_wishlist = async (req, res) => {
         const { slug } = req.body
@@ -186,12 +174,9 @@ class cardController {
                     message: 'Product Add to Wishlist Success'
                 })
             }
-        } catch (error) {
         }
-
+        catch (error) { }
     }
-    // End Method 
-
 
     get_wishlist = async (req, res) => {
         const { userId } = req.params
@@ -204,10 +189,9 @@ class cardController {
                 wishlists
             })
 
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
 
     remove_wishlist = async (req, res) => {
         const { wishlistId } = req.params
@@ -218,12 +202,9 @@ class cardController {
                 wishlistId
             })
 
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method 
-
 }
-
 
 module.exports = new cardController()

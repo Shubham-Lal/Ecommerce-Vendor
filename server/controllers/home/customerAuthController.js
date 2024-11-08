@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const sellerCustomerModel = require('../../models/chat/sellerCustomerModel')
 const { createToken } = require('../../utiles/tokenCreate')
 
+
 class customerAuthController {
 
     customer_register = async (req, res) => {
@@ -34,10 +35,9 @@ class customerAuthController {
                 })
                 responseReturn(res, 201, { message: "User Register Success", token })
             }
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method
 
     customer_login = async (req, res) => {
         const { email, password } = req.body
@@ -63,11 +63,9 @@ class customerAuthController {
             } else {
                 responseReturn(res, 404, { error: 'Email Not Found' })
             }
-
-        } catch (error) {
         }
+        catch (error) { }
     }
-    // End Method
 
     customer_logout = async (req, res) => {
         res.cookie('customerToken', "", {
@@ -75,8 +73,6 @@ class customerAuthController {
         })
         responseReturn(res, 200, { message: 'Logout Success' })
     }
-    // End Method
-
 }
 
 module.exports = new customerAuthController()

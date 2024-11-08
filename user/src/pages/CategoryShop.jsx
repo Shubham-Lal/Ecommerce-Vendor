@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link, useSearchParams } from 'react-router-dom';
@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { price_range_product, query_products } from '../store/reducers/homeReducer';
 
 const CategoryShop = () => {
-
     let [searchParams, setSearchParams] = useSearchParams()
     const category = searchParams.get('category')
 
@@ -25,6 +24,7 @@ const CategoryShop = () => {
     useEffect(() => {
         dispatch(price_range_product())
     }, [])
+
     useEffect(() => {
         setState({
             values: [priceRange.low, priceRange.high]
@@ -36,7 +36,6 @@ const CategoryShop = () => {
     const [state, setState] = useState({ values: [priceRange.low, priceRange.high] })
     const [rating, setRating] = useState('')
     const [styles, setStyles] = useState('grid')
-
 
     const [pageNumber, setPageNumber] = useState(1)
 
@@ -69,13 +68,12 @@ const CategoryShop = () => {
         )
     }
 
-
     return (
         <div>
             <Header />
             <section
                 style={{
-                    backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/images/banner/shop.png)`,
+                    backgroundImage: `url(${import.meta.env.VITE_BASE_URL}/images/banner/shop.png)`,
                 }}
                 className='h-[220px] mt-6 bg-cover bg-no-repeat relative bg-left'
             >
@@ -182,7 +180,6 @@ const CategoryShop = () => {
                                 </div>
                             </div>
 
-
                             <div className='py-5 flex flex-col gap-4 md:hidden'>
                                 <Products title='Latest Product' products={latest_product} />
                             </div>
@@ -214,21 +211,12 @@ const CategoryShop = () => {
                                 </div>
 
                                 <div>
-                                    {
-                                        totalProduct > parPage && <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} totalItem={totalProduct} parPage={parPage} showItem={Math.floor(totalProduct / parPage)} />
+                                    {totalProduct > parPage &&
+                                        <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} totalItem={totalProduct} parPage={parPage} showItem={Math.floor(totalProduct / parPage)} />
                                     }
                                 </div>
-
-
-
-
-
                             </div>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </section>

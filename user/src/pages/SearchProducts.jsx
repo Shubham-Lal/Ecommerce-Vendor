@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link, useSearchParams } from 'react-router-dom';
@@ -15,11 +15,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { price_range_product, query_products } from '../store/reducers/homeReducer';
 
 const SearchProducts = () => {
-
     let [searchParams, setSearchParams] = useSearchParams()
     const category = searchParams.get('category')
     const searchValue = searchParams.get('value')
-
 
     const dispatch = useDispatch()
     const { products, categorys, priceRange, latest_product, totalProduct, parPage } = useSelector(state => state.home)
@@ -27,6 +25,7 @@ const SearchProducts = () => {
     useEffect(() => {
         dispatch(price_range_product())
     }, [])
+
     useEffect(() => {
         setState({
             values: [priceRange.low, priceRange.high]
@@ -38,7 +37,6 @@ const SearchProducts = () => {
     const [state, setState] = useState({ values: [priceRange.low, priceRange.high] })
     const [rating, setRating] = useState('')
     const [styles, setStyles] = useState('grid')
-
 
     const [pageNumber, setPageNumber] = useState(1)
 
@@ -72,13 +70,12 @@ const SearchProducts = () => {
         )
     }
 
-
     return (
         <div>
             <Header />
             <section
                 style={{
-                    backgroundImage: `url(${process.env.REACT_APP_BASE_URL}/images/banner/shop.png)`,
+                    backgroundImage: `url(${import.meta.env.VITE_BASE_URL}/images/banner/shop.png)`,
                 }}
                 className='h-[220px] mt-6 bg-cover bg-no-repeat relative bg-left'
             >
@@ -106,8 +103,6 @@ const SearchProducts = () => {
 
                     <div className='w-full flex flex-wrap'>
                         <div className={`w-3/12 md-lg:w-4/12 md:w-full pr-8 ${filter ? 'md:h-0 md:overflow-hidden md:mb-6' : 'md:h-auto md:overflow-auto md:mb-0'} `}>
-
-
                             <div className='py-2 flex flex-col gap-5'>
                                 <h2 className='text-3xl font-bold mb-3 text-slate-600'>Price</h2>
 
@@ -185,7 +180,6 @@ const SearchProducts = () => {
                                 </div>
                             </div>
 
-
                             <div className='py-5 flex flex-col gap-4 md:hidden'>
                                 <Products title='Latest Product' products={latest_product} />
                             </div>
@@ -217,21 +211,12 @@ const SearchProducts = () => {
                                 </div>
 
                                 <div>
-                                    {
-                                        totalProduct > parPage && <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} totalItem={totalProduct} parPage={parPage} showItem={Math.floor(totalProduct / parPage)} />
+                                    {totalProduct > parPage &&
+                                        <Pagination pageNumber={pageNumber} setPageNumber={setPageNumber} totalItem={totalProduct} parPage={parPage} showItem={Math.floor(totalProduct / parPage)} />
                                     }
                                 </div>
-
-
-
-
-
                             </div>
                         </div>
-
-
-
-
                     </div>
                 </div>
             </section>
