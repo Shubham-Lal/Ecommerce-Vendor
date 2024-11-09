@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Home from './pages/Home';
 import Shops from './pages/Shops';
 import Card from './pages/Card';
@@ -8,23 +9,23 @@ import Shipping from './pages/Shipping';
 import Details from './pages/Details';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import { get_category } from './store/reducers/homeReducer';
-import { useDispatch } from 'react-redux';
 import CategoryShop from './pages/CategoryShop';
 import SearchProducts from './pages/SearchProducts';
 import Payment from './pages/Payment';
 import Dashboard from './pages/Dashboard';
-import ProtectUser from './utils/ProtectUser';
+import ConfirmOrder from './pages/ConfirmOrder';
 import Index from './components/dashboard/Index';
 import Orders from './components/dashboard/Orders';
 import ChangePassword from './components/dashboard/ChangePassword';
 import Wishlist from './components/dashboard/Wishlist';
 import OrderDetails from './components/dashboard/OrderDetails';
 import Chat from './components/dashboard/Chat';
-import ConfirmOrder from './pages/ConfirmOrder';
+import ProtectUser from './utils/ProtectUser';
+import { get_category } from './store/reducers/homeReducer';
 
-function App() {
+export default function App() {
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(get_category())
   }, [])
@@ -59,5 +60,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;

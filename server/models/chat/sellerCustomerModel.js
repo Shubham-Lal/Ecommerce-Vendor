@@ -9,7 +9,6 @@ const sellerCustomerSchema = new Schema({
         type: Array,
         default: []
     }
-
 }, { timestamps: true })
 
 module.exports = model('seller_customers', sellerCustomerSchema)

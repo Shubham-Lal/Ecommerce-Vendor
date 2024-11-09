@@ -21,7 +21,6 @@ const adminSellerMsgSchema = new Schema({
         type: String,
         default: 'unseen'
     }
-
 }, { timestamps: true })
 
 module.exports = model('seller_admin_messages', adminSellerMsgSchema)

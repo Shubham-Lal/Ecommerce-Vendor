@@ -28,7 +28,7 @@ const customerOrder = new Schema({
     date: {
         type: String,
         required: true
-    },
+    }
 }, { timestamps: true })
 
 module.exports = model('customerOrders', customerOrder)

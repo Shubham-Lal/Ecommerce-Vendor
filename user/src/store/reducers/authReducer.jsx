@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import api from "../../api/api";
 import { jwtDecode } from "jwt-decode";
+import api from "../../api/api";
 
 export const customer_register = createAsyncThunk(
     'auth/customer_register',

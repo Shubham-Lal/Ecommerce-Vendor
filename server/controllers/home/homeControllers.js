@@ -1,15 +1,15 @@
+const moment = require('moment')
+const { mongo: { ObjectId } } = require('mongoose')
 const categoryModel = require('../../models/categoryModel')
 const productModel = require('../../models/productModel')
 const reviewModel = require('../../models/reviewModel')
-const { responseReturn } = require("../../utiles/response")
 const queryProducts = require('../../utiles/queryProducts')
-const moment = require('moment')
-const { mongo: { ObjectId } } = require('mongoose')
+const { responseReturn } = require("../../utiles/response")
 
 
 class homeControllers {
 
-    formateProduct = (products) => {
+    formatProduct = (products) => {
         const productArray = [];
         let i = 0;
         while (i < products.length) {
@@ -30,10 +30,10 @@ class homeControllers {
     get_categorys = async (req, res) => {
         try {
             const categorys = await categoryModel.find({})
+
             responseReturn(res, 200, {
                 categorys
             })
-
         }
         catch (error) { }
     }
@@ -43,20 +43,24 @@ class homeControllers {
             const products = await productModel.find({}).limit(12).sort({
                 createdAt: -1
             })
+
             const allProduct1 = await productModel.find({}).limit(9).sort({
                 createdAt: -1
             })
-            const latest_product = this.formateProduct(allProduct1);
+
+            const latest_product = this.formatProduct(allProduct1);
 
             const allProduct2 = await productModel.find({}).limit(9).sort({
                 rating: -1
             })
-            const topRated_product = this.formateProduct(allProduct2);
+
+            const topRated_product = this.formatProduct(allProduct2);
 
             const allProduct3 = await productModel.find({}).limit(9).sort({
                 discount: -1
             })
-            const discount_product = this.formateProduct(allProduct3);
+
+            const discount_product = this.formatProduct(allProduct3);
 
             responseReturn(res, 200, {
                 products,
@@ -74,22 +78,26 @@ class homeControllers {
                 low: 0,
                 high: 0,
             }
+
             const products = await productModel.find({}).limit(9).sort({
                 createdAt: -1
             })
-            const latest_product = this.formateProduct(products);
+
+            const latest_product = this.formatProduct(products);
+
             const getForPrice = await productModel.find({}).sort({
                 'price': 1
             })
+
             if (getForPrice.length > 0) {
                 priceRange.high = getForPrice[getForPrice.length - 1].price
                 priceRange.low = getForPrice[0].price
             }
+
             responseReturn(res, 200, {
                 latest_product,
                 priceRange
             })
-
         }
         catch (error) { }
     }
@@ -102,6 +110,7 @@ class homeControllers {
             const products = await productModel.find({}).sort({
                 createdAt: -1
             })
+
             const totalProduct = new queryProducts(products, req.query).categoryQuery().ratingQuery().searchQuery().priceQuery().sortByPrice().countProducts();
 
             const result = new queryProducts(products, req.query).categoryQuery().ratingQuery().priceQuery().searchQuery().sortByPrice().skip().limit().getProducts();
@@ -111,14 +120,13 @@ class homeControllers {
                 totalProduct,
                 parPage
             })
-
-
         }
         catch (error) { }
     }
 
     product_details = async (req, res) => {
         const { slug } = req.params
+
         try {
             const product = await productModel.findOne({ slug })
 
@@ -135,6 +143,7 @@ class homeControllers {
                 }
                 ]
             }).limit(12)
+
             const moreProducts = await productModel.find({
                 $and: [{
                     _id: {
@@ -148,12 +157,12 @@ class homeControllers {
                 }
                 ]
             }).limit(3)
+
             responseReturn(res, 200, {
                 product,
                 relatedProducts,
                 moreProducts
             })
-
         }
         catch (error) { }
     }
@@ -185,11 +194,10 @@ class homeControllers {
             await productModel.findByIdAndUpdate(productId, {
                 rating: productRating
             })
+
             responseReturn(res, 201, {
                 message: "Review Added Successfully"
             })
-
-
         }
         catch (error) { }
     }
@@ -259,6 +267,7 @@ class homeControllers {
             const getAll = await reviewModel.find({
                 productId
             })
+
             const reviews = await reviewModel.find({
                 productId
             }).skip(skipPage).limit(limit).sort({ createdAt: -1 })

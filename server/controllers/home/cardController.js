@@ -1,13 +1,14 @@
-const cardModel = require('../../models/cardModel')
-const { responseReturn } = require('../../utiles/response')
 const { mongo: { ObjectId } } = require('mongoose')
+const cardModel = require('../../models/cardModel')
 const wishlistModel = require('../../models/wishlistModel')
+const { responseReturn } = require('../../utiles/response')
 
 
 class cardController {
 
     add_to_card = async (req, res) => {
         const { userId, productId, quantity } = req.body
+
         try {
             const product = await cardModel.findOne({
                 $and: [{
@@ -32,6 +33,7 @@ class cardController {
                     productId,
                     quantity
                 })
+
                 responseReturn(res, 201, { message: "Added To Card Successfully", product })
             }
         }
@@ -41,6 +43,7 @@ class cardController {
     get_card_products = async (req, res) => {
         const co = 5;
         const { userId } = req.params
+
         try {
             const card_products = await cardModel.aggregate([{
                 $match: {
@@ -69,7 +72,6 @@ class cardController {
             for (let i = 0; i < stockProduct.length; i++) {
                 const { quantity } = stockProduct[i]
                 card_product_count = buy_product_item + quantity
-
                 buy_product_item = buy_product_item + quantity
                 const { price, discount } = stockProduct[i].products[0]
                 if (discount !== 0) {
@@ -128,40 +130,44 @@ class cardController {
 
     delete_card_products = async (req, res) => {
         const { card_id } = req.params
+
         try {
             await cardModel.findByIdAndDelete(card_id)
-            responseReturn(res, 200, { message: "Product Remove Successfully" })
 
+            responseReturn(res, 200, { message: "Product Remove Successfully" })
         }
         catch (error) { }
     }
 
     quantity_inc = async (req, res) => {
         const { card_id } = req.params
+
         try {
             const product = await cardModel.findById(card_id)
             const { quantity } = product
             await cardModel.findByIdAndUpdate(card_id, { quantity: quantity + 1 })
-            responseReturn(res, 200, { message: "Qty Updated" })
 
+            responseReturn(res, 200, { message: "Qty Updated" })
         }
         catch (error) { }
     }
 
     quantity_dec = async (req, res) => {
         const { card_id } = req.params
+
         try {
             const product = await cardModel.findById(card_id)
             const { quantity } = product
             await cardModel.findByIdAndUpdate(card_id, { quantity: quantity - 1 })
-            responseReturn(res, 200, { message: "Qty Updated" })
 
+            responseReturn(res, 200, { message: "Qty Updated" })
         }
         catch (error) { }
     }
 
     add_wishlist = async (req, res) => {
         const { slug } = req.body
+
         try {
             const product = await wishlistModel.findOne({ slug })
             if (product) {
@@ -170,6 +176,7 @@ class cardController {
                 })
             } else {
                 await wishlistModel.create(req.body)
+
                 responseReturn(res, 201, {
                     message: 'Product Add to Wishlist Success'
                 })
@@ -180,28 +187,30 @@ class cardController {
 
     get_wishlist = async (req, res) => {
         const { userId } = req.params
+
         try {
             const wishlists = await wishlistModel.find({
                 userId
             })
+
             responseReturn(res, 200, {
                 wishlistCount: wishlists.length,
                 wishlists
             })
-
         }
         catch (error) { }
     }
 
     remove_wishlist = async (req, res) => {
         const { wishlistId } = req.params
+
         try {
             const wishlist = await wishlistModel.findByIdAndDelete(wishlistId)
+            
             responseReturn(res, 200, {
                 message: 'Wishlist Product Remove',
                 wishlistId
             })
-
         }
         catch (error) { }
     }

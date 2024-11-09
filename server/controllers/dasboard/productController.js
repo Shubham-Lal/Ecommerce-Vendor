@@ -1,7 +1,7 @@
 const formidable = require("formidable")
-const { responseReturn } = require("../../utiles/response")
 const cloudinary = require('cloudinary').v2
 const productModel = require('../../models/productModel')
+const { responseReturn } = require("../../utiles/response")
 
 
 class productController {
@@ -48,6 +48,7 @@ class productController {
                     images: allImageUrl,
                     brand: brand.trim()
                 })
+
                 responseReturn(res, 201, { message: 'Product Added Successfully' })
             }
             catch (error) {
@@ -63,7 +64,6 @@ class productController {
         const skipPage = parseInt(parPage) * (parseInt(page) - 1)
 
         try {
-
             if (searchValue) {
                 const products = await productModel.find({
                     $text: { $search: searchValue },
@@ -73,10 +73,12 @@ class productController {
                     $text: { $search: searchValue },
                     sellerId: id
                 }).countDocuments()
+
                 responseReturn(res, 200, { products, totalProduct })
             } else {
                 const products = await productModel.find({ sellerId: id }).skip(skipPage).limit(parPage).sort({ createdAt: -1 })
                 const totalProduct = await productModel.find({ sellerId: id }).countDocuments()
+
                 responseReturn(res, 200, { products, totalProduct })
             }
         }
@@ -87,6 +89,7 @@ class productController {
         const { productId } = req.params;
         try {
             const product = await productModel.findById(productId)
+
             responseReturn(res, 200, { product })
         }
         catch (error) { }
@@ -102,6 +105,7 @@ class productController {
                 name, description, stock, price, discount, brand, productId, slug
             })
             const product = await productModel.findById(productId)
+
             responseReturn(res, 200, { product, message: 'Product Updated Successfully' })
         }
         catch (error) {
@@ -137,6 +141,7 @@ class productController {
                         await productModel.findByIdAndUpdate(productId, { images })
 
                         const product = await productModel.findById(productId)
+                        
                         responseReturn(res, 200, { product, message: 'Product Image Updated Successfully' })
                     } else {
                         responseReturn(res, 404, { error: 'Image Upload Failed' })

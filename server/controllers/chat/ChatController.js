@@ -72,6 +72,7 @@ class ChatController {
                         }
                     })
                 }
+
                 const messages = await sellerCustomerMessage.find({
                     $or: [
                         {
@@ -94,10 +95,13 @@ class ChatController {
                         }
                     ]
                 })
+
                 const MyFriends = await sellerCustomerModel.findOne({
                     myId: userId
                 })
+
                 const currentFd = MyFriends.myFriends.find(s => s.fdId === sellerId)
+
                 responseReturn(res, 200, {
                     MyFriends: MyFriends.myFriends,
                     currentFd,
@@ -108,11 +112,11 @@ class ChatController {
                 const MyFriends = await sellerCustomerModel.findOne({
                     myId: userId
                 })
+
                 responseReturn(res, 200, {
                     MyFriends: MyFriends.myFriends
                 })
             }
-
         }
         catch (error) { }
     }
@@ -210,17 +214,18 @@ class ChatController {
             })
 
             const currentCustomer = await customerModel.findById(customerId)
+
             responseReturn(res, 200, {
                 messages,
                 currentCustomer
             })
-
         }
         catch (error) { }
     }
 
     seller_message_add = async (req, res) => {
         const { senderId, receverId, text, name } = req.body
+
         try {
             const message = await sellerCustomerMessage.create({
                 senderId: senderId,
@@ -239,13 +244,8 @@ class ChatController {
                 index--
             }
             await sellerCustomerModel.updateOne(
-                {
-                    myId: senderId
-                },
-                {
-                    myFriends
-                }
-
+                { myId: senderId },
+                { myFriends }
             )
 
             const data1 = await sellerCustomerModel.findOne({ myId: receverId })
@@ -258,12 +258,8 @@ class ChatController {
                 index1--
             }
             await sellerCustomerModel.updateOne(
-                {
-                    myId: receverId
-                },
-                {
-                    myFriends1
-                }
+                { myId: receverId },
+                { myFriends1 }
             )
 
             responseReturn(res, 201, { message })
@@ -274,6 +270,7 @@ class ChatController {
     get_sellers = async (req, res) => {
         try {
             const sellers = await sellerModel.find({})
+
             responseReturn(res, 200, {
                 sellers
             })
@@ -291,6 +288,7 @@ class ChatController {
                 message,
                 senderName
             })
+
             responseReturn(res, 200, { message: messageData })
         }
         catch (error) { }
@@ -328,11 +326,11 @@ class ChatController {
             if (receverId) {
                 currentSeller = await sellerModel.findById(receverId)
             }
+
             responseReturn(res, 200, {
                 messages,
                 currentSeller
             })
-
         }
         catch (error) { }
     }

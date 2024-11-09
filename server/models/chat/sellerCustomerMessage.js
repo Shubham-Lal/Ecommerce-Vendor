@@ -21,7 +21,6 @@ const sellerCustomerMsgSchema = new Schema({
         type: String,
         default: 'unseen'
     }
-
 }, { timestamps: true })
 
 module.exports = model('seller_customer_msgs', sellerCustomerMsgSchema)

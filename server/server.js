@@ -53,6 +53,7 @@ const addSeller = (sellerId, socketId, userInfo) => {
 const findCustomer = (customerId) => {
     return allCustomer.find(c => c.customerId === customerId)
 }
+
 const findSeller = (sellerId) => {
     return allSeller.find(c => c.sellerId === sellerId)
 }
@@ -63,7 +64,7 @@ const remove = (socketId) => {
 }
 
 io.on('connection', (soc) => {
-    console.log('socket server running..')
+    console.log('Socket server running...')
 
     soc.on('add_user', (customerId, userInfo) => {
         addUser(customerId, soc.id, userInfo)
@@ -111,7 +112,6 @@ io.on('connection', (soc) => {
     })
 
     soc.on('disconnect', () => {
-        console.log('user disconnect')
         remove(soc.id)
         io.emit('activeSeller', allSeller)
     })

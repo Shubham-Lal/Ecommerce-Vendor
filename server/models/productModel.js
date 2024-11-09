@@ -49,7 +49,6 @@ const productSchema = new Schema({
         type: Number,
         default: 0
     }
-
 }, { timestamps: true })
 
 productSchema.index({
@@ -64,7 +63,6 @@ productSchema.index({
         brand: 3,
         description: 2
     }
-
 })
 
 module.exports = model('products', productSchema)

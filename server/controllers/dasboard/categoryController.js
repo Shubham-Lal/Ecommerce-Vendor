@@ -1,16 +1,17 @@
 const formidable = require("formidable")
-const { responseReturn } = require("../../utiles/response")
 const cloudinary = require('cloudinary').v2
 const categoryModel = require('../../models/categoryModel')
+const { responseReturn } = require("../../utiles/response")
 
 
 class categoryController {
 
     add_category = async (req, res) => {
         const form = formidable()
+
         form.parse(req, async (err, fields, files) => {
             if (err) {
-                responseReturn(res, 404, { error: 'something went wrong' })
+                responseReturn(res, 404, { error: 'Something went wrong' })
             }
             else {
                 let { name } = fields
@@ -34,6 +35,7 @@ class categoryController {
                             slug,
                             image: result.url
                         })
+
                         responseReturn(res, 201, { category, message: 'Category Added Successfully' })
                     }
                     else {
@@ -63,16 +65,19 @@ class categoryController {
                 const totalCategory = await categoryModel.find({
                     $text: { $search: searchValue }
                 }).countDocuments()
+
                 responseReturn(res, 200, { categorys, totalCategory })
             }
             else if (searchValue === '' && page && parPage) {
                 const categorys = await categoryModel.find({}).skip(skipPage).limit(parPage).sort({ createdAt: -1 })
                 const totalCategory = await categoryModel.find({}).countDocuments()
+
                 responseReturn(res, 200, { categorys, totalCategory })
             }
             else {
                 const categorys = await categoryModel.find({}).sort({ createdAt: -1 })
                 const totalCategory = await categoryModel.find({}).countDocuments()
+
                 responseReturn(res, 200, { categorys, totalCategory })
             }
         }
@@ -81,9 +86,10 @@ class categoryController {
 
     update_category = async (req, res) => {
         const form = formidable()
+
         form.parse(req, async (err, fields, files) => {
             if (err) {
-                responseReturn(res, 404, { error: 'something went wrong' })
+                responseReturn(res, 404, { error: 'Something went wrong' })
             } else {
                 let { name } = fields
                 let { image } = files
@@ -105,16 +111,12 @@ class categoryController {
                         result = await cloudinary.uploader.upload(image.filepath, { folder: 'categorys' })
                     }
 
-                    const updateData = {
-                        name,
-                        slug,
-                    }
+                    const updateData = { name, slug }
 
-                    if (result) {
-                        updateData.image = result.url;
-                    }
+                    if (result) updateData.image = result.url;
 
                     const category = await categoryModel.findByIdAndUpdate(id, updateData, { new: true });
+
                     responseReturn(res, 200, { category, message: 'Category Updated successfully' })
                 }
                 catch (error) {
@@ -132,6 +134,7 @@ class categoryController {
             if (!deleteCategory) {
                 return res.status(404).json({ message: 'Category not found' });
             }
+            
             res.status(200).json({ message: 'Category deleted successfully' });
         }
         catch (error) {

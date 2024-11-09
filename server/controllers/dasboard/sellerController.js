@@ -1,5 +1,5 @@
-const { responseReturn } = require("../../utiles/response")
 const sellerModel = require('../../models/sellerModel')
+const { responseReturn } = require("../../utiles/response")
 
 class sellerController {
 
@@ -8,11 +8,11 @@ class sellerController {
         const skipPage = parseInt(parPage) * (parseInt(page) - 1)
 
         try {
-            if (searchValue) {
-
-            } else {
+            if (searchValue) { }
+            else {
                 const sellers = await sellerModel.find({ status: 'pending' }).skip(skipPage).limit(parPage).sort({ createdAt: -1 })
                 const totalSeller = await sellerModel.find({ status: 'pending' }).countDocuments()
+
                 responseReturn(res, 200, { sellers, totalSeller })
             }
         }
@@ -25,6 +25,7 @@ class sellerController {
         const { sellerId } = req.params
         try {
             const seller = await sellerModel.findById(sellerId)
+
             responseReturn(res, 200, { seller })
         }
         catch (error) {
@@ -37,6 +38,7 @@ class sellerController {
         try {
             await sellerModel.findByIdAndUpdate(sellerId, { status })
             const seller = await sellerModel.findById(sellerId)
+
             responseReturn(res, 200, { seller, message: 'Seller Status Updated Successfully' })
         }
         catch (error) {
@@ -62,6 +64,7 @@ class sellerController {
                     $text: { $search: searchValue },
                     status: 'active'
                 }).countDocuments()
+
                 responseReturn(res, 200, { totalSeller, sellers })
             } else {
                 const sellers = await sellerModel.find({
@@ -71,9 +74,9 @@ class sellerController {
                 const totalSeller = await sellerModel.find({
                     status: 'active'
                 }).countDocuments()
+
                 responseReturn(res, 200, { totalSeller, sellers })
             }
-
         }
         catch (error) { }
     }
@@ -96,6 +99,7 @@ class sellerController {
                     $text: { $search: searchValue },
                     status: 'deactive'
                 }).countDocuments()
+
                 responseReturn(res, 200, { totalSeller, sellers })
             } else {
                 const sellers = await sellerModel.find({
@@ -105,6 +109,7 @@ class sellerController {
                 const totalSeller = await sellerModel.find({
                     status: 'deactive'
                 }).countDocuments()
+                
                 responseReturn(res, 200, { totalSeller, sellers })
             }
         }

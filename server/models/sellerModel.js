@@ -37,7 +37,7 @@ const sellerSchema = new Schema({
     shopInfo: {
         type: Object,
         default: {}
-    },
+    }
 }, { timestamps: true })
 
 sellerSchema.index({
@@ -48,7 +48,6 @@ sellerSchema.index({
         name: 5,
         email: 4,
     }
-
 })
 
 module.exports = model('sellers', sellerSchema)

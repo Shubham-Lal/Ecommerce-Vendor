@@ -32,7 +32,7 @@ const wishlistSchema = new Schema({
     rating: {
         type: Number,
         default: 0
-    },
+    }
 }, { timestamps: true })
 
 module.exports = model('wishlists', wishlistSchema)

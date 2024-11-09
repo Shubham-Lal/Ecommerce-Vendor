@@ -1,4 +1,6 @@
-const { responseReturn } = require("../../utiles/response")
+const { mongo: { ObjectId } } = require('mongoose')
+const cloudinary = require('cloudinary').v2
+const formidable = require("formidable")
 const myShopWallet = require('../../models/myShopWallet')
 const productModel = require('../../models/productModel')
 const customerOrder = require('../../models/customerOrder')
@@ -8,15 +10,14 @@ const sellerWallet = require('../../models/sellerWallet')
 const authOrder = require('../../models/authOrder')
 const sellerCustomerMessage = require('../../models/chat/sellerCustomerMessage')
 const bannerModel = require('../../models/bannerModel')
-const { mongo: { ObjectId } } = require('mongoose')
-const cloudinary = require('cloudinary').v2
-const formidable = require("formidable")
+const { responseReturn } = require("../../utiles/response")
 
 
 class dashboardController {
 
     get_admin_dashboard_data = async (req, res) => {
         const { id } = req
+
         try {
             const totalSale = await myShopWallet.aggregate([
                 {
@@ -31,6 +32,7 @@ class dashboardController {
             const totalSeller = await sellerModel.find({}).countDocuments()
             const messages = await adminSellerMessage.find({}).limit(3)
             const recentOrders = await customerOrder.find({}).limit(5)
+
             responseReturn(res, 200, {
                 totalProduct,
                 totalOrder,
@@ -38,7 +40,6 @@ class dashboardController {
                 messages,
                 recentOrders,
                 totalSale: totalSale.length > 0 ? totalSale[0].totalAmount : 0,
-
             })
         }
         catch (error) { }
@@ -46,6 +47,7 @@ class dashboardController {
 
     get_seller_dashboard_data = async (req, res) => {
         const { id } = req
+
         try {
             const totalSale = await sellerWallet.aggregate([
                 {
@@ -84,6 +86,7 @@ class dashboardController {
                     }
                 ]
             }).countDocuments()
+
             const messages = await sellerCustomerMessage.find({
                 $or: [
                     {
@@ -117,6 +120,7 @@ class dashboardController {
 
     add_banner = async (req, res) => {
         const form = formidable({ multiples: true })
+
         form.parse(req, async (err, field, files) => {
             const { productId } = field
             const { mainban } = files
@@ -136,6 +140,7 @@ class dashboardController {
                     banner: result.url,
                     link: slug
                 })
+
                 responseReturn(res, 200, { banner, message: "Banner Add Success" })
             }
             catch (error) {
@@ -146,8 +151,10 @@ class dashboardController {
 
     get_banner = async (req, res) => {
         const { productId } = req.params
+
         try {
             const banner = await bannerModel.findOne({ productId: new ObjectId(productId) })
+
             responseReturn(res, 200, { banner })
         }
         catch (error) {
@@ -183,8 +190,8 @@ class dashboardController {
                 })
 
                 banner = await bannerModel.findById(bannerId)
-                responseReturn(res, 200, { banner, message: "Banner Updated Success" })
 
+                responseReturn(res, 200, { banner, message: "Banner Updated Success" })
             }
             catch (error) {
                 responseReturn(res, 500, { error: error.message })
@@ -201,6 +208,7 @@ class dashboardController {
                     }
                 }
             ])
+            
             responseReturn(res, 200, { banners })
         }
         catch (error) {

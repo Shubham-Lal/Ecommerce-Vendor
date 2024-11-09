@@ -17,7 +17,7 @@ const customerSchema = new Schema({
     method: {
         type: String,
         required: true
-    },
+    }
 }, { timestamps: true })
 
 module.exports = model('customers', customerSchema)

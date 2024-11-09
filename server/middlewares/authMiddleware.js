@@ -16,5 +16,4 @@ module.exports.authMiddleware = async (req, res, next) => {
             return res.status(409).json({ error: 'Please Login' })
         }
     }
-
 }

@@ -1,17 +1,18 @@
+const cloudinary = require('cloudinary').v2
+const formidable = require("formidable")
+const bcrpty = require('bcrypt')
 const adminModel = require('../models/adminModel')
 const sellerModel = require('../models/sellerModel')
 const sellerCustomerModel = require('../models/chat/sellerCustomerModel')
-const { responseReturn } = require('../utiles/response')
-const bcrpty = require('bcrypt')
 const { createToken } = require('../utiles/tokenCreate')
-const cloudinary = require('cloudinary').v2
-const formidable = require("formidable")
+const { responseReturn } = require('../utiles/response')
 
 
 class authControllers {
 
     admin_login = async (req, res) => {
         const { email, password } = req.body
+
         try {
             const admin = await adminModel.findOne({ email }).select('+password')
             if (admin) {
@@ -21,9 +22,11 @@ class authControllers {
                         id: admin.id,
                         role: admin.role
                     })
+
                     res.cookie('accessToken', token, {
                         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
                     })
+
                     responseReturn(res, 200, { token, message: "Login Success" })
                 } else {
                     responseReturn(res, 404, { error: "Password Wrong" })
@@ -39,6 +42,7 @@ class authControllers {
 
     seller_login = async (req, res) => {
         const { email, password } = req.body
+
         try {
             const seller = await sellerModel.findOne({ email }).select('+password')
             if (seller) {
@@ -48,15 +52,15 @@ class authControllers {
                         id: seller.id,
                         role: seller.role
                     })
+
                     res.cookie('accessToken', token, {
                         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
                     })
+
                     responseReturn(res, 200, { token, message: "Login Success" })
                 } else {
                     responseReturn(res, 404, { error: "Password Wrong" })
                 }
-
-
             } else {
                 responseReturn(res, 404, { error: "Email not Found" })
             }
@@ -68,6 +72,7 @@ class authControllers {
 
     seller_register = async (req, res) => {
         const { email, name, password } = req.body
+
         try {
             const getUser = await sellerModel.findOne({ email })
             if (getUser) {
@@ -80,11 +85,13 @@ class authControllers {
                     method: 'menualy',
                     shopInfo: {}
                 })
+
                 await sellerCustomerModel.create({
                     myId: seller.id
                 })
 
                 const token = await createToken({ id: seller.id, role: seller.role })
+
                 res.cookie('accessToken', token, {
                     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
                 })
@@ -103,9 +110,11 @@ class authControllers {
         try {
             if (role === 'admin') {
                 const user = await adminModel.findById(id)
+
                 responseReturn(res, 200, { userInfo: user })
             } else {
                 const seller = await sellerModel.findById(id)
+
                 responseReturn(res, 200, { userInfo: seller })
             }
         }
@@ -117,6 +126,7 @@ class authControllers {
     profile_image_upload = async (req, res) => {
         const { id } = req
         const form = formidable({ multiples: true })
+
         form.parse(req, async (err, _, files) => {
             cloudinary.config({
                 cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -124,6 +134,7 @@ class authControllers {
                 api_secret: process.env.CLOUDINARY_API_SECRET,
                 secure: true
             })
+
             const { image } = files
 
             try {
@@ -132,12 +143,13 @@ class authControllers {
                     await sellerModel.findByIdAndUpdate(id, {
                         image: result.url
                     })
+
                     const userInfo = await sellerModel.findById(id)
+
                     responseReturn(res, 201, { message: 'Profile Image Upload Successfully', userInfo })
                 } else {
                     responseReturn(res, 404, { error: 'Image Upload Failed' })
                 }
-
             }
             catch (error) {
                 responseReturn(res, 500, { error: error.message })
@@ -158,7 +170,9 @@ class authControllers {
                     sub_district
                 }
             })
+
             const userInfo = await sellerModel.findById(id)
+
             responseReturn(res, 201, { message: 'Profile info Add Successfully', userInfo })
         }
         catch (error) {
@@ -172,6 +186,7 @@ class authControllers {
                 expires: new Date(Date.now()),
                 httpOnly: true
             })
+
             responseReturn(res, 200, { message: 'logout Success' })
         }
         catch (error) {

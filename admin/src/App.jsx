@@ -1,12 +1,12 @@
 import './App.css'
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Router from "./router/Router";
 import publicRoutes from "./router/routes/publicRoutes";
 import { getRoutes } from "./router/routes";
-import { useDispatch, useSelector } from "react-redux";
 import { get_user_info } from "./store/Reducers/authReducer";
 
-function App() {
+export default function App() {
   const dispatch = useDispatch()
   const { token } = useSelector(state => state.auth)
 
@@ -25,5 +25,3 @@ function App() {
 
   return <Router allRoutes={allRoutes} />
 }
-
-export default App;
