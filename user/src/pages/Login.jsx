@@ -54,8 +54,8 @@ const Login = () => {
             }
             <Header />
             <div className='bg-slate-200 mt-4'>
-                <div className='w-full justify-center items-center p-10'>
-                    <div className='grid grid-cols-2 w-[60%] mx-auto bg-white rounded-md'>
+                <div className='w-full justify-center items-center p-4 md:p-6 lg:p-10'>
+                    <div className='grid md:grid-cols-2 w-full lg:w-[60%] mx-auto bg-white rounded-md'>
                         <div className='px-8 py-8'>
                             <h2 className='text-center w-full text-xl text-slate-600 font-bold'>Login </h2>
 
@@ -95,20 +95,20 @@ const Login = () => {
                                 <p>Don't Have An Account ? <Link className='text-blue-500' to='/register'> Register</Link> </p>
                             </div>
 
-                            <a target='_blank' href="/login">
+                            <a target='_blank' href={`${import.meta.env.VITE_ADMIN_URL}/login`}>
                                 <div className='px-8 w-full py-2 bg-[#02e3e0] shadow hover:shadow-red-500/50 text-white rounded-md flex justify-center items-center gap-2 mb-3'>
                                     Login As a Seller
                                 </div>
                             </a>
 
-                            <a target='_blank' href="/register">
+                            <a target='_blank' href={`${import.meta.env.VITE_ADMIN_URL}/register`}>
                                 <div className='px-8 w-full py-2 bg-[#ad2cc4] shadow hover:shadow-red-500/50 text-white rounded-md flex justify-center items-center gap-2 mb-3'>
                                     Register As a Seller
                                 </div>
                             </a>
                         </div>
 
-                        <div className='w-full h-full py-4 pr-4'>
+                        <div className='hidden md:block w-full h-full py-4 pr-4'>
                             <img src="/images/login.jpg" alt="" />
                         </div>
                     </div>

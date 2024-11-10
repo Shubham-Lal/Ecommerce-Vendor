@@ -27,8 +27,8 @@ const Home = () => {
             </div>
 
             <div className='py-10'>
-                <div className='w-[85%] flex flex-wrap mx-auto'>
-                    <div className='grid w-full grid-cols-3 md-lg:grid-cols-2 md:grid-cols-1 gap-7'>
+                <div className='w-[90%] flex flex-wrap mx-auto'>
+                    <div className='w-full flex flex-col gap-7'>
                         <div className='overflow-hidden'>
                             <Products title='Latest Product' products={latest_product} />
                         </div>
