@@ -12,11 +12,11 @@ const Header = ({ showSidebar, setShowSidebar }) => {
           <span><FaList /></span>
         </div>
 
-        <div className='hidden md:block'>
+        {/* <div className='hidden md:block'>
           <input className='px-3 py-2 outline-none border bg-transparent border-slate-700 rounded-md text-[#423d72] focus:border-indigo-300 overflow-hidden' type="text" name='search' placeholder='search' />
-        </div>
+        </div> */}
 
-        <div className='flex justify-center items-center gap-8 relative'>
+        <div className='ml-auto flex justify-center items-center gap-8 relative'>
           <div className='flex justify-center items-center'>
             <div className='flex justify-center items-center gap-3'>
               <div className='flex justify-center items-center flex-col text-end'>
@@ -25,8 +25,8 @@ const Header = ({ showSidebar, setShowSidebar }) => {
               </div>
 
               {userInfo.role === 'admin'
-                ? <img className='w-[45px] h-[45px] rounded-full overflow-hidden' src="/images/admin.jpg" alt="" />
-                : <img className='w-[45px] h-[45px] rounded-full overflow-hidden' src={userInfo.image} alt="" />
+                ? <img className='w-[45px] h-[45px] rounded-full overflow-hidden' src={userInfo.image ? userInfo.image : "/images/admin.jpg"} alt="" />
+                : <img className='w-[45px] h-[45px] rounded-full overflow-hidden' src={userInfo.image ? userInfo.image : "/images/seller.png"} alt="" />
               }
             </div>
           </div>

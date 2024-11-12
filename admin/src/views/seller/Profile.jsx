@@ -77,7 +77,7 @@ const Profile = () => {
 
                         <div className='px-0 md:px-5 py-2'>
                             <div className='flex justify-between text-sm flex-col gap-2 p-4 bg-slate-800 rounded-md relative'>
-                                <span className='p-[6px] bg-yellow-500 rounded hover:shadow-lg hover:shadow-yellow-500/50 absolute right-2 top-2 cursor-pointer'><FaRegEdit /> </span>
+                                {/* <span className='p-[6px] bg-yellow-500 rounded hover:shadow-lg hover:shadow-yellow-500/50 absolute right-2 top-2 cursor-pointer'><FaRegEdit /> </span> */}
                                 <div className='flex gap-2'>
                                     <span>Name : </span>
                                     <span>{userInfo.name}</span>
@@ -157,7 +157,7 @@ const Profile = () => {
                     <div className='w-full pl-0 md:pl-7 mt-6 md:mt-0'>
                         <div className='bg-[#6a5fdf] rounded-md text-[#d0d2d6] p-4'>
                             <h1 className='text-[#d0d2d6] text-lg mb-3 font-semibold'>Change Password</h1>
-                            <form>
+                            <form onSubmit={e => e.preventDefault()}>
                                 <div className='flex flex-col w-full gap-1 mb-2'>
                                     <label htmlFor="email">Email</label>
                                     <input className='px-4 py-2 focus:border-indigo-200 outline-none bg-[#6a5fdf] border border-slate-700 rounded-md text-[#d0d2d6]' type="email" name='email' id='email' placeholder='email' />

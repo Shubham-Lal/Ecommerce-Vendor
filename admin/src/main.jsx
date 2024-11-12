@@ -1,16 +1,19 @@
 import { lazy, Suspense } from 'react';
-import { createRoot } from 'react-dom/client'
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/index';
 import { Toaster } from 'react-hot-toast';
 
-const App = lazy(() => import('./App'))
+const App = lazy(() => import('./App'));
 
-createRoot(document.getElementById('root')).render(
+const container = document.getElementById('root');
+const root = createRoot(container);
+
+root.render(
   <BrowserRouter>
-    <Provider store={store} >
-      <Suspense>
+    <Provider store={store}>
+      <Suspense fallback={<div>Loading...</div>}>
         <App />
         <Toaster
           toastOptions={{
@@ -24,4 +27,4 @@ createRoot(document.getElementById('root')).render(
       </Suspense>
     </Provider>
   </BrowserRouter>
-)
+);

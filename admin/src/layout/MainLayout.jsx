@@ -25,7 +25,7 @@ const MainLayout = () => {
         socket.on('activeSeller', (sellers) => {
             dispatch(updateSellers(sellers))
         })
-    })
+    }, [])
 
     const [showSidebar, setShowSidebar] = useState(false)
 

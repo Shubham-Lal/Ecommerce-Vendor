@@ -166,7 +166,7 @@ const AddProduct = () => {
                                     <div className='pt-14'></div>
                                     <div className='flex justify-start items-start flex-col h-[200px] overflow-x-scrool'>
                                         {allCategory.map((c, i) =>
-                                            <span className={`px-4 py-2 hover:bg-indigo-500 hover:text-white hover:shadow-lg w-full cursor-pointer ${category === c.name && 'bg-indigo-500'}`} onClick={() => {
+                                            <span key={i} className={`px-4 py-2 hover:bg-indigo-500 hover:text-white hover:shadow-lg w-full cursor-pointer ${category === c.name && 'bg-indigo-500'}`} onClick={() => {
                                                 setCateShow(false)
                                                 setCategory(c.name)
                                                 setSearchValue('')
@@ -201,7 +201,7 @@ const AddProduct = () => {
 
                         <div className='grid lg:grid-cols-4 grid-cols-1 md:grid-cols-3 sm:grid-cols-2 sm:gap-4 md:gap-4 gap-3 w-full text-[#d0d2d6] mb-4'>
                             {imageShow.map((img, i) =>
-                                <div className='h-[180px] relative'>
+                                <div key={i} className='h-[180px] relative'>
                                     <label htmlFor={i}>
                                         <img className='w-full h-full rounded-sm' src={img.url} alt="" />
                                     </label>

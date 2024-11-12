@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_admin_message, get_seller_message, get_sellers, send_message_seller_admin, updateAdminMessage, messageClear } from '../../store/Reducers/chatReducer'
-
 import { socket } from '../../utils/utils'
 
 
@@ -29,6 +28,7 @@ const SellerToAdmin = () => {
     }
 
     useEffect(() => {
+        socket.off('receved_admin_message')
         socket.on('receved_admin_message', msg => {
             dispatch(updateAdminMessage(msg))
         })
@@ -84,7 +84,7 @@ const SellerToAdmin = () => {
                                                         <span>{m.message}  </span>
                                                     </div>
                                                     <div>
-                                                        <img className='w-[38px] h-[38px] border-2 border-white rounded-full max-w-[38px] p-[3px]' src="/images/admin.jpg" alt="" />
+                                                        <img className='w-[38px] h-[38px] border-2 border-white rounded-full max-w-[38px] p-[3px]' src={userInfo.image ? userInfo.image : "/images/admin.jpg"} alt="" />
                                                     </div>
                                                 </div>
                                             </div>

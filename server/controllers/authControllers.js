@@ -90,13 +90,7 @@ class authControllers {
                     myId: seller.id
                 })
 
-                const token = await createToken({ id: seller.id, role: seller.role })
-
-                res.cookie('accessToken', token, {
-                    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
-                })
-
-                responseReturn(res, 201, { token, message: 'Register Success' })
+                responseReturn(res, 201, { message: 'Register Success! Login to your account.' })
             }
         }
         catch (error) {

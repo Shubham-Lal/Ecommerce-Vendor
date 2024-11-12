@@ -9,6 +9,8 @@ import toast from 'react-hot-toast';
 import { socket } from '../../utils/utils'
 
 const ChatSeller = () => {
+    const { userInfo } = useSelector(state => state.auth)
+
     const scrollRef = useRef()
     const [show, setShow] = useState(false)
     const { sellerId } = useParams()
@@ -20,7 +22,7 @@ const ChatSeller = () => {
 
     useEffect(() => {
         dispatch(get_sellers())
-    })
+    }, [])
 
     const send = (e) => {
         e.preventDefault()
@@ -140,7 +142,7 @@ const ChatSeller = () => {
                                                             <span>{m.message} </span>
                                                         </div>
                                                         <div>
-                                                            <img className='w-[38px] h-[38px] border-2 border-white rounded-full max-w-[38px] p-[3px]' src="/images/admin.jpg" alt="" />
+                                                            <img className='w-[38px] h-[38px] border-2 border-white rounded-full max-w-[38px] p-[3px]' src={userInfo.image ? userInfo.image : "/images/admin.jpg"} alt="" />
                                                         </div>
 
                                                     </div>

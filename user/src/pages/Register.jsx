@@ -82,7 +82,7 @@ const Register = () => {
                                     <button className='px-8 w-full py-2 bg-[#059473] shadow-lg hover:shadow-green-500/40 text-white rounded-md'>Register</button>
                                 </form>
 
-                                <div className='flex justify-center items-center py-2'>
+                                {/* <div className='flex justify-center items-center py-2'>
                                     <div className='h-[1px] bg-slate-300 w-[95%]'> </div>
                                     <span className='px-3 text-slate-600'>Or</span>
                                     <div className='h-[1px] bg-slate-300 w-[95%]'> </div>
@@ -96,7 +96,7 @@ const Register = () => {
                                 <button className='px-8 w-full py-2 bg-red-500 shadow hover:shadow-red-500/50 text-white rounded-md flex justify-center items-center gap-2 mb-3'>
                                     <span><FaGoogle /></span>
                                     <span>Login With Google </span>
-                                </button>
+                                </button> */}
                             </div>
 
                             <div className='text-center text-slate-600 pt-1'>
