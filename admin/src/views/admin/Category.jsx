@@ -171,7 +171,7 @@ const Category = () => {
                                 <div>
                                     <label className='flex justify-center items-center flex-col h-[238px] cursor-pointer border border-dashed hover:border-red-500 w-full border-[#d0d2d6]' htmlFor="image">
                                         {imageShow
-                                            ? <img className='w-full h-full' src={imageShow} />
+                                            ? <img className='w-full h-full object-contain' src={imageShow} />
                                             : <>
                                                 <span><FaImage /> </span>
                                                 <span>Select Image</span>

@@ -21,7 +21,7 @@ const Header = ({ showSidebar, setShowSidebar }) => {
             <div className='flex justify-center items-center gap-3'>
               <div className='flex justify-center items-center flex-col text-end'>
                 <h2 className='text-md font-bold'>{userInfo.name}</h2>
-                <span className='text-[14px] w-full font-normal'>{userInfo.role}</span>
+                <span className='text-[14px] w-full font-normal capitalize'>{userInfo.role}</span>
               </div>
 
               {userInfo.role === 'admin'

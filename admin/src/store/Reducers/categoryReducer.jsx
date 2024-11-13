@@ -97,6 +97,13 @@ export const categoryReducer = createSlice({
 
             })
 
+            .addCase(updateCategory.pending, (state, { payload }) => {
+                state.loader = true;
+            })
+            .addCase(updateCategory.rejected, (state, { payload }) => {
+                state.loader = false;
+                state.errorMessage = payload.error;
+            })
             .addCase(updateCategory.fulfilled, (state, { payload }) => {
                 state.loader = false;
                 state.successMessage = payload.message
@@ -105,11 +112,6 @@ export const categoryReducer = createSlice({
                     state.categorys[index] = payload.category;
                 }
 
-            })
-
-            .addCase(updateCategory.rejected, (state, { payload }) => {
-                state.loader = false;
-                state.errorMessage = payload.error;
             })
 
             .addCase(deleteCategory.fulfilled, (state, action) => {

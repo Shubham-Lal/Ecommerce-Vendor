@@ -27,7 +27,7 @@ class categoryController {
                 })
 
                 try {
-                    const result = await cloudinary.uploader.upload(image.filepath, { folder: 'categorys' })
+                    const result = await cloudinary.uploader.upload(image.filepath, { folder: 'Ecommerce/Category' })
 
                     if (result) {
                         const category = await categoryModel.create({
@@ -89,56 +89,78 @@ class categoryController {
 
         form.parse(req, async (err, fields, files) => {
             if (err) {
-                responseReturn(res, 404, { error: 'Something went wrong' })
-            } else {
-                let { name } = fields
-                let { image } = files
-                const { id } = req.params;
+                return responseReturn(res, 404, { error: 'Something went wrong' })
+            }
 
-                name = name.trim()
-                const slug = name.split(' ').join('-')
+            let { name } = fields
+            let { image } = files
+            const { id } = req.params
 
-                try {
-                    let result = null;
-                    if (image) {
-                        cloudinary.config({
-                            cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-                            api_key: process.env.CLOUDINARY_API_KEY,
-                            api_secret: process.env.CLOUDINARY_API_SECRET,
-                            secure: true
-                        });
+            name = name.trim()
+            const slug = name.split(' ').join('-')
 
-                        result = await cloudinary.uploader.upload(image.filepath, { folder: 'categorys' })
+            try {
+                const existingCategory = await categoryModel.findById(id)
+                if (!existingCategory) {
+                    return responseReturn(res, 404, { error: 'Category not found' })
+                }
+
+                let result = null
+                if (image) {
+                    cloudinary.config({
+                        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+                        api_key: process.env.CLOUDINARY_API_KEY,
+                        api_secret: process.env.CLOUDINARY_API_SECRET,
+                        secure: true
+                    })
+
+                    const prevImageUrl = existingCategory.image
+                    if (prevImageUrl) {
+                        const publicId = prevImageUrl.split('/').pop().split('.')[0]
+                        await cloudinary.uploader.destroy(`Ecommerce/Category/${publicId}`)
                     }
 
-                    const updateData = { name, slug }
-
-                    if (result) updateData.image = result.url;
-
-                    const category = await categoryModel.findByIdAndUpdate(id, updateData, { new: true });
-
-                    responseReturn(res, 200, { category, message: 'Category Updated successfully' })
+                    result = await cloudinary.uploader.upload(image.filepath, { folder: 'Ecommerce/Category' })
                 }
-                catch (error) {
-                    responseReturn(res, 500, { error: 'Internal Server Error' })
-                }
+
+                const updateData = { name, slug }
+                if (result) updateData.image = result.url
+
+                const category = await categoryModel.findByIdAndUpdate(id, updateData, { new: true })
+                responseReturn(res, 200, { category, message: 'Category updated successfully' })
+            } catch (error) {
+                responseReturn(res, 500, { error: 'Internal Server Error' })
             }
         })
     }
 
     deleteCategory = async (req, res) => {
         try {
-            const categoryId = req.params.id;
-            const deleteCategory = await categoryModel.findByIdAndDelete(categoryId);
+            const categoryId = req.params.id
 
-            if (!deleteCategory) {
-                return res.status(404).json({ message: 'Category not found' });
+            const category = await categoryModel.findById(categoryId)
+            if (!category) {
+                return res.status(404).json({ message: 'Category not found' })
             }
-            
-            res.status(200).json({ message: 'Category deleted successfully' });
-        }
-        catch (error) {
-            res.status(500).json({ message: 'Internal Server Error' });
+
+            cloudinary.config({
+                cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+                api_key: process.env.CLOUDINARY_API_KEY,
+                api_secret: process.env.CLOUDINARY_API_SECRET,
+                secure: true
+            })
+
+            const imageUrl = category.image
+            if (imageUrl) {
+                const publicId = imageUrl.split('/').pop().split('.')[0]
+                await cloudinary.uploader.destroy(`Ecommerce/Category/${publicId}`)
+            }
+
+            await categoryModel.findByIdAndDelete(categoryId)
+
+            res.status(200).json({ message: 'Category deleted successfully' })
+        } catch (error) {
+            res.status(500).json({ message: 'Internal Server Error' })
         }
     }
 }

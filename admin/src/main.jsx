@@ -7,10 +7,7 @@ import { Toaster } from 'react-hot-toast';
 
 const App = lazy(() => import('./App'));
 
-const container = document.getElementById('root');
-const root = createRoot(container);
-
-root.render(
+createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <Provider store={store}>
       <Suspense fallback={<div>Loading...</div>}>

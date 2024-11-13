@@ -19,7 +19,7 @@ class customerAuthController {
                     name: name.trim(),
                     email: email.trim(),
                     password: await bcrypt.hash(password, 10),
-                    method: 'menualy'
+                    method: 'manually'
                 })
 
                 await sellerCustomerModel.create({

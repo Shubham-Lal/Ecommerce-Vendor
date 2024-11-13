@@ -82,7 +82,7 @@ class authControllers {
                     name,
                     email,
                     password: await bcrpty.hash(password, 10),
-                    method: 'menualy',
+                    method: 'manually',
                     shopInfo: {}
                 })
 
@@ -132,7 +132,7 @@ class authControllers {
             const { image } = files
 
             try {
-                const result = await cloudinary.uploader.upload(image.filepath, { folder: 'profile' })
+                const result = await cloudinary.uploader.upload(image.filepath, { folder: 'Ecommerce/Profile' })
                 if (result) {
                     await sellerModel.findByIdAndUpdate(id, {
                         image: result.url

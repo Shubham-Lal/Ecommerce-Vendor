@@ -59,7 +59,7 @@ const DeactiveSellers = () => {
                                 <tr key={i}>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{i + 1}</td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>
-                                        <img className='w-[45px] h-[45px]' src={d.image} alt="" />
+                                        <img className='w-[45px] h-[45px]' src={d.image ? d.image : "/images/seller.png"} alt="" />
                                     </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.name} </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.shopInfo?.shopName}</td>

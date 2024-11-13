@@ -134,7 +134,7 @@ class dashboardController {
 
             try {
                 const { slug } = await productModel.findById(productId)
-                const result = await cloudinary.uploader.upload(mainban.filepath, { folder: 'banners' })
+                const result = await cloudinary.uploader.upload(mainban.filepath, { folder: 'Ecommerce/Banner' })
                 const banner = await bannerModel.create({
                     productId,
                     banner: result.url,
@@ -183,7 +183,7 @@ class dashboardController {
                 const imageName = temp.split('.')[0]
                 await cloudinary.uploader.destroy(imageName)
 
-                const { url } = await cloudinary.uploader.upload(mainban.filepath, { folder: 'banners' })
+                const { url } = await cloudinary.uploader.upload(mainban.filepath, { folder: 'Ecommerce/Banner' })
 
                 await bannerModel.findByIdAndUpdate(bannerId, {
                     banner: url
