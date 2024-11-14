@@ -32,7 +32,7 @@ const Wishlist = () => {
                             <div className='flex justify-center items-center absolute text-white w-[38px] h-[38px] rounded-full bg-red-500 font-semibold text-xs left-2 top-2'>{p.discount}% </div>
                         }
 
-                        <img className='sm:w-full w-full h-[240px]' src={p.image} alt="" />
+                        <img className='sm:w-full w-full h-[240px] object-contain' src={p.image} alt="" />
 
                         <ul className='flex transition-all duration-700 -bottom-10 justify-center items-center gap-2 absolute w-full group-hover:bottom-3'>
                             <li onClick={() => dispatch(remove_wishlist(p._id))} className='w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#059473] hover:text-white hover:rotate-[720deg] transition-all'>

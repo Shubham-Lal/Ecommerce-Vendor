@@ -104,7 +104,7 @@ const ChatSeller = () => {
                             {sellerId && (
                                 <div className='flex justify-start items-center gap-3'>
                                     <div className='relative'>
-                                        <img className='w-[45px] h-[45px] border-green-500 border-2 max-w-[45px] p-[2px] rounded-full' src={currentSeller?.image} alt="" />
+                                        <img className='w-[45px] h-[45px] border-green-500 border-2 max-w-[45px] p-[2px] rounded-full' src={currentSeller.image ? currentSeller.image : "/images/seller.png"} alt="" />
                                         <div className='w-[10px] h-[10px] bg-green-500 rounded-full absolute right-0 bottom-0'></div>
                                     </div>
                                     <span className='text-white'>{currentSeller?.name}</span>

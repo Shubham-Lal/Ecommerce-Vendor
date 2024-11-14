@@ -103,7 +103,7 @@ const SearchProducts = () => {
 
                     <div className='w-full flex flex-col md:flex-row'>
                         {filter &&
-                            <div className={`w-full md-lg:w-4/12 md:w-full pr-8  `}>
+                            <div className='w-full md-lg:w-4/12 md:w-full pr-8'>
                                 <div className='py-2 flex flex-col gap-5'>
                                     <h2 className='text-3xl font-bold mb-3 text-slate-600'>Price</h2>
 
@@ -181,9 +181,9 @@ const SearchProducts = () => {
                                     </div>
                                 </div>
 
-                                <div className='py-5 flex flex-col gap-4 md:hidden'>
+                                {/* <div className='py-5 flex flex-col gap-4 md:hidden'>
                                     <Products title='Latest Product' products={latest_product} />
-                                </div>
+                                </div> */}
                             </div>
                         }
 

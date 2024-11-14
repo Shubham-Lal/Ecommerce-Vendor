@@ -61,7 +61,7 @@ const Products = () => {
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>
                                         {d.discount === 0
                                             ? <span>No Discount</span>
-                                            : <span>%{d.discount}</span>
+                                            : <span>{d.discount}%</span>
                                         }
                                     </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.stock}</td>
