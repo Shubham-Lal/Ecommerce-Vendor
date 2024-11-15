@@ -59,7 +59,7 @@ const FeatureProducts = ({ products }) => {
                 </div>
             </div>
 
-            <div className='w-full grid grid-cols-2 lg:grid-cols-3 gap-6'>
+            <div className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {products.map((p, i) =>
                     <div key={i} className='border group transition-all duration-500 hover:shadow-md hover:-mt-3'>
                         <div className='relative overflow-hidden'>

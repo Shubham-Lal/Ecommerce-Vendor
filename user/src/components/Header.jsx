@@ -251,8 +251,8 @@ const Header = () => {
                                     {categorys.map((c, i) => {
                                         return (
                                             <li key={i} className='flex justify-start items-center gap-2 px-[24px] py-[6px]'>
-                                                <img src={c.image} className='w-[30px] h-[30px] rounded-full overflow-hidden' alt="" />
-                                                <Link to={`/products?category=${c.name}`} className='text-sm block'>{c.name}</Link>
+                                                <img src={c.image} className='w-[50px] h-[50px] object-contain' alt="" />
+                                                <Link to={`/products?category=${c.name}`} className='block'>{c.name}</Link>
                                             </li>
                                         )
                                     })}
@@ -265,12 +265,12 @@ const Header = () => {
                         <div className='flex flex-col md:flex-row flex-wrap w-full justify-between items-center md-lg:gap-6'>
                             <div className='w-full'>
                                 <div className='flex border h-[50px] items-center relative gap-6'>
-                                    <div className='relative after:absolute after:h-[25px] after:w-[1px] after:bg-[#afafaf] after:-right-[15px] md:hidden'>
+                                    {/* <div className='relative after:absolute after:h-[25px] after:w-[1px] after:bg-[#afafaf] after:-right-[15px] md:hidden'>
                                         <select onChange={(e) => setCategory(e.target.value)} className='w-[100px] text-slate-600 font-semibold bg-transparent px-2 h-full outline-0 border-none' name="" id="">
                                             <option value="">Category</option>
                                             {categorys.map((c, i) => <option key={i} value={c.name}> {c.name} </option>)}
                                         </select>
-                                    </div>
+                                    </div> */}
                                     <input className='w-full relative bg-transparent text-slate-500 outline-0 px-3 h-full' onChange={(e) => setSearchValue(e.target.value)} type="text" name='' id='' placeholder='What do you need' />
                                     <button onClick={search} className='bg-[#059473] right-0 absolute px-8 h-full font-semibold uppercase text-white'>
                                         <FaSearch className='sm:hidden' />

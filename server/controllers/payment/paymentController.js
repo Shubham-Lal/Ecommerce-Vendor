@@ -81,7 +81,7 @@ class paymentController {
     }
 
     sumAmount = (data) => {
-        let sum = 0;
+        let sum = 0
 
         for (let i = 0; i < data.length; i++) {
             sum = sum + data[i].amount;
@@ -130,7 +130,7 @@ class paymentController {
             const withdrowAmount = this.sumAmount(successWithdrows)
             const totalAmount = this.sumAmount(payments)
 
-            let availableAmount = 0;
+            let availableAmount = 0
 
             if (totalAmount > 0) {
                 availableAmount = totalAmount - (pendingAmount + withdrowAmount)

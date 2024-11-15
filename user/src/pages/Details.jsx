@@ -261,7 +261,7 @@ const Details = () => {
                                             <div onClick={inc} className='px-6 cursor-pointer'>+</div>
                                         </div>
                                         <div>
-                                            <button onClick={add_card} className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#059473] text-white'>Add To Card</button>
+                                            <button onClick={add_card} className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#059473] text-white'>Add To Cart</button>
                                         </div>
                                     </>
                                     : ''

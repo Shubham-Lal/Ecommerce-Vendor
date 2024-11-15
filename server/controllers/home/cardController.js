@@ -41,7 +41,7 @@ class cardController {
     }
 
     get_card_products = async (req, res) => {
-        const co = 5;
+        const co = 5
         const { userId } = req.params
 
         try {
@@ -62,8 +62,8 @@ class cardController {
             }
             ])
             let buy_product_item = 0
-            let calculatePrice = 0;
-            let card_product_count = 0;
+            let calculatePrice = 0
+            let card_product_count = 0
             const outOfStockProduct = card_products.filter(p => p.products[0].stock < p.quantity)
             for (let i = 0; i < outOfStockProduct.length; i++) {
                 card_product_count = card_product_count + outOfStockProduct[i].quantity
@@ -83,11 +83,11 @@ class cardController {
             let p = []
             let unique = [...new Set(stockProduct.map(p => p.products[0].sellerId.toString()))]
             for (let i = 0; i < unique.length; i++) {
-                let price = 0;
+                let price = 0
                 for (let j = 0; j < stockProduct.length; j++) {
                     const tempProduct = stockProduct[j].products[0]
                     if (unique[i] === tempProduct.sellerId.toString()) {
-                        let pri = 0;
+                        let pri = 0
                         if (tempProduct.discount !== 0) {
                             pri = tempProduct.price - Math.floor((tempProduct.price * tempProduct.discount) / 100)
                         } else {

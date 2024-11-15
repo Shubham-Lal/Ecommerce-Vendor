@@ -99,7 +99,7 @@ class authControllers {
     }
 
     getUser = async (req, res) => {
-        const { id, role } = req;
+        const { id, role } = req
 
         try {
             if (role === 'admin') {
@@ -122,6 +122,10 @@ class authControllers {
         const form = formidable({ multiples: true })
 
         form.parse(req, async (err, _, files) => {
+            if (err) {
+                return responseReturn(res, 500, { error: 'Form parsing error' })
+            }
+
             cloudinary.config({
                 cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
                 api_key: process.env.CLOUDINARY_API_KEY,
@@ -132,28 +136,35 @@ class authControllers {
             const { image } = files
 
             try {
+                const userInfo = await sellerModel.findById(id)
+
+                if (userInfo && userInfo.image) {
+                    const prevImageUrl = userInfo.image
+                    const publicId = prevImageUrl.split('/').pop().split('.')[0]
+
+                    await cloudinary.uploader.destroy(`Ecommerce/Profile/${publicId}`)
+                }
+
                 const result = await cloudinary.uploader.upload(image.filepath, { folder: 'Ecommerce/Profile' })
                 if (result) {
                     await sellerModel.findByIdAndUpdate(id, {
                         image: result.url
                     })
 
-                    const userInfo = await sellerModel.findById(id)
-
-                    responseReturn(res, 201, { message: 'Profile Image Upload Successfully', userInfo })
+                    const updatedUserInfo = await sellerModel.findById(id)
+                    responseReturn(res, 201, { message: 'Profile Image Upload Successfully', userInfo: updatedUserInfo })
                 } else {
                     responseReturn(res, 404, { error: 'Image Upload Failed' })
                 }
-            }
-            catch (error) {
+            } catch (error) {
                 responseReturn(res, 500, { error: error.message })
             }
         })
     }
 
     profile_info_add = async (req, res) => {
-        const { division, district, shopName, sub_district } = req.body;
-        const { id } = req;
+        const { division, district, shopName, sub_district } = req.body
+        const { id } = req
 
         try {
             await sellerModel.findByIdAndUpdate(id, {

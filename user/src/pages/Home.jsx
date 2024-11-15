@@ -26,9 +26,10 @@ const Home = () => {
                 <FeatureProducts products={products} />
             </div>
 
-            {/* <div className='py-10'>
+            <div className='py-10'>
                 <div className='w-[90%] flex flex-wrap mx-auto'>
-                    <div className='w-full flex flex-col gap-7'>
+                    {/* <div className='w-full flex flex-col gap-7'> */}
+                    <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
                         <div className='overflow-hidden'>
                             <Products title='Latest Product' products={latest_product} />
                         </div>
@@ -40,7 +41,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </div> */}
+            </div>
 
             <Footer />
         </div>

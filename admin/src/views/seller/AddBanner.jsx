@@ -71,8 +71,8 @@ const AddBanner = () => {
                                 <input required onChange={imageHandle} className='hidden' type="file" id='image' />
                             </div>
                             {imageShow &&
-                                <div className='mb-4'>
-                                    <img className='w-full h-[300px]' src={imageShow} alt="" />
+                                <div className='mb-4 w-full h-[300px]'>
+                                    <img className='w-full h-full object-contain' src={imageShow} alt="" />
                                 </div>
                             }
                             <button disabled={loader ? true : false} className='bg-red-500 w-[280px] hover:shadow-red-300/50 hover:shadow-lg text-white rounded-md px-7 py-2 mb-3'>
@@ -84,8 +84,8 @@ const AddBanner = () => {
 
                 {banner &&
                     <div>
-                        <div className='mb-4'>
-                            <img className='w-full h-[300px]' src={banner.banner} alt="" />
+                        <div className='mb-4 w-full h-[300px]'>
+                            <img className='w-full h-full object-contain' src={banner.banner} alt="" />
                         </div>
                         <form onSubmit={update}>
                             <div className='mb-4'>
@@ -96,8 +96,8 @@ const AddBanner = () => {
                                 <input required onChange={imageHandle} className='hidden' type="file" id='image' />
                             </div>
                             {imageShow &&
-                                <div className='mb-4'>
-                                    <img className='w-full h-[300px]' src={imageShow} alt="" />
+                                <div className='mb-4 w-full h-[300px]'>
+                                    <img className='w-full h-full object-contain' src={imageShow} alt="" />
                                 </div>
                             }
                             <button disabled={loader ? true : false} className='bg-red-500 w-[280px] hover:shadow-red-300/50 hover:shadow-lg text-white rounded-md px-7 py-2 mb-3'>

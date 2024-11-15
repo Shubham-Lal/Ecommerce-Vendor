@@ -10,8 +10,8 @@ const { responseReturn } = require("../../utiles/response")
 class homeControllers {
 
     formatProduct = (products) => {
-        const productArray = [];
-        let i = 0;
+        const productArray = []
+        let i = 0
         while (i < products.length) {
             let temp = []
             let j = i
@@ -48,19 +48,19 @@ class homeControllers {
                 createdAt: -1
             })
 
-            const latest_product = this.formatProduct(allProduct1);
+            const latest_product = this.formatProduct(allProduct1)
 
             const allProduct2 = await productModel.find({}).limit(9).sort({
                 rating: -1
             })
 
-            const topRated_product = this.formatProduct(allProduct2);
+            const topRated_product = this.formatProduct(allProduct2)
 
             const allProduct3 = await productModel.find({}).limit(9).sort({
                 discount: -1
             })
 
-            const discount_product = this.formatProduct(allProduct3);
+            const discount_product = this.formatProduct(allProduct3)
 
             responseReturn(res, 200, {
                 products,
@@ -83,7 +83,7 @@ class homeControllers {
                 createdAt: -1
             })
 
-            const latest_product = this.formatProduct(products);
+            const latest_product = this.formatProduct(products)
 
             const getForPrice = await productModel.find({}).sort({
                 'price': 1
@@ -111,9 +111,9 @@ class homeControllers {
                 createdAt: -1
             })
 
-            const totalProduct = new queryProducts(products, req.query).categoryQuery().ratingQuery().searchQuery().priceQuery().sortByPrice().countProducts();
+            const totalProduct = new queryProducts(products, req.query).categoryQuery().ratingQuery().searchQuery().priceQuery().sortByPrice().countProducts()
 
-            const result = new queryProducts(products, req.query).categoryQuery().ratingQuery().priceQuery().searchQuery().sortByPrice().skip().limit().getProducts();
+            const result = new queryProducts(products, req.query).categoryQuery().ratingQuery().priceQuery().searchQuery().sortByPrice().skip().limit().getProducts()
 
             responseReturn(res, 200, {
                 products: result,
@@ -179,7 +179,7 @@ class homeControllers {
                 date: moment(Date.now()).format('LL')
             })
 
-            let rat = 0;
+            let rat = 0
             const reviews = await reviewModel.find({
                 productId
             })

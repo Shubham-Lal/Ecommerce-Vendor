@@ -188,7 +188,7 @@ const CategoryShop = () => {
                         <div className={`w-full md-lg:w-8/12 md:w-full`}>
                             <div className=''>
                                 <div className='py-4 bg-white mb-10 px-3 rounded-md flex justify-between items-start border'>
-                                    <h2 className='text-lg font-medium text-slate-600'> ({totalProduct}) Products </h2>
+                                    <h2 className='text-lg font-medium text-slate-600'>{totalProduct} Products</h2>
                                     <div className='flex justify-center items-center gap-3'>
                                         <select onChange={(e) => setSortPrice(e.target.value)} className='p-1 border outline-0 text-slate-600 font-semibold' name="" id="">
                                             <option value="">Sort By</option>

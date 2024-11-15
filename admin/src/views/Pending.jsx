@@ -1,7 +1,7 @@
 const Pending = () => {
     return (
-        <div>
-            pending
+        <div className="px-2 lg:px-7 py-5">
+            Pending<br />Waiting for Administrator approval
         </div>
     );
 };
