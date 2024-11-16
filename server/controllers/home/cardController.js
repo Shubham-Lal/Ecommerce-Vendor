@@ -25,7 +25,7 @@ class cardController {
             })
 
             if (product) {
-                responseReturn(res, 404, { error: "Product Already Added To Card" })
+                responseReturn(res, 404, { error: "Product already added to cart" })
             }
             else {
                 const product = await cardModel.create({
@@ -34,7 +34,7 @@ class cardController {
                     quantity
                 })
 
-                responseReturn(res, 201, { message: "Added To Card Successfully", product })
+                responseReturn(res, 201, { message: "Added To cart successfully", product })
             }
         }
         catch (error) { }
@@ -134,7 +134,7 @@ class cardController {
         try {
             await cardModel.findByIdAndDelete(card_id)
 
-            responseReturn(res, 200, { message: "Product Remove Successfully" })
+            responseReturn(res, 200, { message: "Product removed successfully" })
         }
         catch (error) { }
     }
@@ -206,7 +206,7 @@ class cardController {
 
         try {
             const wishlist = await wishlistModel.findByIdAndDelete(wishlistId)
-            
+
             responseReturn(res, 200, {
                 message: 'Wishlist Product Remove',
                 wishlistId
