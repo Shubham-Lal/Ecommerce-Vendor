@@ -4,13 +4,13 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import Rating from '../Rating';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { get_wishlist_products, remove_wishlist, messageClear } from '../../store/reducers/cardReducer';
+import { get_wishlist_products, remove_wishlist, messageClear } from '../../store/reducers/cartReducer';
 import toast from 'react-hot-toast';
 
 const Wishlist = () => {
     const dispatch = useDispatch()
     const { userInfo } = useSelector(state => state.auth)
-    const { wishlist, successMessage } = useSelector(state => state.card)
+    const { wishlist, successMessage } = useSelector(state => state.cart)
 
     useEffect(() => {
         dispatch(get_wishlist_products(userInfo.id))

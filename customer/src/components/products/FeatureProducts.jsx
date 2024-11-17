@@ -4,18 +4,18 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import Rating from '../Rating';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { add_to_card, add_to_wishlist, messageClear } from '../../store/reducers/cardReducer';
+import { add_to_cart, add_to_wishlist, messageClear } from '../../store/reducers/cartReducer';
 import toast from 'react-hot-toast';
 
 const FeatureProducts = ({ products }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { userInfo } = useSelector(state => state.auth)
-    const { errorMessage, successMessage } = useSelector(state => state.card)
+    const { errorMessage, successMessage } = useSelector(state => state.cart)
 
-    const add_card = (id) => {
+    const add_cart = (id) => {
         if (userInfo) {
-            dispatch(add_to_card({
+            dispatch(add_to_cart({
                 userId: userInfo.id,
                 quantity: 1,
                 productId: id
@@ -77,7 +77,7 @@ const FeatureProducts = ({ products }) => {
                                 <Link to={`/product/details/${p.slug}`} className='w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#059473] hover:text-white hover:rotate-[720deg] transition-all'>
                                     <FaEye />
                                 </Link>
-                                <li onClick={() => add_card(p._id)} className='w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#059473] hover:text-white hover:rotate-[720deg] transition-all'>
+                                <li onClick={() => add_cart(p._id)} className='w-[38px] h-[38px] cursor-pointer bg-white flex justify-center items-center rounded-full hover:bg-[#059473] hover:text-white hover:rotate-[720deg] transition-all'>
                                     <RiShoppingCartLine />
                                 </li>
                             </ul>

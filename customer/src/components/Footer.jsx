@@ -10,7 +10,7 @@ import { FaCartShopping } from "react-icons/fa6";
 const Footer = () => {
     const navigate = useNavigate()
     const { userInfo } = useSelector(state => state.auth)
-    const { card_product_count, wishlist_count } = useSelector(state => state.card)
+    const { cart_product_count, wishlist_count } = useSelector(state => state.cart)
 
     return (
         <footer className='bg-[#f3f6fa]'>
@@ -105,11 +105,11 @@ const Footer = () => {
 
             <div className='hidden fixed md-lg:block w-[50px] h-[110px] bottom-3 right-2 bg-white rounded-full p-2'>
                 <div className='w-full h-full flex gap-3 flex-col justify-center items-center'>
-                    <div onClick={() => navigate(userInfo ? '/card' : '/login')} className='relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]'>
+                    <div onClick={() => navigate(userInfo ? '/cart' : '/login')} className='relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]'>
                         <span className='text-xl text-green-500'><FaCartShopping /></span>
-                        {card_product_count !== 0 &&
+                        {cart_product_count !== 0 &&
                             <div className='w-[20px] h-[20px] absolute bg-red-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px]'>
-                                {card_product_count}
+                                {cart_product_count}
                             </div>
                         }
                     </div>

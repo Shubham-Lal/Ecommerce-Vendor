@@ -12,7 +12,7 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import api from '../api/api';
 import { useDispatch } from 'react-redux';
 import { user_reset } from '../store/reducers/authReducer'
-import { reset_count } from '../store/reducers/cardReducer'
+import { reset_count } from '../store/reducers/cartReducer'
 
 const Dashboard = () => {
     const [filterShow, setFilterShow] = useState(false)

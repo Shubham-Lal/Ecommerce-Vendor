@@ -116,7 +116,7 @@ io.on('connection', (soc) => {
 app.use('/api/home', require('./routes/home/homeRoutes'))
 app.use('/api', require('./routes/authRoutes'))
 app.use('/api', require('./routes/order/orderRoutes'))
-app.use('/api', require('./routes/home/cardRoutes'))
+app.use('/api', require('./routes/home/cartRoutes'))
 app.use('/api', require('./routes/dashboard/categoryRoutes'))
 app.use('/api', require('./routes/dashboard/productRoutes'))
 app.use('/api', require('./routes/dashboard/sellerRoutes'))

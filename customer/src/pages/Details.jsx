@@ -19,7 +19,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useDispatch, useSelector } from 'react-redux';
 import { product_details } from '../store/reducers/homeReducer';
 import toast from 'react-hot-toast';
-import { add_to_card, messageClear, add_to_wishlist } from '../store/reducers/cardReducer';
+import { add_to_cart, messageClear, add_to_wishlist } from '../store/reducers/cartReducer';
 
 
 const Details = () => {
@@ -28,7 +28,7 @@ const Details = () => {
     const dispatch = useDispatch()
     const { product, relatedProducts, moreProducts } = useSelector(state => state.home)
     const { userInfo } = useSelector(state => state.auth)
-    const { errorMessage, successMessage } = useSelector(state => state.card)
+    const { errorMessage, successMessage } = useSelector(state => state.cart)
 
     useEffect(() => {
         dispatch(product_details(slug))
@@ -98,9 +98,9 @@ const Details = () => {
         }
     }
 
-    const add_card = () => {
+    const add_cart = () => {
         if (userInfo) {
-            dispatch(add_to_card({
+            dispatch(add_to_cart({
                 userId: userInfo.id,
                 quantity,
                 productId: product._id
@@ -261,7 +261,7 @@ const Details = () => {
                                             <div onClick={inc} className='px-6 cursor-pointer'>+</div>
                                         </div>
                                         <div>
-                                            <button onClick={add_card} className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#059473] text-white'>Add To Cart</button>
+                                            <button onClick={add_cart} className='px-8 py-3 h-[50px] cursor-pointer hover:shadow-lg hover:shadow-green-500/40 bg-[#059473] text-white'>Add To Cart</button>
                                         </div>
                                     </>
                                     : ''

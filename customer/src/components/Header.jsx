@@ -12,7 +12,7 @@ import { FaCartShopping } from "react-icons/fa6";
 import { FaPhoneAlt, FaSearch } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
-import { get_card_products, get_wishlist_products } from '../store/reducers/cardReducer';
+import { get_cart_products, get_wishlist_products } from '../store/reducers/cartReducer';
 
 const Header = () => {
     const dispatch = useDispatch()
@@ -20,7 +20,7 @@ const Header = () => {
 
     const { categorys } = useSelector(state => state.home)
     const { userInfo } = useSelector(state => state.auth)
-    const { card_product_count, wishlist_count } = useSelector(state => state.card)
+    const { cart_product_count, wishlist_count } = useSelector(state => state.cart)
 
     const { pathname } = useLocation()
 
@@ -34,9 +34,9 @@ const Header = () => {
         navigate(`/products/search?category=${category}&&value=${searchValue}`)
     }
 
-    const redirect_card_page = () => {
+    const redirect_cart_page = () => {
         if (userInfo) {
-            navigate('/card')
+            navigate('/cart')
         } else {
             navigate('/login')
         }
@@ -44,7 +44,7 @@ const Header = () => {
 
     useEffect(() => {
         if (userInfo) {
-            dispatch(get_card_products(userInfo.id))
+            dispatch(get_cart_products(userInfo.id))
             dispatch(get_wishlist_products(userInfo.id))
         }
     }, [userInfo])
@@ -146,11 +146,11 @@ const Header = () => {
                                     }
                                 </div>
 
-                                <div onClick={redirect_card_page} className='relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]'>
+                                <div onClick={redirect_cart_page} className='relative flex justify-center items-center cursor-pointer w-[35px] h-[35px] rounded-full bg-[#e2e2e2]'>
                                     <span className='text-xl text-green-500'><FaCartShopping /></span>
-                                    {card_product_count !== 0 &&
+                                    {cart_product_count !== 0 &&
                                         <div className='w-[20px] h-[20px] absolute bg-red-500 rounded-full text-white flex justify-center items-center -top-[3px] -right-[5px] '>
-                                            {card_product_count}
+                                            {cart_product_count}
                                         </div>
                                     }
                                 </div>
