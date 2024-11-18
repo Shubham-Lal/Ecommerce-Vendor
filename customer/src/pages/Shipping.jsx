@@ -78,9 +78,9 @@ const Shipping = () => {
             </section>
 
             <section className='bg-[#eeeeee]'>
-                <div className='w-[85%] lg:w-[90%] md:w-[90%] sm:w-[90%] mx-auto py-16'>
-                    <div className='w-full flex flex-wrap'>
-                        <div className='w-[67%] md-lg:w-full'>
+                <div className='w-[95%] lg:w-[90%] md:w-[90%] sm:w-[90%] mx-auto py-16'>
+                    <div className='w-full flex flex-col lg:flex-row lg:flex-wrap'>
+                        <div className='lg:w-[67%]'>
                             <div className='flex flex-col gap-3'>
                                 <div className='bg-white p-6 shadow-sm rounded-md'>
                                     <h2 className='text-slate-600 font-bold pb-3'>Shipping Information </h2>
@@ -186,8 +186,8 @@ const Shipping = () => {
                             </div>
                         </div>
 
-                        <div className='w-[33%] md-lg:w-full'>
-                            <div className='pl-3 md-lg:pl-0 md-lg:mt-5'>
+                        <div className='lg:w-[33%]'>
+                            <div className='mt-5 lg:mt-0 lg:ml-5'>
                                 <div className='bg-white p-3 text-slate-600 flex flex-col gap-3'>
                                     <h2 className='text-xl font-bold'>Order Summary</h2>
                                     <div className='flex justify-between items-center'>

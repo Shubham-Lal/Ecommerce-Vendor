@@ -38,7 +38,7 @@ const CheckoutForm = ({ orderId }) => {
             <LinkAuthenticationElement id='link-authentication-element' />
             <PaymentElement id='payment-element' options={paymentElementOptions} />
 
-            <button disabled={isLoading || !stripe || !elements} id='submit' className='px-10 py-[6px] rounded-sm hover:shadow-green-700/30 hover:shadow-lg bg-green-700 text-white'>
+            <button disabled={isLoading || !stripe || !elements} id='submit' className='mt-5 px-10 py-[6px] rounded-sm hover:shadow-green-700/30 hover:shadow-lg bg-green-700 text-white'>
                 <span id='button-text'>
                     {isLoading ? <div>Loading...</div> : "Pay Now"}
                 </span>
