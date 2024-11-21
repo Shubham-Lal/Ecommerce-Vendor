@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../api/api";
-import { jwtDecode } from "jwt-decode";
 
 export const admin_login = createAsyncThunk(
     'auth/admin_login',

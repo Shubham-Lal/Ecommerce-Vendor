@@ -11,7 +11,6 @@ const SellerToCustomer = () => {
     const scrollRef = useRef()
 
     const [show, setShow] = useState(false)
-    const sellerId = 65
     const { userInfo } = useSelector(state => state.auth)
     const { customers, messages, currentCustomer, successMessage } = useSelector(state => state.chat)
     const [text, setText] = useState('')
@@ -102,7 +101,7 @@ const SellerToCustomer = () => {
 
                     <div className='w-full md:w-[calc(100%-200px)] md:pl-4'>
                         <div className='flex justify-between items-center'>
-                            {sellerId &&
+                            {currentCustomer.name &&
                                 <div className='flex justify-start items-center gap-3'>
                                     <div className='relative'>
                                         <img className='w-[45px] h-[45px] border-green-500 border-2 max-w-[45px] p-[2px] rounded-full' src="/images/demo.jpg" alt="" />

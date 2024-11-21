@@ -5,7 +5,7 @@ export const get_category = createAsyncThunk(
     'product/get_category',
     async (_, { fulfillWithValue, rejectWithValue }) => {
         try {
-            const { data } = await api.get('/home/get-categorys');
+            const { data } = await api.get('/home/get-categories');
             return fulfillWithValue(data);
         }
         catch (error) {
