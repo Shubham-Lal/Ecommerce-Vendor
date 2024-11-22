@@ -1,7 +1,7 @@
 const Deactive = () => {
     return (
         <div>
-            deactive
+            Deactive
         </div>
     );
 };

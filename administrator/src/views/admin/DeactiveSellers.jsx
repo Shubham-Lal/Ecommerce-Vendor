@@ -11,7 +11,6 @@ const DeactiveSellers = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [searchValue, setSearchValue] = useState('')
     const [parPage, setParPage] = useState(5)
-    const [show, setShow] = useState(false)
 
     const { sellers, totalSeller } = useSelector(state => state.seller)
 
@@ -63,18 +62,13 @@ const DeactiveSellers = () => {
                                     </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.name} </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.shopInfo?.shopName}</td>
-                                    <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>
-                                        <span>{d.payment}</span> </td>
+                                    <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'><span>{d.payment}</span> </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.email} </td>
-
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.status} </td>
-
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.shopInfo?.district} </td>
-
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>
                                         <div className='flex justify-start items-center gap-4'>
-                                            <Link to={`/admin/dashboard/seller/details/${d._id}`} className='p-[6px] bg-green-500 rounded hover:shadow-lg hover:shadow-green-500/50'> <FaEye /> </Link>
-
+                                            <Link to={`/admin/dashboard/seller/details/${d._id}`} className='p-[6px] bg-green-500 rounded hover:shadow-lg hover:shadow-green-500/50'><FaEye /></Link>
                                         </div>
                                     </td>
                                 </tr>

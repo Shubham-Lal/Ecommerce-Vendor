@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
-import { FaGoogle } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
 import { PropagateLoader } from 'react-spinners';
 import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,10 +12,7 @@ const Login = () => {
     const dispatch = useDispatch()
     const { loader, errorMessage, successMessage, userInfo, role } = useSelector(state => state.auth)
 
-    const [state, setState] = useState({
-        email: "",
-        password: ""
-    })
+    const [state, setState] = useState({ email: "", password: "" })
 
     const inputHandle = (e) => {
         setState({

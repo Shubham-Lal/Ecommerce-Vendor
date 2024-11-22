@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { get_admin_message, get_seller_message, get_sellers, send_message_seller_admin, updateAdminMessage, messageClear } from '../../store/Reducers/chatReducer'
+import { get_seller_message, send_message_seller_admin, updateAdminMessage, messageClear } from '../../store/Reducers/chatReducer'
 import { socket } from '../../utils/utils'
 
 
@@ -8,7 +8,7 @@ const SellerToAdmin = () => {
     const scrollRef = useRef()
     const dispatch = useDispatch()
     const [text, setText] = useState('')
-    const { sellers, activeSeller, seller_admin_message, currentSeller, successMessage } = useSelector(state => state.chat)
+    const { seller_admin_message, successMessage } = useSelector(state => state.chat)
 
     const { userInfo } = useSelector(state => state.auth)
 

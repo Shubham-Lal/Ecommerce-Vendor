@@ -1,5 +1,5 @@
 import { forwardRef, useEffect, useState } from 'react';
-import { MdCurrencyExchange, MdProductionQuantityLimits } from "react-icons/md";
+import { MdCurrencyExchange } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { FixedSizeList as List } from 'react-window';
 import { get_seller_payment_details, messageClear, send_withdrowal_request } from '../../store/Reducers/PaymentReducer';

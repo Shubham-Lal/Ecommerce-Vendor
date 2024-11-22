@@ -46,7 +46,7 @@ const Profile = () => {
 
     const add = async (e) => {
         e.preventDefault()
-        await dispatch(profile_info_add(state))
+        dispatch(profile_info_add(state))
         setEditShop(false)
     }
 

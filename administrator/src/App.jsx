@@ -18,9 +18,7 @@ export default function App() {
   }, [])
 
   useEffect(() => {
-    if (token) {
-      dispatch(get_user_info())
-    }
+    if (token) dispatch(get_user_info())
   }, [token])
 
   return <Router allRoutes={allRoutes} />

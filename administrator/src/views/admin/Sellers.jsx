@@ -62,9 +62,7 @@ const Sellers = () => {
                                     </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.name} </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.shopInfo?.shopName}</td>
-                                    <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>
-                                        <span>{d.payment}</span>
-                                    </td>
+                                    <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'><span>{d.payment}</span></td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.email} </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.status} </td>
                                     <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{d.shopInfo?.district} </td>

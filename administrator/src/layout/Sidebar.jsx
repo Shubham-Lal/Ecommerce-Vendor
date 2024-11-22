@@ -7,9 +7,9 @@ import { logout } from '../store/Reducers/authReducer';
 import logo from '../assets/logo.png'
 
 const Sidebar = ({ showSidebar, setShowSidebar }) => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const { role } = useSelector(state => state.auth)
-    const navigate = useNavigate()
 
     const { pathname } = useLocation()
     const [allNav, setAllNav] = useState([])

@@ -161,7 +161,6 @@ const Category = () => {
                                 </div>
                             </div>
 
-
                             <form onSubmit={addOrUpdateCategory}>
                                 <div className='flex flex-col w-full gap-1 mb-3'>
                                     <label htmlFor="name"> Category Name</label>

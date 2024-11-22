@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
-import { FaGoogle } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import { PropagateLoader } from 'react-spinners';
 import { overrideStyle } from '../../utils/utils';
@@ -15,11 +13,7 @@ const Register = () => {
 
     const { loader, successMessage, errorMessage } = useSelector(state => state.auth)
 
-    const [state, setState] = useState({
-        name: "",
-        email: "",
-        password: ""
-    })
+    const [state, setState] = useState({ name: "", email: "", password: "" })
 
     const inputHandle = (e) => {
         setState({
