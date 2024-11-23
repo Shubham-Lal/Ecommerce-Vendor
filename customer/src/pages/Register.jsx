@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { FaFacebookF } from "react-icons/fa6";
-import { FaGoogle } from "react-icons/fa6";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { customer_register, messageClear } from '../store/reducers/authReducer';
@@ -11,14 +9,10 @@ import { FadeLoader } from 'react-spinners';
 
 const Register = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const { loader, errorMessage, successMessage, userInfo } = useSelector(state => state.auth)
 
-    const [state, setState] = useState({
-        name: '',
-        email: '',
-        password: ''
-    })
-    const dispatch = useDispatch()
+    const [state, setState] = useState({ name: '', email: '', password: '' })
 
     const inputHandle = (e) => {
         setState({
@@ -41,9 +35,7 @@ const Register = () => {
             toast.error(errorMessage)
             dispatch(messageClear())
         }
-        if (userInfo) {
-            navigate('/')
-        }
+        if (userInfo) navigate('/')
     }, [successMessage, errorMessage])
 
     return (

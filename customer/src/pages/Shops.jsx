@@ -6,7 +6,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Range } from 'react-range';
 import { AiFillStar } from 'react-icons/ai'
 import { CiStar } from 'react-icons/ci'
-import Products from '../components/products/Products';
+// import Products from '../components/products/Products';
 import { BsFillGridFill } from 'react-icons/bs'
 import { FaThList } from 'react-icons/fa'
 import ShopProducts from '../components/products/ShopProducts';
@@ -16,7 +16,8 @@ import { price_range_product, query_products } from '../store/reducers/homeReduc
 
 const Shops = () => {
     const dispatch = useDispatch()
-    const { products, categorys, priceRange, latest_product, totalProduct, parPage } = useSelector(state => state.home)
+    // const { products, categorys, priceRange, latest_product, totalProduct, parPage } = useSelector(state => state.home)
+    const { products, categorys, priceRange, totalProduct, parPage } = useSelector(state => state.home)
 
     useEffect(() => {
         dispatch(price_range_product())
@@ -38,12 +39,10 @@ const Shops = () => {
 
     const [sortPrice, setSortPrice] = useState('')
     const [category, setCategory] = useState('')
+
     const queryCategory = (e, value) => {
-        if (e.target.checked) {
-            setCategory(value)
-        } else {
-            setCategory('')
-        }
+        if (e.target.checked) setCategory(value)
+        else setCategory('')
     }
 
     useEffect(() => {
@@ -76,6 +75,7 @@ const Shops = () => {
     return (
         <div>
             <Header />
+
             <section
                 style={{
                     backgroundImage: `url(${import.meta.env.VITE_BASE_URL}/images/banner/shop.png)`,
@@ -91,7 +91,7 @@ const Shops = () => {
                                 <span className='pt-1'>
                                     <IoIosArrowForward />
                                 </span>
-                                <span>Shop </span>
+                                <span>Shop</span>
                             </div>
                         </div>
                     </div>
@@ -133,7 +133,6 @@ const Shops = () => {
                                         )}
                                         renderThumb={({ props }) => (
                                             <div className='w-[15px] h-[15px] bg-[#059473] rounded-full' {...props} />
-
                                         )}
                                     />
                                     <div>
@@ -145,51 +144,51 @@ const Shops = () => {
                                     <h2 className='text-3xl font-bold mb-3 text-slate-600'>Rating </h2>
                                     <div className='flex flex-col gap-3'>
                                         <div onClick={() => setRating(5)} className='text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer'>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
                                         </div>
 
                                         <div onClick={() => setRating(4)} className='text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer'>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><CiStar /> </span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><CiStar /></span>
                                         </div>
 
                                         <div onClick={() => setRating(3)} className='text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer'>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
                                         </div>
 
                                         <div onClick={() => setRating(2)} className='text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer'>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
                                         </div>
 
                                         <div onClick={() => setRating(1)} className='text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer'>
-                                            <span><AiFillStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
+                                            <span><AiFillStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
                                         </div>
 
                                         <div onClick={resetRating} className='text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer'>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
                                         </div>
                                     </div>
                                 </div>

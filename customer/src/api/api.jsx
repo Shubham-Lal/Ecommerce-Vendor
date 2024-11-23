@@ -1,8 +1,5 @@
 import axios from "axios";
-const local = import.meta.env.VITE_SERVER_URL
 
-const api = axios.create({
-    baseURL: `${local}/api`
-})
+const api = axios.create({ baseURL: `${import.meta.env.VITE_SERVER_URL}/api` })
 
 export default api

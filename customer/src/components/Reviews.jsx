@@ -75,8 +75,7 @@ const Reviews = ({ product }) => {
                             <RatingTemp rating={5} />
                         </div>
                         <div className='w-[200px] h-[14px] bg-slate-200 relative'>
-                            <div style={{ width: `${Math.floor((100 * (rating_review[0]?.sum || 0)) / totalReview)}%` }} className='h-full bg-[#Edbb0E] w-[60%]'>
-                            </div>
+                            <div style={{ width: `${Math.floor((100 * (rating_review[0]?.sum || 0)) / totalReview)}%` }} className='h-full bg-[#Edbb0E] w-[60%]'></div>
                         </div>
                         <p className='text-sm text-slate-600 w-[0%]'>{rating_review[0]?.sum}</p>
                     </div>
@@ -86,8 +85,7 @@ const Reviews = ({ product }) => {
                             <RatingTemp rating={4} />
                         </div>
                         <div className='w-[200px] h-[14px] bg-slate-200 relative'>
-                            <div style={{ width: `${Math.floor((100 * (rating_review[1]?.sum || 0)) / totalReview)}%` }} className='h-full bg-[#Edbb0E] w-[70%]'>
-                            </div>
+                            <div style={{ width: `${Math.floor((100 * (rating_review[1]?.sum || 0)) / totalReview)}%` }} className='h-full bg-[#Edbb0E] w-[70%]'></div>
                         </div>
                         <p className='text-sm text-slate-600 w-[0%]'>{rating_review[1]?.sum}</p>
                     </div>
@@ -97,8 +95,7 @@ const Reviews = ({ product }) => {
                             <RatingTemp rating={3} />
                         </div>
                         <div className='w-[200px] h-[14px] bg-slate-200 relative'>
-                            <div style={{ width: `${Math.floor((100 * (rating_review[2]?.sum || 0)) / totalReview)}%` }} className='h-full bg-[#Edbb0E] w-[40%]'>
-                            </div>
+                            <div style={{ width: `${Math.floor((100 * (rating_review[2]?.sum || 0)) / totalReview)}%` }} className='h-full bg-[#Edbb0E] w-[40%]'></div>
                         </div>
                         <p className='text-sm text-slate-600 w-[0%]'>{rating_review[2]?.sum}</p>
                     </div>
@@ -108,8 +105,7 @@ const Reviews = ({ product }) => {
                             <RatingTemp rating={2} />
                         </div>
                         <div className='w-[200px] h-[14px] bg-slate-200 relative'>
-                            <div style={{ width: `${Math.floor((100 * (rating_review[3]?.sum || 0)) / totalReview)}%` }} className='h-full bg-[#Edbb0E] w-[30%]'>
-                            </div>
+                            <div style={{ width: `${Math.floor((100 * (rating_review[3]?.sum || 0)) / totalReview)}%` }} className='h-full bg-[#Edbb0E] w-[30%]'></div>
                         </div>
                         <p className='text-sm text-slate-600 w-[0%]'>{rating_review[3]?.sum}</p>
                     </div>
@@ -119,8 +115,7 @@ const Reviews = ({ product }) => {
                             <RatingTemp rating={1} />
                         </div>
                         <div className='w-[200px] h-[14px] bg-slate-200 relative'>
-                            <div style={{ width: `${Math.floor((100 * (rating_review[4]?.sum || 0)) / totalReview)}%` }} className='h-full bg-[#Edbb0E] w-[10%]'>
-                            </div>
+                            <div style={{ width: `${Math.floor((100 * (rating_review[4]?.sum || 0)) / totalReview)}%` }} className='h-full bg-[#Edbb0E] w-[10%]'></div>
                         </div>
                         <p className='text-sm text-slate-600 w-[0%]'>{rating_review[4]?.sum}</p>
                     </div>
@@ -130,8 +125,7 @@ const Reviews = ({ product }) => {
                             <RatingTemp rating={0} />
                         </div>
                         <div className='w-[200px] h-[14px] bg-slate-200 relative'>
-                            <div className='h-full bg-[#Edbb0E] w-[0%]'>
-                            </div>
+                            <div className='h-full bg-[#Edbb0E] w-[0%]'></div>
                         </div>
                         <p className='text-sm text-slate-600 w-[0%]'>0</p>
                     </div>

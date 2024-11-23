@@ -45,10 +45,10 @@ const Details = () => {
         }
     }, [successMessage, errorMessage])
 
-    const images = [1, 2, 3, 4, 5, 6]
+    // const images = [1, 2, 3, 4, 5, 6]
     const [image, setImage] = useState('')
-    const discount = 10
-    const stock = 3
+    // const discount = 10
+    // const stock = 3
     const [state, setState] = useState('reviews')
 
     const responsive = {
@@ -171,13 +171,13 @@ const Details = () => {
                 <div className='absolute left-0 top-0 w-full h-full bg-[#2422228a]'>
                     <div className='w-[85%] md:w-[80%] sm:w-[90%] lg:w-[90%] h-full mx-auto'>
                         <div className='flex flex-col justify-center gap-1 items-center h-full w-full text-white'>
-                            <h2 className='text-3xl font-bold'>Product Details </h2>
+                            <h2 className='text-3xl font-bold'>Product Details</h2>
                             <div className='flex justify-center items-center gap-2 text-2xl w-full'>
                                 <Link to='/'>Home</Link>
                                 <span className='pt-1'>
                                     <IoIosArrowForward />
                                 </span>
-                                <span>Product Details </span>
+                                <span>Product Details</span>
                             </div>
                         </div>
                     </div>
@@ -192,7 +192,7 @@ const Details = () => {
                             <span className='pt-1'><IoIosArrowForward /></span>
                             <Link to='/'>{product.category}</Link>
                             <span className='pt-1'><IoIosArrowForward /></span>
-                            <span>{product.name} </span>
+                            <span>{product.name}</span>
                         </div>
                     </div>
                 </div>
@@ -227,7 +227,7 @@ const Details = () => {
 
                         <div className='flex flex-col gap-5'>
                             <div className='text-3xl text-slate-600 font-bold'>
-                                <h3>{product.name} </h3>
+                                <h3>{product.name}</h3>
                             </div>
                             <div className='flex justify-start items-center gap-4'>
                                 <div className='flex text-xl'>
@@ -243,13 +243,13 @@ const Details = () => {
                                         <h2>${product.price - Math.floor((product.price * product.discount) / 100)} (-{product.discount}%) </h2>
 
                                     </>
-                                    : <h2> Price : ${product.price} </h2>
+                                    : <h2>Price: ${product.price}</h2>
                                 }
                             </div>
 
                             <div className='text-slate-600'>
-                                <p>{product.description}  </p>
-                                <p className='text-slate-600 py-1 font-bold'>Shop Name : {product.shopName}</p>
+                                <p>{product.description}</p>
+                                <p className='text-slate-600 py-1 font-bold'>Shop Name: {product.shopName}</p>
                             </div>
 
                             <div className='flex gap-3 pb-10 border-b'>
@@ -412,7 +412,7 @@ const Details = () => {
                                             </div>
 
                                             <div className='p-4 flex flex-col gap-1'>
-                                                <h2 className='text-slate-600 text-lg font-bold'>{p.name} </h2>
+                                                <h2 className='text-slate-600 text-lg font-bold'>{p.name}</h2>
                                                 <div className='flex justify-start items-center gap-3'>
                                                     <h2 className='text-lg font-bold text-slate-600'>${p.price}</h2>
                                                     <div className='flex'>
@@ -428,8 +428,7 @@ const Details = () => {
                     </div>
 
                     <div className='w-full flex justify-center items-center py-8'>
-                        <div className='custom_bullet justify-center gap-3 !w-auto'>
-                        </div>
+                        <div className='custom_bullet justify-center gap-3 !w-auto'></div>
                     </div>
                 </div>
             </section>

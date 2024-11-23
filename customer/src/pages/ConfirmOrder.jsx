@@ -16,13 +16,11 @@ const ConfirmOrder = () => {
     const [message, setMessage] = useState(null)
 
     useEffect(() => {
-        if (!stripe) {
-            return
-        }
+        if (!stripe)  return
+
         const clientSecret = new URLSearchParams(window.location.search).get('payment_intent_client_secret')
-        if (!clientSecret) {
-            return
-        }
+        if (!clientSecret) return
+        
         stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
             switch (paymentIntent.status) {
                 case "succeeded":
@@ -62,9 +60,7 @@ const ConfirmOrder = () => {
     }
 
     useEffect(() => {
-        if (message === 'succeeded') {
-            update_payment()
-        }
+        if (message === 'succeeded') update_payment()
     }, [message])
 
     return (

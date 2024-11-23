@@ -19,9 +19,9 @@ const Footer = () => {
                     <div className='flex flex-col gap-3'>
                         <img className='w-[190px] h-[70px]' src="/images/logo.png" alt="logo" />
                         <ul className='flex flex-col gap-2 text-slate-600'>
-                            <li>Address :  2504 Ivins Avenue, Egg Harbor Township, NJ 08234,</li>
-                            <li>Phone : 4343434344</li>
-                            <li>Email : support@easylearingbd.com</li>
+                            <li>Address:  2504 Ivins Avenue, Egg Harbor Township, NJ 08234,</li>
+                            <li>Phone: 4343434344</li>
+                            <li>Email: support@easylearingbd.com</li>
                         </ul>
                     </div>
                 </div>
@@ -33,39 +33,19 @@ const Footer = () => {
                                 <h2 className='font-bold text-lg mb-2'>Usefull Links </h2>
                                 <div className='flex justify-between gap-[40px] lg:gap-[60px]'>
                                     <ul className='flex flex-col gap-2 text-slate-600 text-sm font-semibold'>
-                                        <li>
-                                            <Link>About Us </Link>
-                                        </li>
-                                        <li>
-                                            <Link>About Our Shop </Link>
-                                        </li>
-                                        <li>
-                                            <Link>Delivery Information </Link>
-                                        </li>
-                                        <li>
-                                            <Link>Privacy Policy </Link>
-                                        </li>
-                                        <li>
-                                            <Link>Blogs  </Link>
-                                        </li>
+                                        <li><Link to='/'>About Us</Link></li>
+                                        <li><Link to='/'>About Our Shop</Link></li>
+                                        <li><Link to='/'>Delivery Information</Link></li>
+                                        <li><Link to='/'>Privacy Policy</Link></li>
+                                        <li><Link to='/'>Blogs</Link></li>
                                     </ul>
 
                                     <ul className='flex flex-col gap-2 text-slate-600 text-sm font-semibold'>
-                                        <li>
-                                            <Link>Our Service </Link>
-                                        </li>
-                                        <li>
-                                            <Link>Company Profile</Link>
-                                        </li>
-                                        <li>
-                                            <Link>Delivery Information </Link>
-                                        </li>
-                                        <li>
-                                            <Link>Privacy Policy </Link>
-                                        </li>
-                                        <li>
-                                            <Link>Blogs  </Link>
-                                        </li>
+                                        <li><Link to='/'>Our Service</Link></li>
+                                        <li><Link to='/'>Company Profile</Link></li>
+                                        <li><Link to='/'>Delivery Information</Link></li>
+                                        <li><Link to='/'>Privacy Policy</Link></li>
+                                        <li><Link to='/'>Blogs</Link></li>
                                     </ul>
                                 </div>
                             </div>

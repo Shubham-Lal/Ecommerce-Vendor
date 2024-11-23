@@ -18,6 +18,7 @@ const Chat = () => {
     const { sellerId } = useParams()
     const { userInfo } = useSelector(state => state.auth)
     const { fb_messages, currentFd, my_friends, successMessage } = useSelector(state => state.chat)
+    
     const [text, setText] = useState('')
     const [receverMessage, setReceverMessage] = useState('')
     const [activeSeller, setActiveSeller] = useState([])

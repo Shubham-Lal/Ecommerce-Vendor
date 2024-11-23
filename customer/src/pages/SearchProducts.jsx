@@ -6,7 +6,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { Range } from 'react-range';
 import { AiFillStar } from 'react-icons/ai'
 import { CiStar } from 'react-icons/ci'
-import Products from '../components/products/Products';
+// import Products from '../components/products/Products';
 import { BsFillGridFill } from 'react-icons/bs'
 import { FaThList } from 'react-icons/fa'
 import ShopProducts from '../components/products/ShopProducts';
@@ -15,12 +15,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { price_range_product, query_products } from '../store/reducers/homeReducer';
 
 const SearchProducts = () => {
-    let [searchParams, setSearchParams] = useSearchParams()
+    const searchParams = useSearchParams()
     const category = searchParams.get('category')
     const searchValue = searchParams.get('value')
 
     const dispatch = useDispatch()
-    const { products, categorys, priceRange, latest_product, totalProduct, parPage } = useSelector(state => state.home)
+    // const { products, categorys, priceRange, latest_product, totalProduct, parPage } = useSelector(state => state.home)
+    const { products, priceRange, totalProduct, parPage } = useSelector(state => state.home)
 
     useEffect(() => {
         dispatch(price_range_product())
@@ -88,7 +89,7 @@ const SearchProducts = () => {
                                 <span className='pt-1'>
                                     <IoIosArrowForward />
                                 </span>
-                                <span>Category </span>
+                                <span>Category</span>
                             </div>
                         </div>
                     </div>
@@ -132,51 +133,51 @@ const SearchProducts = () => {
                                     <h2 className='text-3xl font-bold mb-3 text-slate-600'>Rating </h2>
                                     <div className='flex flex-col gap-3'>
                                         <div onClick={() => setRating(5)} className='text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer'>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
                                         </div>
 
                                         <div onClick={() => setRating(4)} className='text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer'>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><CiStar /> </span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><CiStar /></span>
                                         </div>
 
                                         <div onClick={() => setRating(3)} className='text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer'>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
                                         </div>
 
                                         <div onClick={() => setRating(2)} className='text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer'>
-                                            <span><AiFillStar /> </span>
-                                            <span><AiFillStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
+                                            <span><AiFillStar /></span>
+                                            <span><AiFillStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
                                         </div>
 
                                         <div onClick={() => setRating(1)} className='text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer'>
-                                            <span><AiFillStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
+                                            <span><AiFillStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
                                         </div>
 
                                         <div onClick={resetRating} className='text-orange-500 flex justify-start items-start gap-2 text-xl cursor-pointer'>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
-                                            <span><CiStar /> </span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
+                                            <span><CiStar /></span>
                                         </div>
                                     </div>
                                 </div>
@@ -195,7 +196,7 @@ const SearchProducts = () => {
                                         <select onChange={(e) => setSortPrice(e.target.value)} className='p-1 border outline-0 text-slate-600 font-semibold' name="" id="">
                                             <option value="">Sort By</option>
                                             <option value="low-to-high">Low to High Price</option>
-                                            <option value="high-to-low">High to Low Price </option>
+                                            <option value="high-to-low">High to Low Price</option>
                                         </select>
                                         <div className='flex justify-center items-start gap-4 md-lg:hidden'>
                                             <div onClick={() => setStyles('grid')} className={`p-2 ${styles === 'grid' && 'bg-slate-300'} text-slate-600 hover:bg-slate-300 cursor-pointer rounded-sm `} >

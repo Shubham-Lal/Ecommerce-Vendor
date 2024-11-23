@@ -34,7 +34,7 @@ const Categorys = () => {
         xsmobile: {
             breakpoint: { max: 440, min: 0 },
             items: 1
-        },
+        }
     }
 
     return (

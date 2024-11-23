@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { FaFacebookF } from "react-icons/fa6";
-import { FaGoogle } from "react-icons/fa6";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { customer_login, messageClear } from '../store/reducers/authReducer';
@@ -14,10 +12,7 @@ const Login = () => {
     const { loader, errorMessage, successMessage, userInfo } = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
-    const [state, setState] = useState({
-        email: '',
-        password: ''
-    })
+    const [state, setState] = useState({ email: '', password: '' })
 
     const inputHandle = (e) => {
         setState({
@@ -40,9 +35,7 @@ const Login = () => {
             toast.error(errorMessage)
             dispatch(messageClear())
         }
-        if (userInfo) {
-            navigate('/')
-        }
+        if (userInfo) navigate('/')
     }, [successMessage, errorMessage])
 
     return (
@@ -92,7 +85,7 @@ const Login = () => {
                             </div>
 
                             <div className='text-center text-slate-600 pt-1'>
-                                <p>Don't Have An Account ? <Link className='text-blue-500' to='/register'> Register</Link> </p>
+                                <p>Don't Have An Account? <Link className='text-blue-500' to='/register'>Register</Link></p>
                             </div>
 
                             <a target='_blank' href={`${import.meta.env.VITE_ADMIN_URL}/login`}>

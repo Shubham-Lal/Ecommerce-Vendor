@@ -117,19 +117,19 @@ const Header = () => {
                             <div className='flex justify-center sm:justify-between md-lg:justify-center items-center flex-wrap'>
                                 <ul className='flex justify-start items-start gap-4 md:gap-8 text-sm font-bold uppercase md-lg:hidden'>
                                     <li>
-                                        <Link to='/' className={`block ${pathname === '/' ? 'text-[#059473]' : 'text-slate-600'} `} >Home</Link>
+                                        <Link to='/' className={`block ${pathname === '/' ? 'text-[#059473]' : 'text-slate-600'} `}>Home</Link>
                                     </li>
                                     <li>
-                                        <Link to='/shops' className={`block ${pathname === '/shops' ? 'text-[#059473]' : 'text-slate-600'} `} >Shop</Link>
+                                        <Link to='/shops' className={`block ${pathname === '/shops' ? 'text-[#059473]' : 'text-slate-600'} `}>Shop</Link>
                                     </li>
                                     <li>
-                                        <Link className={`block ${pathname === '/blog' ? 'text-[#059473]' : 'text-slate-600'} `} >Blog</Link>
+                                        <Link className={`block ${pathname === '/blog' ? 'text-[#059473]' : 'text-slate-600'} `}>Blog</Link>
                                     </li>
                                     <li>
-                                        <Link className={`block ${pathname === '/about' ? 'text-[#059473]' : 'text-slate-600'} `} >About Us</Link>
+                                        <Link className={`block ${pathname === '/about' ? 'text-[#059473]' : 'text-slate-600'} `}>About Us</Link>
                                     </li>
                                     <li>
-                                        <Link className={`block ${pathname === '/contact' ? 'text-[#059473]' : 'text-slate-600'} `} >Contact Us</Link>
+                                        <Link className={`block ${pathname === '/contact' ? 'text-[#059473]' : 'text-slate-600'} `}>Contact Us</Link>
                                     </li>
                                 </ul>
                             </div>
@@ -191,27 +191,27 @@ const Header = () => {
 
                         <ul className='flex flex-col justify-start items-start text-sm font-bold uppercase'>
                             <li>
-                                <Link className={`py-2 block ${pathname === '/' ? 'text-[#059473]' : 'text-slate-600'} `} >Home</Link>
+                                <Link className={`py-2 block ${pathname === '/' ? 'text-[#059473]' : 'text-slate-600'} `}>Home</Link>
                             </li>
                             <li>
-                                <Link to='/shops' className={`py-2 block ${pathname === '/shops' ? 'text-[#059473]' : 'text-slate-600'} `} >Shop</Link>
+                                <Link to='/shops' className={`py-2 block ${pathname === '/shops' ? 'text-[#059473]' : 'text-slate-600'} `}>Shop</Link>
                             </li>
                             <li>
-                                <Link className={`py-2 block ${pathname === '/blog' ? 'text-[#059473]' : 'text-slate-600'} `} >Blog</Link>
+                                <Link className={`py-2 block ${pathname === '/blog' ? 'text-[#059473]' : 'text-slate-600'} `}>Blog</Link>
                             </li>
                             <li>
-                                <Link className={`py-2 block ${pathname === '/about' ? 'text-[#059473]' : 'text-slate-600'} `} >About Us</Link>
+                                <Link className={`py-2 block ${pathname === '/about' ? 'text-[#059473]' : 'text-slate-600'} `}>About Us</Link>
                             </li>
                             <li>
-                                <Link className={`py-2 block ${pathname === '/contact' ? 'text-[#059473]' : 'text-slate-600'} `} >Contact Us</Link>
+                                <Link className={`py-2 block ${pathname === '/contact' ? 'text-[#059473]' : 'text-slate-600'} `}>Contact Us</Link>
                             </li>
                         </ul>
 
                         <div className='flex justify-start items-center gap-4 text-black'>
                             <a href="#"><FaFacebookF /></a>
-                            <a href="#"><FaTwitter /> </a>
+                            <a href="#"><FaTwitter /></a>
                             <a href="#"><FaLinkedin /></a>
-                            <a href="#"><FaGithub /> </a>
+                            <a href="#"><FaGithub /></a>
                         </div>
 
                         <div className='w-full flex justify-end md-lg:justify-start gap-3 items-center'>
@@ -241,7 +241,7 @@ const Header = () => {
                             <div onClick={() => setCategoryShow(!categoryShow)} className='h-[50px] bg-[#059473] text-white flex justify-center md-lg:justify-between md-lg:px-6 items-center gap-3 font-bold text-md cursor-pointer'>
                                 <div className='flex justify-center items-center gap-3'>
                                     <span><FaList /></span>
-                                    <span>All Category </span>
+                                    <span>All Category</span>
                                 </div>
                                 <span className='pt-1'><IoIosArrowDown /></span>
                             </div>

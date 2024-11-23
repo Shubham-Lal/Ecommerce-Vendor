@@ -6,19 +6,18 @@ const CheckoutForm = ({ orderId }) => {
 
     const stripe = useStripe()
     const elements = useElements()
+
     const [message, setMessage] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
 
-    const paymentElementOptions = {
-        loyout: 'tabs'
-    }
+    const paymentElementOptions = { layout: 'tabs' }
 
     const submit = async (e) => {
         e.preventDefault()
-        if (!stripe || !elements) {
-            return
-        }
+
+        if (!stripe || !elements) return
         setIsLoading(true)
+
         const { error } = await stripe.confirmPayment({
             elements,
             confirmParams: {
@@ -27,9 +26,9 @@ const CheckoutForm = ({ orderId }) => {
         })
         if (error.type === 'card_error' || error.type === 'validation_error') {
             setMessage(error.message)
-        } else {
-            setMessage('An Unexpected error occured')
         }
+        else setMessage('An Unexpected error occured')
+
         setIsLoading(false)
     }
 

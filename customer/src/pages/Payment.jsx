@@ -11,7 +11,7 @@ const Payment = () => {
 
     useEffect(() => {
         if (!location.state) {
-            navigate('/'); 
+            navigate('/');
         }
     }, [location.state, navigate]);
 
@@ -29,30 +29,30 @@ const Payment = () => {
                         <div className='w-full'>
                             <div>
                                 {/* <div className='flex'>
-                            <div onClick={() => setPaymentMethod('stripe')} className={`w-full md:w-[20%] border-r cursor-pointer py-8 px-12 ${paymentMethod === 'stripe' ? 'bg-white' : 'bg-slate-100'} `} >
-                                <div className='w-full flex flex-col gap-[3px] justify-center items-center'>
-                                    <img src="/images/payment/stripe.png" className='w-full h-auto' alt="" />
-                                </div>
-                                <span className='text-slate-600'>Stripe</span>
-                            </div>
+                                    <div onClick={() => setPaymentMethod('stripe')} className={`w-full md:w-[20%] border-r cursor-pointer py-8 px-12 ${paymentMethod === 'stripe' ? 'bg-white' : 'bg-slate-100'} `} >
+                                        <div className='w-full flex flex-col gap-[3px] justify-center items-center'>
+                                            <img src="/images/payment/stripe.png" className='w-full h-auto' alt="" />
+                                        </div>
+                                        <span className='text-slate-600'>Stripe</span>
+                                    </div>
 
-                            <div onClick={() => setPaymentMethod('cod')} className={`w-[20%] border-r cursor-pointer py-8 px-12 ${paymentMethod === 'cod' ? 'bg-white' : 'bg-slate-100'} `} >
-                                <div className='flex flex-col gap-[3px] justify-center items-center'>
-                                    <img src="/images/payment/cod.jpg" alt="" />
-                                </div>
-                                <span className='text-slate-600'>COD</span>
-                            </div>
-                        </div> */}
+                                    <div onClick={() => setPaymentMethod('cod')} className={`w-[20%] border-r cursor-pointer py-8 px-12 ${paymentMethod === 'cod' ? 'bg-white' : 'bg-slate-100'} `} >
+                                        <div className='flex flex-col gap-[3px] justify-center items-center'>
+                                            <img src="/images/payment/cod.jpg" alt="" />
+                                        </div>
+                                        <span className='text-slate-600'>COD</span>
+                                    </div>
+                                </div> */}
 
                                 <div>
                                     <Stripe orderId={orderId} price={price} />
                                 </div>
 
                                 {/* {paymentMethod === 'cod' &&
-                            <div className='w-full px-4 py-8 bg-white shadow-sm'>
-                                <button className='px-10 py-[6px] rounded-sm hover:shadow-green-500/20 hover:shadow-lg bg-[#059473] text-white'>Pay Now</button>
-                            </div>
-                        } */}
+                                    <div className='w-full px-4 py-8 bg-white shadow-sm'>
+                                        <button className='px-10 py-[6px] rounded-sm hover:shadow-green-500/20 hover:shadow-lg bg-[#059473] text-white'>Pay Now</button>
+                                    </div>
+                                } */}
                             </div>
                         </div>
 
@@ -62,7 +62,7 @@ const Payment = () => {
                                     <h2 className='font-bold text-lg'>Order Summary </h2>
                                     <div className='flex justify-between items-center'>
                                         <span>{items} Items and Shipping Fee Included </span>
-                                        <span>${price} </span>
+                                        <span>${price}</span>
                                     </div>
                                     <div className='flex justify-between items-center font-semibold'>
                                         <span>Total Amount </span>

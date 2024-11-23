@@ -36,7 +36,6 @@ const Shipping = () => {
         if (name && address && phone && post && province && city && area) {
             setRes(true)
         }
-
     }
 
     const placeOrder = () => {
@@ -48,13 +47,13 @@ const Shipping = () => {
             shippingInfo: state,
             userId: userInfo.id,
             navigate
-
         }))
     }
 
     return (
         <div>
             <Header />
+            
             <section
                 style={{
                     backgroundImage: `url(${import.meta.env.VITE_BASE_URL}/images/banner/shop.png)`,

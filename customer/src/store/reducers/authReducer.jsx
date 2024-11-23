@@ -34,9 +34,8 @@ const decodeToken = (token) => {
     if (token) {
         const userInfo = jwtDecode(token)
         return userInfo
-    } else {
-        return ''
-    }
+    } 
+    else return ''
 }
 
 export const authReducer = createSlice({

@@ -48,7 +48,7 @@ const Wishlist = () => {
                     </div>
 
                     <div className='py-3 text-slate-600 px-2'>
-                        <h2 className='font-bold'>{p.name} </h2>
+                        <h2 className='font-bold'>{p.name}</h2>
                         <div className='flex justify-start items-center gap-3'>
                             <span className='text-md font-semibold'>${p.price}</span>
                             <div className='flex'>

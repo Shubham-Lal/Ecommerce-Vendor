@@ -4,12 +4,12 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { get_orders } from '../../store/reducers/orderReducer';
 
 const Orders = () => {
-    const [state, setState] = useState('all')
-
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { userInfo } = useSelector(state => state.auth)
     const { myOrders } = useSelector(state => state.order)
+    
+    const [state, setState] = useState('all')
 
     useEffect(() => {
         dispatch(get_orders({ status: state, customerId: userInfo.id }))
