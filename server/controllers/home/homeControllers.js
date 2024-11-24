@@ -31,9 +31,7 @@ class homeControllers {
         try {
             const categorys = await categoryModel.find({})
 
-            responseReturn(res, 200, {
-                categorys
-            })
+            responseReturn(res, 200, { categorys })
         }
         catch (error) { }
     }
@@ -195,9 +193,7 @@ class homeControllers {
                 rating: productRating
             })
 
-            responseReturn(res, 201, {
-                message: "Review Added Successfully"
-            })
+            responseReturn(res, 201, { message: "Review Added Successfully" })
         }
         catch (error) { }
     }

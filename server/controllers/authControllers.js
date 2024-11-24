@@ -28,10 +28,12 @@ class authControllers {
                     })
 
                     responseReturn(res, 200, { token, message: "Login Success" })
-                } else {
+                }
+                else {
                     responseReturn(res, 404, { error: "Password Wrong" })
                 }
-            } else {
+            }
+            else {
                 responseReturn(res, 404, { error: "Email not Found" })
             }
         }
@@ -58,10 +60,12 @@ class authControllers {
                     })
 
                     responseReturn(res, 200, { token, message: "Login Success" })
-                } else {
+                }
+                else {
                     responseReturn(res, 404, { error: "Password Wrong" })
                 }
-            } else {
+            }
+            else {
                 responseReturn(res, 404, { error: "Email not Found" })
             }
         }
@@ -77,7 +81,8 @@ class authControllers {
             const getUser = await sellerModel.findOne({ email })
             if (getUser) {
                 responseReturn(res, 404, { error: 'Email Already Exit' })
-            } else {
+            }
+            else {
                 const seller = await sellerModel.create({
                     name,
                     email,
@@ -106,7 +111,8 @@ class authControllers {
                 const user = await adminModel.findById(id)
 
                 responseReturn(res, 200, { userInfo: user })
-            } else {
+            }
+            else {
                 const seller = await sellerModel.findById(id)
 
                 responseReturn(res, 200, { userInfo: seller })
@@ -153,7 +159,8 @@ class authControllers {
 
                     const updatedUserInfo = await sellerModel.findById(id)
                     responseReturn(res, 201, { message: 'Profile Image Upload Successfully', userInfo: updatedUserInfo })
-                } else {
+                }
+                else {
                     responseReturn(res, 404, { error: 'Image Upload Failed' })
                 }
             } catch (error) {

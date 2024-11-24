@@ -23,6 +23,7 @@ class sellerController {
 
     get_seller = async (req, res) => {
         const { sellerId } = req.params
+
         try {
             const seller = await sellerModel.findById(sellerId)
 
@@ -35,6 +36,7 @@ class sellerController {
 
     seller_status_update = async (req, res) => {
         const { sellerId, status } = req.body
+
         try {
             await sellerModel.findByIdAndUpdate(sellerId, { status })
             const seller = await sellerModel.findById(sellerId)
@@ -66,7 +68,8 @@ class sellerController {
                 }).countDocuments()
 
                 responseReturn(res, 200, { totalSeller, sellers })
-            } else {
+            }
+            else {
                 const sellers = await sellerModel.find({
                     status: 'active'
                 }).skip(skipPage).limit(parPage).sort({ createdAt: -1 })
@@ -101,7 +104,8 @@ class sellerController {
                 }).countDocuments()
 
                 responseReturn(res, 200, { totalSeller, sellers })
-            } else {
+            }
+            else {
                 const sellers = await sellerModel.find({
                     status: 'deactive'
                 }).skip(skipPage).limit(parPage).sort({ createdAt: -1 })
@@ -109,7 +113,7 @@ class sellerController {
                 const totalSeller = await sellerModel.find({
                     status: 'deactive'
                 }).countDocuments()
-                
+
                 responseReturn(res, 200, { totalSeller, sellers })
             }
         }

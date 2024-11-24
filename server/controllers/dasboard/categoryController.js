@@ -10,9 +10,7 @@ class categoryController {
         const form = formidable()
 
         form.parse(req, async (err, fields, files) => {
-            if (err) {
-                responseReturn(res, 404, { error: 'Something went wrong' })
-            }
+            if (err) responseReturn(res, 404, { error: 'Something went wrong' })
             else {
                 let { name } = fields
                 let { image } = files
@@ -88,9 +86,7 @@ class categoryController {
         const form = formidable()
 
         form.parse(req, async (err, fields, files) => {
-            if (err) {
-                return responseReturn(res, 404, { error: 'Something went wrong' })
-            }
+            if (err) return responseReturn(res, 404, { error: 'Something went wrong' })
 
             let { name } = fields
             let { image } = files

@@ -76,7 +76,8 @@ class cartController {
                 const { price, discount } = stockProduct[i].products[0]
                 if (discount !== 0) {
                     calculatePrice = calculatePrice + quantity * (price - Math.floor((price * discount) / 100))
-                } else {
+                }
+                else {
                     calculatePrice = calculatePrice + quantity * price
                 }
             }
@@ -90,7 +91,8 @@ class cartController {
                         let pri = 0
                         if (tempProduct.discount !== 0) {
                             pri = tempProduct.price - Math.floor((tempProduct.price * tempProduct.discount) / 100)
-                        } else {
+                        }
+                        else {
                             pri = tempProduct.price
                         }
                         pri = pri - Math.floor((pri * co) / 100)
@@ -180,7 +182,8 @@ class cartController {
             if (quantity > 1) {
                 await cartModel.findByIdAndUpdate(cart_id, { quantity: quantity - 1 })
                 return responseReturn(res, 200, { message: "Qty Updated" })
-            } else {
+            }
+            else {
                 return responseReturn(res, 400, { message: "Quantity cannot be less than 1" })
             }
         } catch (error) { }
@@ -192,15 +195,12 @@ class cartController {
         try {
             const product = await wishlistModel.findOne({ slug })
             if (product) {
-                responseReturn(res, 404, {
-                    error: 'Product Is Already In Wishlist'
-                })
-            } else {
+                responseReturn(res, 404, { error: 'Product Is Already In Wishlist' })
+            }
+            else {
                 await wishlistModel.create(req.body)
 
-                responseReturn(res, 201, {
-                    message: 'Product Add to Wishlist Success'
-                })
+                responseReturn(res, 201, { message: 'Product Add to Wishlist Success' })
             }
         }
         catch (error) { }
@@ -210,9 +210,7 @@ class cartController {
         const { userId } = req.params
 
         try {
-            const wishlists = await wishlistModel.find({
-                userId
-            })
+            const wishlists = await wishlistModel.find({ userId })
 
             responseReturn(res, 200, {
                 wishlistCount: wishlists.length,

@@ -14,7 +14,8 @@ class customerAuthController {
             const customer = await customerModel.findOne({ email })
             if (customer) {
                 responseReturn(res, 404, { error: 'Email Already Exits' })
-            } else {
+            }
+            else {
                 const createCustomer = await customerModel.create({
                     name: name.trim(),
                     email: email.trim(),
@@ -64,10 +65,12 @@ class customerAuthController {
 
                     responseReturn(res, 201, { message: 'User Login Success', token })
 
-                } else {
+                }
+                else {
                     responseReturn(res, 404, { error: 'Password Wrong' })
                 }
-            } else {
+            }
+            else {
                 responseReturn(res, 404, { error: 'Email Not Found' })
             }
         }

@@ -34,7 +34,8 @@ class queryProducts {
         if (this.query.sortPrice) {
             if (this.query.sortPrice === 'low-to-high') {
                 this.products = this.products.sort(function (a, b) { return a.price - b.price })
-            } else {
+            }
+            else {
                 this.products = this.products.sort(function (a, b) { return b.price - a.price })
             }
         }
@@ -61,7 +62,8 @@ class queryProducts {
             for (let i = 0; i < this.query.parPage; i++) {
                 temp.push(this.products[i])
             }
-        } else {
+        }
+        else {
             temp = this.products
         }
         this.products = temp

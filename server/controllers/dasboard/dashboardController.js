@@ -112,7 +112,6 @@ class dashboardController {
                 messages,
                 recentOrders,
                 totalSale: totalSale.length > 0 ? totalSale[0].totalAmount : 0,
-
             })
         }
         catch (error) { }
@@ -185,9 +184,7 @@ class dashboardController {
 
                 const { url } = await cloudinary.uploader.upload(mainban.filepath, { folder: 'Ecommerce/Banner' })
 
-                await bannerModel.findByIdAndUpdate(bannerId, {
-                    banner: url
-                })
+                await bannerModel.findByIdAndUpdate(bannerId, { banner: url })
 
                 banner = await bannerModel.findById(bannerId)
 
@@ -208,7 +205,7 @@ class dashboardController {
                     }
                 }
             ])
-            
+
             responseReturn(res, 200, { banners })
         }
         catch (error) {

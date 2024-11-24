@@ -96,9 +96,7 @@ class ChatController {
                     ]
                 })
 
-                const MyFriends = await sellerCustomerModel.findOne({
-                    myId: userId
-                })
+                const MyFriends = await sellerCustomerModel.findOne({ myId: userId })
 
                 const currentFd = MyFriends.myFriends.find(s => s.fdId === sellerId)
 
@@ -107,15 +105,11 @@ class ChatController {
                     currentFd,
                     messages
                 })
+            }
+            else {
+                const MyFriends = await sellerCustomerModel.findOne({ myId: userId })
 
-            } else {
-                const MyFriends = await sellerCustomerModel.findOne({
-                    myId: userId
-                })
-
-                responseReturn(res, 200, {
-                    MyFriends: MyFriends.myFriends
-                })
+                responseReturn(res, 200, { MyFriends: MyFriends.myFriends })
             }
         }
         catch (error) { }
@@ -141,14 +135,10 @@ class ChatController {
                 myFriends[index - 1] = temp
                 index--
             }
-            await sellerCustomerModel.updateOne(
-                {
-                    myId: userId
-                },
-                {
-                    myFriends
-                }
 
+            await sellerCustomerModel.updateOne(
+                { myId: userId },
+                { myFriends }
             )
 
             const data1 = await sellerCustomerModel.findOne({ myId: sellerId })
@@ -160,13 +150,10 @@ class ChatController {
                 myFriends1[index1 - 1] = temp1
                 index1--
             }
+
             await sellerCustomerModel.updateOne(
-                {
-                    myId: sellerId
-                },
-                {
-                    myFriends1
-                }
+                { myId: sellerId },
+                { myFriends1 }
             )
 
             responseReturn(res, 201, { message })
@@ -176,11 +163,11 @@ class ChatController {
 
     get_customers = async (req, res) => {
         const { sellerId } = req.params
+
         try {
             const data = await sellerCustomerModel.findOne({ myId: sellerId })
-            responseReturn(res, 200, {
-                customers: data.myFriends
-            })
+
+            responseReturn(res, 200, { customers: data.myFriends })
         }
         catch (error) { }
     }
@@ -215,10 +202,7 @@ class ChatController {
 
             const currentCustomer = await customerModel.findById(customerId)
 
-            responseReturn(res, 200, {
-                messages,
-                currentCustomer
-            })
+            responseReturn(res, 200, { messages, currentCustomer })
         }
         catch (error) { }
     }
@@ -243,6 +227,7 @@ class ChatController {
                 myFriends[index - 1] = temp
                 index--
             }
+
             await sellerCustomerModel.updateOne(
                 { myId: senderId },
                 { myFriends }
@@ -257,6 +242,7 @@ class ChatController {
                 myFriends1[index1 - 1] = temp1
                 index1--
             }
+
             await sellerCustomerModel.updateOne(
                 { myId: receverId },
                 { myFriends1 }
@@ -271,9 +257,7 @@ class ChatController {
         try {
             const sellers = await sellerModel.find({})
 
-            responseReturn(res, 200, {
-                sellers
-            })
+            responseReturn(res, 200, { sellers })
         }
         catch (error) { }
     }
@@ -327,10 +311,7 @@ class ChatController {
                 currentSeller = await sellerModel.findById(receverId)
             }
 
-            responseReturn(res, 200, {
-                messages,
-                currentSeller
-            })
+            responseReturn(res, 200, { messages, currentSeller })
         }
         catch (error) { }
     }
@@ -363,9 +344,7 @@ class ChatController {
                 ]
             })
 
-            responseReturn(res, 200, {
-                messages
-            })
+            responseReturn(res, 200, { messages })
         }
         catch (error) { }
     }

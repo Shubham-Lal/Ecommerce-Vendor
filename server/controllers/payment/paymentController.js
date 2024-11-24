@@ -36,7 +36,8 @@ class paymentController {
                 })
 
                 responseReturn(res, 201, { url: accountLink.url })
-            } else {
+            } 
+            else {
                 const account = await stripe.accounts.create({ type: 'express' })
 
                 const accountLink = await stripe.accountLinks.create({
@@ -71,7 +72,8 @@ class paymentController {
                 })
 
                 responseReturn(res, 200, { message: 'payment Active' })
-            } else {
+            } 
+            else {
                 responseReturn(res, 404, { message: 'payment Active Fails' })
             }
         }

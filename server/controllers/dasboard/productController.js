@@ -75,7 +75,8 @@ class productController {
                 }).countDocuments()
 
                 responseReturn(res, 200, { products, totalProduct })
-            } else {
+            }
+            else {
                 const products = await productModel.find({ sellerId: id }).skip(skipPage).limit(parPage).sort({ createdAt: -1 })
                 const totalProduct = await productModel.find({ sellerId: id }).countDocuments()
 
@@ -87,6 +88,7 @@ class productController {
 
     product_get = async (req, res) => {
         const { productId } = req.params
+
         try {
             const product = await productModel.findById(productId)
 
@@ -120,9 +122,8 @@ class productController {
             const { oldImage, productId } = field
             const { newImage } = files
 
-            if (err) {
-                responseReturn(res, 400, { error: err.message })
-            } else {
+            if (err) responseReturn(res, 400, { error: err.message })
+            else {
                 try {
                     cloudinary.config({
                         cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -144,7 +145,8 @@ class productController {
 
                         const product = await productModel.findById(productId)
                         responseReturn(res, 200, { product, message: 'Product Image Updated Successfully' })
-                    } else {
+                    }
+                    else {
                         responseReturn(res, 404, { error: 'Image Upload Failed' })
                     }
                 }

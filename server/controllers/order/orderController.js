@@ -141,7 +141,8 @@ class orderController {
                     customerId: new ObjectId(customerId),
                     delivery_status: status
                 })
-            } else {
+            }
+            else {
                 orders = await customerOrder.find({
                     customerId: new ObjectId(customerId)
                 })
