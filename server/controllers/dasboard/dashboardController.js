@@ -140,7 +140,7 @@ class dashboardController {
                     link: slug
                 })
 
-                responseReturn(res, 200, { banner, message: "Banner Add Success" })
+                responseReturn(res, 200, { banner, message: "Banner added" })
             }
             catch (error) {
                 responseReturn(res, 500, { error: error.message })
@@ -188,7 +188,7 @@ class dashboardController {
 
                 banner = await bannerModel.findById(bannerId)
 
-                responseReturn(res, 200, { banner, message: "Banner Updated Success" })
+                responseReturn(res, 200, { banner, message: "Banner updated" })
             }
             catch (error) {
                 responseReturn(res, 500, { error: error.message })

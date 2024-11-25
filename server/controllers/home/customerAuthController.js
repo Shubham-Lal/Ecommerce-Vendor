@@ -13,7 +13,7 @@ class customerAuthController {
         try {
             const customer = await customerModel.findOne({ email })
             if (customer) {
-                responseReturn(res, 404, { error: 'Email Already Exits' })
+                responseReturn(res, 404, { error: 'User already registered' })
             }
             else {
                 const createCustomer = await customerModel.create({
@@ -38,7 +38,7 @@ class customerAuthController {
                     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
                 })
 
-                responseReturn(res, 201, { message: "User Register Success", token })
+                responseReturn(res, 201, { message: "User registered", token })
             }
         }
         catch (error) { }
@@ -63,15 +63,15 @@ class customerAuthController {
                         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
                     })
 
-                    responseReturn(res, 201, { message: 'User Login Success', token })
+                    responseReturn(res, 201, { message: 'User logged in', token })
 
                 }
                 else {
-                    responseReturn(res, 404, { error: 'Password Wrong' })
+                    responseReturn(res, 404, { error: 'Incorrect password' })
                 }
             }
             else {
-                responseReturn(res, 404, { error: 'Email Not Found' })
+                responseReturn(res, 404, { error: 'User not found' })
             }
         }
         catch (error) { }
@@ -82,7 +82,7 @@ class customerAuthController {
             expires: new Date(Date.now())
         })
 
-        responseReturn(res, 200, { message: 'Logout Success' })
+        responseReturn(res, 200, { message: 'User logged out' })
     }
 }
 

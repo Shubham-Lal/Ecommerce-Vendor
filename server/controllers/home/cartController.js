@@ -25,7 +25,7 @@ class cartController {
             })
 
             if (product) {
-                responseReturn(res, 404, { error: "Product already added to cart" })
+                responseReturn(res, 404, { error: "Product already in cart" })
             }
             else {
                 const product = await cartModel.create({
@@ -34,7 +34,7 @@ class cartController {
                     quantity
                 })
 
-                responseReturn(res, 201, { message: "Added To cart successfully", product })
+                responseReturn(res, 201, { message: "Product added to cart", product })
             }
         }
         catch (error) { }
@@ -136,7 +136,7 @@ class cartController {
         try {
             await cartModel.findByIdAndDelete(cart_id)
 
-            responseReturn(res, 200, { message: "Product removed successfully" })
+            responseReturn(res, 200, { message: "Product removed from cart" })
         }
         catch (error) { }
     }
@@ -149,7 +149,7 @@ class cartController {
             const { quantity } = product
             await cartModel.findByIdAndUpdate(cart_id, { quantity: quantity + 1 })
 
-            responseReturn(res, 200, { message: "Qty Updated" })
+            responseReturn(res, 200, { message: "Quantity updated" })
         }
         catch (error) { }
     }
@@ -181,7 +181,7 @@ class cartController {
 
             if (quantity > 1) {
                 await cartModel.findByIdAndUpdate(cart_id, { quantity: quantity - 1 })
-                return responseReturn(res, 200, { message: "Qty Updated" })
+                return responseReturn(res, 200, { message: "Quantity updated" })
             }
             else {
                 return responseReturn(res, 400, { message: "Quantity cannot be less than 1" })
@@ -195,12 +195,12 @@ class cartController {
         try {
             const product = await wishlistModel.findOne({ slug })
             if (product) {
-                responseReturn(res, 404, { error: 'Product Is Already In Wishlist' })
+                responseReturn(res, 404, { error: 'Product already in wishlist' })
             }
             else {
                 await wishlistModel.create(req.body)
 
-                responseReturn(res, 201, { message: 'Product Add to Wishlist Success' })
+                responseReturn(res, 201, { message: 'Product added to wishlist' })
             }
         }
         catch (error) { }
@@ -227,7 +227,7 @@ class cartController {
             const wishlist = await wishlistModel.findByIdAndDelete(wishlistId)
 
             responseReturn(res, 200, {
-                message: 'Wishlist Product Remove',
+                message: 'Product removed from wishlist',
                 wishlistId
             })
         }

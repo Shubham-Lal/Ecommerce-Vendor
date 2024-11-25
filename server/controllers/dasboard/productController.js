@@ -49,7 +49,7 @@ class productController {
                     brand: brand.trim()
                 })
 
-                responseReturn(res, 201, { message: 'Product Added Successfully' })
+                responseReturn(res, 201, { message: 'Product added' })
             }
             catch (error) {
                 responseReturn(res, 500, { error: error.message })
@@ -108,7 +108,7 @@ class productController {
             })
             const product = await productModel.findById(productId)
 
-            responseReturn(res, 200, { product, message: 'Product Updated Successfully' })
+            responseReturn(res, 200, { product, message: 'Product updated' })
         }
         catch (error) {
             responseReturn(res, 500, { error: error.message })
@@ -144,10 +144,10 @@ class productController {
                         await cloudinary.uploader.destroy(`Ecommerce/Product/${publicId}`)
 
                         const product = await productModel.findById(productId)
-                        responseReturn(res, 200, { product, message: 'Product Image Updated Successfully' })
+                        responseReturn(res, 200, { product, message: 'Product image updated' })
                     }
                     else {
-                        responseReturn(res, 404, { error: 'Image Upload Failed' })
+                        responseReturn(res, 404, { error: 'Error uploading image. Try again.' })
                     }
                 }
                 catch (error) {

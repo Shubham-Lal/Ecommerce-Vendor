@@ -95,7 +95,7 @@ class orderController {
                 this.paymentCheck(order.id)
             }, 15000)
 
-            responseReturn(res, 200, { message: "Order Placed Success", orderId: order.id })
+            responseReturn(res, 200, { message: "Order placed", orderId: order.id })
         }
         catch (error) { }
     }
@@ -148,9 +148,7 @@ class orderController {
                 })
             }
 
-            responseReturn(res, 200, {
-                orders
-            })
+            responseReturn(res, 200, { orders })
         }
         catch (error) { }
     }
@@ -236,10 +234,10 @@ class orderController {
                 delivery_status: status
             })
 
-            responseReturn(res, 200, { message: 'order Status change success' })
+            responseReturn(res, 200, { message: 'Order delivery status updated' })
         }
         catch (error) {
-            responseReturn(res, 500, { message: 'internal server error' })
+            responseReturn(res, 500, { message: 'Internal Server Error' })
         }
     }
 
@@ -266,7 +264,7 @@ class orderController {
             }
         }
         catch (error) {
-            responseReturn(res, 500, { message: 'internal server error' })
+            responseReturn(res, 500, { message: 'Internal Server Error' })
         }
     }
 
@@ -290,10 +288,10 @@ class orderController {
                 delivery_status: status
             })
 
-            responseReturn(res, 200, { message: 'order status updated successfully' })
+            responseReturn(res, 200, { message: 'Order delivery status updated' })
         }
         catch (error) {
-            responseReturn(res, 500, { message: 'internal server error' })
+            responseReturn(res, 500, { message: 'Internal Server Error' })
         }
     }
 
@@ -347,7 +345,7 @@ class orderController {
                 })
             }
 
-            responseReturn(res, 200, { message: 'success' })
+            responseReturn(res, 200, { message: 'Order confirmed' })
         }
         catch (error) { }
     }

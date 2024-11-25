@@ -193,7 +193,7 @@ class homeControllers {
                 rating: productRating
             })
 
-            responseReturn(res, 201, { message: "Review Added Successfully" })
+            responseReturn(res, 201, { message: "Review added" })
         }
         catch (error) { }
     }

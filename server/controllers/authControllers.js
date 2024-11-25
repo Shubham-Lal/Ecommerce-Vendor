@@ -27,14 +27,14 @@ class authControllers {
                         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
                     })
 
-                    responseReturn(res, 200, { token, message: "Login Success" })
+                    responseReturn(res, 200, { token, message: "Admin logged in" })
                 }
                 else {
-                    responseReturn(res, 404, { error: "Password Wrong" })
+                    responseReturn(res, 404, { error: "Incorrect password" })
                 }
             }
             else {
-                responseReturn(res, 404, { error: "Email not Found" })
+                responseReturn(res, 404, { error: "Admin not Found" })
             }
         }
         catch (error) {
@@ -59,14 +59,14 @@ class authControllers {
                         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
                     })
 
-                    responseReturn(res, 200, { token, message: "Login Success" })
+                    responseReturn(res, 200, { token, message: "Seller logged in" })
                 }
                 else {
-                    responseReturn(res, 404, { error: "Password Wrong" })
+                    responseReturn(res, 404, { error: "Incorrect password" })
                 }
             }
             else {
-                responseReturn(res, 404, { error: "Email not Found" })
+                responseReturn(res, 404, { error: "Seller not Found" })
             }
         }
         catch (error) {
@@ -80,7 +80,7 @@ class authControllers {
         try {
             const getUser = await sellerModel.findOne({ email })
             if (getUser) {
-                responseReturn(res, 404, { error: 'Email Already Exit' })
+                responseReturn(res, 404, { error: 'Seller already registered' })
             }
             else {
                 const seller = await sellerModel.create({
@@ -95,7 +95,7 @@ class authControllers {
                     myId: seller.id
                 })
 
-                responseReturn(res, 201, { message: 'Register Success! Login to your account.' })
+                responseReturn(res, 201, { message: 'Seller registered! Login to your account.' })
             }
         }
         catch (error) {
@@ -128,9 +128,7 @@ class authControllers {
         const form = formidable({ multiples: true })
 
         form.parse(req, async (err, _, files) => {
-            if (err) {
-                return responseReturn(res, 500, { error: 'Form parsing error' })
-            }
+            if (err) return responseReturn(res, 500, { error: 'Form parsing error' })
 
             cloudinary.config({
                 cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -158,7 +156,7 @@ class authControllers {
                     })
 
                     const updatedUserInfo = await sellerModel.findById(id)
-                    responseReturn(res, 201, { message: 'Profile Image Upload Successfully', userInfo: updatedUserInfo })
+                    responseReturn(res, 201, { message: 'Profile image uploaded', userInfo: updatedUserInfo })
                 }
                 else {
                     responseReturn(res, 404, { error: 'Image Upload Failed' })
@@ -185,7 +183,7 @@ class authControllers {
 
             const userInfo = await sellerModel.findById(id)
 
-            responseReturn(res, 201, { message: 'Profile info Add Successfully', userInfo })
+            responseReturn(res, 201, { message: 'Profile info updated', userInfo })
         }
         catch (error) {
             responseReturn(res, 500, { error: error.message })
@@ -199,7 +197,7 @@ class authControllers {
                 httpOnly: true
             })
 
-            responseReturn(res, 200, { message: 'logout Success' })
+            responseReturn(res, 200, { message: 'User logged out' })
         }
         catch (error) {
             responseReturn(res, 500, { error: error.message })

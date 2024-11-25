@@ -34,10 +34,10 @@ class categoryController {
                             image: result.url
                         })
 
-                        responseReturn(res, 201, { category, message: 'Category Added Successfully' })
+                        responseReturn(res, 201, { category, message: 'Category added' })
                     }
                     else {
-                        responseReturn(res, 404, { error: 'Image Upload File' })
+                        responseReturn(res, 404, { error: 'Error uploading image. Try again.' })
                     }
                 }
                 catch (error) {
@@ -123,7 +123,7 @@ class categoryController {
                 if (result) updateData.image = result.url
 
                 const category = await categoryModel.findByIdAndUpdate(id, updateData, { new: true })
-                responseReturn(res, 200, { category, message: 'Category updated successfully' })
+                responseReturn(res, 200, { category, message: 'Category updated' })
             } catch (error) {
                 responseReturn(res, 500, { error: 'Internal Server Error' })
             }
@@ -154,7 +154,7 @@ class categoryController {
 
             await categoryModel.findByIdAndDelete(categoryId)
 
-            res.status(200).json({ message: 'Category deleted successfully' })
+            res.status(200).json({ message: 'Category deleted' })
         } catch (error) {
             res.status(500).json({ message: 'Internal Server Error' })
         }

@@ -36,7 +36,7 @@ class paymentController {
                 })
 
                 responseReturn(res, 201, { url: accountLink.url })
-            } 
+            }
             else {
                 const account = await stripe.accounts.create({ type: 'express' })
 
@@ -71,10 +71,10 @@ class paymentController {
                     payment: 'active'
                 })
 
-                responseReturn(res, 200, { message: 'payment Active' })
-            } 
+                responseReturn(res, 200, { message: 'Stripe account activated' })
+            }
             else {
-                responseReturn(res, 404, { message: 'payment Active Fails' })
+                responseReturn(res, 404, { message: 'Failed activating Stripe account' })
             }
         }
         catch (error) {
@@ -159,7 +159,7 @@ class paymentController {
                 amount: parseInt(amount)
             })
 
-            responseReturn(res, 200, { withdrowal, message: 'Withdrowal Request Send' })
+            responseReturn(res, 200, { withdrowal, message: 'Payment withdraw request sent' })
         }
         catch (error) {
             responseReturn(res, 500, { message: 'Internal Server Error' })
@@ -195,7 +195,7 @@ class paymentController {
 
             await withdrowRequest.findByIdAndUpdate(paymentId, { status: 'success' })
 
-            responseReturn(res, 200, { payment, message: 'Request Confirm Success' })
+            responseReturn(res, 200, { payment, message: 'Payment withdraw request confirmed' })
         }
         catch (error) {
             responseReturn(res, 500, { message: 'Internal Server Error' })
