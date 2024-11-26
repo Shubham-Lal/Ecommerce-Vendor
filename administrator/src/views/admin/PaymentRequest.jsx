@@ -15,7 +15,7 @@ const outerElementType = forwardRef((props, ref) => (
 
 const PaymentRequest = () => {
     const dispatch = useDispatch()
-    const { successMessage, errorMessage, pendingWithdrows, loader } = useSelector(state => state.payment)
+    const { successMessage, errorMessage, pendingWithdraws, loader } = useSelector(state => state.payment)
     const [paymentId, setPaymentId] = useState('')
 
     useEffect(() => {
@@ -42,13 +42,13 @@ const PaymentRequest = () => {
         return (
             <div style={style} className='flex text-sm text-white font-medium'>
                 <div className='w-[25%] p-2 whitespace-nowrap'>{index + 1}</div>
-                <div className='w-[25%] p-2 whitespace-nowrap'>${pendingWithdrows[index]?.amount}</div>
+                <div className='w-[25%] p-2 whitespace-nowrap'>${pendingWithdraws[index]?.amount}</div>
                 <div className='w-[25%] p-2 whitespace-nowrap'>
-                    <span className='py-[1px] px-[5px] bg-slate-300 text-blue-500 rounded-md text-sm'>{pendingWithdrows[index]?.status}</span>
+                    <span className='py-[1px] px-[5px] bg-slate-300 text-blue-500 rounded-md text-sm'>{pendingWithdraws[index]?.status}</span>
                 </div>
-                <div className='w-[25%] p-2 whitespace-nowrap'> {moment(pendingWithdrows[index]?.createdAt).format('LL')} </div>
+                <div className='w-[25%] p-2 whitespace-nowrap'> {moment(pendingWithdraws[index]?.createdAt).format('LL')} </div>
                 <div className='w-[25%] p-2 whitespace-nowrap'>
-                    <button disabled={loader} onClick={() => confirm_request(pendingWithdrows[index]?._id)} className='bg-indigo-500 shadow-lg hover:shadow-indigo-500/50 px-3 py-[2px cursor-pointer text-white rounded-sm text-sm]'>{(loader && paymentId === pendingWithdrows[index]?._id) ? 'Loading...' : 'Confirm'}</button>
+                    <button disabled={loader} onClick={() => confirm_request(pendingWithdraws[index]?._id)} className='bg-indigo-500 shadow-lg hover:shadow-indigo-500/50 px-3 py-[2px cursor-pointer text-white rounded-sm text-sm]'>{(loader && paymentId === pendingWithdraws[index]?._id) ? 'Loading...' : 'Confirm'}</button>
                 </div>
             </div>
         )
@@ -71,7 +71,7 @@ const PaymentRequest = () => {
                             style={{ minWidth: '340px' }}
                             className='List'
                             height={350}
-                            itemCount={pendingWithdrows.length}
+                            itemCount={pendingWithdraws.length}
                             itemSize={35}
                             outerElementType={outerElementType}
                         >

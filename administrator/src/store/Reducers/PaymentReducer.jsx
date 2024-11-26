@@ -14,11 +14,11 @@ export const get_seller_payment_details = createAsyncThunk(
     }
 )
 
-export const send_withdrowal_request = createAsyncThunk(
-    'payment/send_withdrowal_request',
+export const send_withdrawal_request = createAsyncThunk(
+    'payment/send_withdrawal_request',
     async (info, { rejectWithValue, fulfillWithValue }) => {
         try {
-            const { data } = await api.post(`/payment/withdrowal-request`, info, { withCredentials: true })
+            const { data } = await api.post(`/payment/withdrawal-request`, info, { withCredentials: true })
             return fulfillWithValue(data)
         }
         catch (error) {
@@ -59,10 +59,10 @@ export const PaymentReducer = createSlice({
         successMessage: '',
         errorMessage: '',
         loader: false,
-        pendingWithdrows: [],
-        successWithdrows: [],
+        pendingWithdraws: [],
+        successWithdraws: [],
         totalAmount: 0,
-        withdrowAmount: 0,
+        withdrawAmount: 0,
         pendingAmount: 0,
         availableAmount: 0,
     },
@@ -75,31 +75,31 @@ export const PaymentReducer = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(get_seller_payment_details.fulfilled, (state, { payload }) => {
-                state.pendingWithdrows = payload.pendingWithdrows;
-                state.successWithdrows = payload.successWithdrows;
+                state.pendingWithdraws = payload.pendingWithdraws;
+                state.successWithdraws = payload.successWithdraws;
                 state.totalAmount = payload.totalAmount;
                 state.availableAmount = payload.availableAmount;
-                state.withdrowAmount = payload.withdrowAmount;
+                state.withdrawAmount = payload.withdrawAmount;
                 state.pendingAmount = payload.pendingAmount;
             })
 
-            .addCase(send_withdrowal_request.pending, (state, { payload }) => {
+            .addCase(send_withdrawal_request.pending, (state, { payload }) => {
                 state.loader = true
             })
-            .addCase(send_withdrowal_request.rejected, (state, { payload }) => {
+            .addCase(send_withdrawal_request.rejected, (state, { payload }) => {
                 state.loader = false
                 state.errorMessage = payload.message;
             })
-            .addCase(send_withdrowal_request.fulfilled, (state, { payload }) => {
+            .addCase(send_withdrawal_request.fulfilled, (state, { payload }) => {
                 state.loader = false
                 state.successMessage = payload.message;
-                state.pendingWithdrows = [...state.pendingWithdrows, payload.withdrowal];
-                state.availableAmount = state.availableAmount - payload.withdrowal.amount;
-                state.pendingAmount = payload.withdrowal.amount;
+                state.pendingWithdraws = [...state.pendingWithdraws, payload.withdrawal];
+                state.availableAmount = state.availableAmount - payload.withdrawal.amount;
+                state.pendingAmount = payload.withdrawal.amount;
             })
 
             .addCase(get_payment_request.fulfilled, (state, { payload }) => {
-                state.pendingWithdrows = payload.withdrowalRequest
+                state.pendingWithdraws = payload.withdrawalRequest
             })
 
             .addCase(confirm_payment_request.pending, (state, { payload }) => {
@@ -110,10 +110,10 @@ export const PaymentReducer = createSlice({
                 state.errorMessage = payload.message;
             })
             .addCase(confirm_payment_request.fulfilled, (state, { payload }) => {
-                const temp = state.pendingWithdrows.filter(r => r._id !== payload.payment._id)
+                const temp = state.pendingWithdraws.filter(r => r._id !== payload.payment._id)
                 state.loader = false
                 state.successMessage = payload.message;
-                state.pendingWithdrows = temp
+                state.pendingWithdraws = temp
             })
     }
 })

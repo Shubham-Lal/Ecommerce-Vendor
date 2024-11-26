@@ -2,7 +2,7 @@ import { forwardRef, useEffect, useState } from 'react';
 import { MdCurrencyExchange } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { FixedSizeList as List } from 'react-window';
-import { get_seller_payment_details, messageClear, send_withdrowal_request } from '../../store/Reducers/PaymentReducer';
+import { get_seller_payment_details, messageClear, send_withdrawal_request } from '../../store/Reducers/PaymentReducer';
 import toast from 'react-hot-toast';
 import moment from 'moment';
 
@@ -17,7 +17,7 @@ const outerElementType = forwardRef((props, ref) => (
 const Payments = () => {
     const dispatch = useDispatch()
     const { userInfo } = useSelector(state => state.auth)
-    const { successMessage, errorMessage, loader, pendingWithdrows, successWithdrows, totalAmount, withdrowAmount, pendingAmount,
+    const { successMessage, errorMessage, loader, pendingWithdraws, successWithdraws, totalAmount, withdrawAmount, pendingAmount,
         availableAmount, } = useSelector(state => state.payment)
 
     const [amount, setAmount] = useState(0)
@@ -25,7 +25,7 @@ const Payments = () => {
     const sendRequest = (e) => {
         e.preventDefault()
         if (availableAmount - amount > 10) {
-            dispatch(send_withdrowal_request({ amount, sellerId: userInfo._id }))
+            dispatch(send_withdrawal_request({ amount, sellerId: userInfo._id }))
             setAmount(0)
         } else {
             toast.error('Insufficient Balance')
@@ -36,11 +36,11 @@ const Payments = () => {
         return (
             <div style={style} className='flex text-sm text-white font-medium'>
                 <div className='w-[25%] p-2 whitespace-nowrap'>{index + 1}</div>
-                <div className='w-[25%] p-2 whitespace-nowrap'>${pendingWithdrows[index]?.amount}</div>
+                <div className='w-[25%] p-2 whitespace-nowrap'>${pendingWithdraws[index]?.amount}</div>
                 <div className='w-[25%] p-2 whitespace-nowrap'>
-                    <span className='py-[1px] px-[5px] bg-slate-300 text-blue-500 rounded-md text-sm'>{pendingWithdrows[index]?.status}</span>
+                    <span className='py-[1px] px-[5px] bg-slate-300 text-blue-500 rounded-md text-sm'>{pendingWithdraws[index]?.status}</span>
                 </div>
-                <div className='w-[25%] p-2 whitespace-nowrap'> {moment(pendingWithdrows[index]?.createdAt).format('LL')} </div>
+                <div className='w-[25%] p-2 whitespace-nowrap'> {moment(pendingWithdraws[index]?.createdAt).format('LL')} </div>
             </div>
         )
     }
@@ -49,11 +49,11 @@ const Payments = () => {
         return (
             <div style={style} className='flex text-sm text-white font-medium'>
                 <div className='w-[25%] p-2 whitespace-nowrap'>{index + 1}</div>
-                <div className='w-[25%] p-2 whitespace-nowrap'>${successWithdrows[index]?.amount}</div>
+                <div className='w-[25%] p-2 whitespace-nowrap'>${successWithdraws[index]?.amount}</div>
                 <div className='w-[25%] p-2 whitespace-nowrap'>
-                    <span className='py-[1px] px-[5px] bg-slate-300 text-blue-500 rounded-md text-sm'>{successWithdrows[index]?.status}</span>
+                    <span className='py-[1px] px-[5px] bg-slate-300 text-blue-500 rounded-md text-sm'>{successWithdraws[index]?.status}</span>
                 </div>
-                <div className='w-[25%] p-2 whitespace-nowrap'> {moment(successWithdrows[index]?.createdAt).format('LL')} </div>
+                <div className='w-[25%] p-2 whitespace-nowrap'> {moment(successWithdraws[index]?.createdAt).format('LL')} </div>
             </div>
         )
     }
@@ -100,8 +100,8 @@ const Payments = () => {
 
                 <div className='flex justify-between items-center p-5 bg-[#e9feea] rounded-md gap-3'>
                     <div className='flex flex-col justify-start items-start text-[#5c5a5a]'>
-                        <h2 className='text-2xl font-bold'>${withdrowAmount}</h2>
-                        <span className='text-sm font-bold'>WithDrawal Amount</span>
+                        <h2 className='text-2xl font-bold'>${withdrawAmount}</h2>
+                        <span className='text-sm font-bold'>Withdrawal Amount</span>
                     </div>
 
                     <div className='w-[40px] h-[47px] rounded-full bg-[#038000] flex justify-center items-center text-xl'>
@@ -146,7 +146,7 @@ const Payments = () => {
                                 style={{ minWidth: '340px' }}
                                 className='List'
                                 height={350}
-                                itemCount={pendingWithdrows.length}
+                                itemCount={pendingWithdraws.length}
                                 itemSize={35}
                                 outerElementType={outerElementType}
                             >
@@ -159,7 +159,7 @@ const Payments = () => {
 
                 <div className='bg-[#6a5fdf] text-[#d0d2d6] rounded-md p-5'>
                     <div>
-                        <h2 className='text-lg pb-4'>Success WithDrawal </h2>
+                        <h2 className='text-lg pb-4'>Success Withdrawal</h2>
 
                         <div className='w-full overflow-x-auto'>
                             <div className='flex bg-[#a7a3de] uppercase text-xs font-bold min-w-[340px] rounded-md'>
@@ -172,7 +172,7 @@ const Payments = () => {
                                 style={{ minWidth: '340px' }}
                                 className='List'
                                 height={350}
-                                itemCount={successWithdrows.length}
+                                itemCount={successWithdraws.length}
                                 itemSize={35}
                                 outerElementType={outerElementType}
                             >

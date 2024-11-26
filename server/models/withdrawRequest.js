@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose")
 
-const withdrowSchema = new Schema({
+const withdrawSchema = new Schema({
     sellerId: {
         type: String,
         required: true
@@ -15,4 +15,4 @@ const withdrowSchema = new Schema({
     }
 }, { timestamps: true })
 
-module.exports = model('withdrowRequest', withdrowSchema)
+module.exports = model('withdrawRequest', withdrawSchema)
