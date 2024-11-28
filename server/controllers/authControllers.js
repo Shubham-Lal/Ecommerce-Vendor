@@ -156,12 +156,14 @@ class authControllers {
                     })
 
                     const updatedUserInfo = await sellerModel.findById(id)
+                    
                     responseReturn(res, 201, { message: 'Profile image uploaded', userInfo: updatedUserInfo })
                 }
                 else {
                     responseReturn(res, 404, { error: 'Image Upload Failed' })
                 }
-            } catch (error) {
+            } 
+            catch (error) {
                 responseReturn(res, 500, { error: error.message })
             }
         })

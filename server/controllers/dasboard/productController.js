@@ -144,6 +144,7 @@ class productController {
                         await cloudinary.uploader.destroy(`Ecommerce/Product/${publicId}`)
 
                         const product = await productModel.findById(productId)
+                        
                         responseReturn(res, 200, { product, message: 'Product image updated' })
                     }
                     else {

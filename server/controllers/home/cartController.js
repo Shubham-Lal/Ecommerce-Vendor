@@ -154,19 +154,6 @@ class cartController {
         catch (error) { }
     }
 
-    // quantity_dec = async (req, res) => {
-    //     const { cart_id } = req.params
-
-    //     try {
-    //         const product = await cartModel.findById(cart_id)
-    //         const { quantity } = product
-    //         await cartModel.findByIdAndUpdate(cart_id, { quantity: quantity - 1 })
-
-    //         responseReturn(res, 200, { message: "Qty Updated" })
-    //     }
-    //     catch (error) { }
-    // }
-
     quantity_dec = async (req, res) => {
         const { cart_id } = req.params
 
@@ -181,12 +168,14 @@ class cartController {
 
             if (quantity > 1) {
                 await cartModel.findByIdAndUpdate(cart_id, { quantity: quantity - 1 })
+
                 return responseReturn(res, 200, { message: "Quantity updated" })
             }
             else {
                 return responseReturn(res, 400, { message: "Quantity cannot be less than 1" })
             }
-        } catch (error) { }
+        } 
+        catch (error) { }
     }
 
     add_wishlist = async (req, res) => {
@@ -224,7 +213,7 @@ class cartController {
         const { wishlistId } = req.params
 
         try {
-            const wishlist = await wishlistModel.findByIdAndDelete(wishlistId)
+            await wishlistModel.findByIdAndDelete(wishlistId)
 
             responseReturn(res, 200, {
                 message: 'Product removed from wishlist',

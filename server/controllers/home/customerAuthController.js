@@ -64,7 +64,6 @@ class customerAuthController {
                     })
 
                     responseReturn(res, 201, { message: 'User logged in', token })
-
                 }
                 else {
                     responseReturn(res, 404, { error: 'Incorrect password' })

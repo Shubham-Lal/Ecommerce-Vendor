@@ -11,6 +11,16 @@ const stripe = require('stripe')('sk_test_51Oml5cGAwoXiNtjJZbPFBKav0pyrR8GSwzUaL
 
 class paymentController {
 
+    sumAmount = (data) => {
+        let sum = 0
+
+        for (let i = 0; i < data.length; i++) {
+            sum = sum + data[i].amount;
+        }
+
+        return sum
+    }
+
     create_stripe_connect_account = async (req, res) => {
         const { id } = req
         const uid = uuidv4()
@@ -80,16 +90,6 @@ class paymentController {
         catch (error) {
             responseReturn(res, 500, { message: 'Internal Server Error' })
         }
-    }
-
-    sumAmount = (data) => {
-        let sum = 0
-
-        for (let i = 0; i < data.length; i++) {
-            sum = sum + data[i].amount;
-        }
-
-        return sum
     }
 
     get_seller_payment_details = async (req, res) => {

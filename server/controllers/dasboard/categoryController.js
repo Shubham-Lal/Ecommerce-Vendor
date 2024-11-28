@@ -60,6 +60,7 @@ class categoryController {
                 const categorys = await categoryModel.find({
                     $text: { $search: searchValue }
                 }).skip(skipPage).limit(parPage).sort({ createdAt: -1 })
+
                 const totalCategory = await categoryModel.find({
                     $text: { $search: searchValue }
                 }).countDocuments()
@@ -68,12 +69,14 @@ class categoryController {
             }
             else if (searchValue === '' && page && parPage) {
                 const categorys = await categoryModel.find({}).skip(skipPage).limit(parPage).sort({ createdAt: -1 })
+
                 const totalCategory = await categoryModel.find({}).countDocuments()
 
                 responseReturn(res, 200, { categorys, totalCategory })
             }
             else {
                 const categorys = await categoryModel.find({}).sort({ createdAt: -1 })
+
                 const totalCategory = await categoryModel.find({}).countDocuments()
 
                 responseReturn(res, 200, { categorys, totalCategory })
@@ -123,8 +126,10 @@ class categoryController {
                 if (result) updateData.image = result.url
 
                 const category = await categoryModel.findByIdAndUpdate(id, updateData, { new: true })
+                
                 responseReturn(res, 200, { category, message: 'Category updated' })
-            } catch (error) {
+            } 
+            catch (error) {
                 responseReturn(res, 500, { error: 'Internal Server Error' })
             }
         })
@@ -155,7 +160,8 @@ class categoryController {
             await categoryModel.findByIdAndDelete(categoryId)
 
             res.status(200).json({ message: 'Category deleted' })
-        } catch (error) {
+        } 
+        catch (error) {
             res.status(500).json({ message: 'Internal Server Error' })
         }
     }
