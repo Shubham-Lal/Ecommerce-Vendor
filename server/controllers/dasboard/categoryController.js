@@ -57,7 +57,7 @@ class categoryController {
             }
 
             if (searchValue && page && parPage) {
-                const categorys = await categoryModel.find({
+                const categories = await categoryModel.find({
                     $text: { $search: searchValue }
                 }).skip(skipPage).limit(parPage).sort({ createdAt: -1 })
 
@@ -65,21 +65,21 @@ class categoryController {
                     $text: { $search: searchValue }
                 }).countDocuments()
 
-                responseReturn(res, 200, { categorys, totalCategory })
+                responseReturn(res, 200, { categories, totalCategory })
             }
             else if (searchValue === '' && page && parPage) {
-                const categorys = await categoryModel.find({}).skip(skipPage).limit(parPage).sort({ createdAt: -1 })
+                const categories = await categoryModel.find({}).skip(skipPage).limit(parPage).sort({ createdAt: -1 })
 
                 const totalCategory = await categoryModel.find({}).countDocuments()
 
-                responseReturn(res, 200, { categorys, totalCategory })
+                responseReturn(res, 200, { categories, totalCategory })
             }
             else {
-                const categorys = await categoryModel.find({}).sort({ createdAt: -1 })
+                const categories = await categoryModel.find({}).sort({ createdAt: -1 })
 
                 const totalCategory = await categoryModel.find({}).countDocuments()
 
-                responseReturn(res, 200, { categorys, totalCategory })
+                responseReturn(res, 200, { categories, totalCategory })
             }
         }
         catch (error) { }

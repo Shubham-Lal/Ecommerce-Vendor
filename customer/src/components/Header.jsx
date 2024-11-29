@@ -18,7 +18,7 @@ const Header = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { categorys } = useSelector(state => state.home)
+    const { categories } = useSelector(state => state.home)
     const { userInfo } = useSelector(state => state.auth)
     const { cart_product_count, wishlist_count } = useSelector(state => state.cart)
 
@@ -248,7 +248,7 @@ const Header = () => {
 
                             <div className={`${categoryShow ? 'h-0' : 'h-[400px]'} overflow-hidden transition-all md-lg:relative duration-500 absolute z-[99999] bg-[#dbf3ed] w-full border-x`}>
                                 <ul className='py-2 text-slate-600 font-medium'>
-                                    {categorys.map((c, i) => {
+                                    {categories.map((c, i) => {
                                         return (
                                             <li key={i} className='flex justify-start items-center gap-2 px-[24px] py-[6px]'>
                                                 <img src={c.image} className='w-[50px] h-[50px] object-contain' alt="" />
@@ -268,7 +268,7 @@ const Header = () => {
                                     {/* <div className='relative after:absolute after:h-[25px] after:w-[1px] after:bg-[#afafaf] after:-right-[15px] md:hidden'>
                                         <select onChange={(e) => setCategory(e.target.value)} className='w-[100px] text-slate-600 font-semibold bg-transparent px-2 h-full outline-0 border-none' name="" id="">
                                             <option value="">Category</option>
-                                            {categorys.map((c, i) => <option key={i} value={c.name}> {c.name} </option>)}
+                                            {categories.map((c, i) => <option key={i} value={c.name}> {c.name} </option>)}
                                         </select>
                                     </div> */}
                                     <input className='w-full relative bg-transparent text-slate-500 outline-0 px-3 h-full' onChange={(e) => setSearchValue(e.target.value)} type="text" name='' id='' placeholder='What do you need' />

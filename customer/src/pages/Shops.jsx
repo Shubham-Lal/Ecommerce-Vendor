@@ -16,8 +16,8 @@ import { price_range_product, query_products } from '../store/reducers/homeReduc
 
 const Shops = () => {
     const dispatch = useDispatch()
-    // const { products, categorys, priceRange, latest_product, totalProduct, parPage } = useSelector(state => state.home)
-    const { products, categorys, priceRange, totalProduct, parPage } = useSelector(state => state.home)
+    // const { products, categories, priceRange, latest_product, totalProduct, parPage } = useSelector(state => state.home)
+    const { products, categories, priceRange, totalProduct, parPage } = useSelector(state => state.home)
 
     useEffect(() => {
         dispatch(price_range_product())
@@ -109,7 +109,7 @@ const Shops = () => {
                             <div className='w-full md-lg:w-4/12 md:w-full pr-8'>
                                 <h2 className='text-3xl font-bold mb-3 text-slate-600'>Category </h2>
                                 <div className='py-2'>
-                                    {categorys.map((c, i) =>
+                                    {categories.map((c, i) =>
                                         <div key={i} className='flex justify-start items-center gap-2 py-1'>
                                             <input checked={category === c.name ? true : false} onChange={(e) => queryCategory(e, c.name)} type="checkbox" id={c.name} />
                                             <label className='text-slate-600 block cursor-pointer' htmlFor={c.name}>{c.name}</label>

@@ -108,7 +108,7 @@ export const get_banners = createAsyncThunk(
 export const homeReducer = createSlice({
     name: 'home',
     initialState: {
-        categorys: [],
+        categories: [],
         products: [],
         totalProduct: 0,
         parPage: 3,
@@ -138,7 +138,7 @@ export const homeReducer = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(get_category.fulfilled, (state, { payload }) => {
-                state.categorys = payload.categorys;
+                state.categories = payload.categories;
             })
             .addCase(get_category.rejected, (state) => {
                 state.errorMessage = "Failed to load categories.";

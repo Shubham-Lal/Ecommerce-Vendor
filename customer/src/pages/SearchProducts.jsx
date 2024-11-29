@@ -20,7 +20,7 @@ const SearchProducts = () => {
     const searchValue = searchParams.get('value')
 
     const dispatch = useDispatch()
-    // const { products, categorys, priceRange, latest_product, totalProduct, parPage } = useSelector(state => state.home)
+    // const { products, categories, priceRange, latest_product, totalProduct, parPage } = useSelector(state => state.home)
     const { products, priceRange, totalProduct, parPage } = useSelector(state => state.home)
 
     useEffect(() => {

@@ -11,7 +11,7 @@ import toast from 'react-hot-toast';
 
 const AddProduct = () => {
     const dispatch = useDispatch()
-    const { categorys } = useSelector(state => state.category)
+    const { categories } = useSelector(state => state.category)
     const { loader, successMessage, errorMessage } = useSelector(state => state.product)
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const AddProduct = () => {
             let srcValue = allCategory.filter(c => c.name.toLowerCase().indexOf(value.toLowerCase()) > -1)
             setAllCategory(srcValue)
         } else {
-            setAllCategory(categorys)
+            setAllCategory(categories)
         }
     }
 
@@ -131,8 +131,8 @@ const AddProduct = () => {
     }
 
     useEffect(() => {
-        setAllCategory(categorys)
-    }, [categorys])
+        setAllCategory(categories)
+    }, [categories])
 
     return (
         <div className='px-2 lg:px-7 pt-5'>
@@ -170,7 +170,7 @@ const AddProduct = () => {
                                                 setCateShow(false)
                                                 setCategory(c.name)
                                                 setSearchValue('')
-                                                setAllCategory(categorys)
+                                                setAllCategory(categories)
                                             }}>{c.name} </span>
                                         )}
                                     </div>

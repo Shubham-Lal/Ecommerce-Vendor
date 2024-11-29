@@ -11,7 +11,7 @@ const EditProduct = () => {
     const { productId } = useParams()
 
     const dispatch = useDispatch()
-    const { categorys } = useSelector(state => state.category)
+    const { categories } = useSelector(state => state.category)
     const { product, loader, successMessage, errorMessage } = useSelector(state => state.product)
 
     useEffect(() => {
@@ -54,7 +54,7 @@ const EditProduct = () => {
             let srcValue = allCategory.filter(c => c.name.toLowerCase().indexOf(value.toLowerCase()) > -1)
             setAllCategory(srcValue)
         } else {
-            setAllCategory(categorys)
+            setAllCategory(categories)
         }
     }
 
@@ -84,10 +84,10 @@ const EditProduct = () => {
     }, [product])
 
     useEffect(() => {
-        if (categorys.length > 0) {
-            setAllCategory(categorys)
+        if (categories.length > 0) {
+            setAllCategory(categories)
         }
-    }, [categorys])
+    }, [categories])
 
     useEffect(() => {
         if (successMessage) {
@@ -151,7 +151,7 @@ const EditProduct = () => {
                                                 setCateShow(false)
                                                 setCategory(c.name)
                                                 setSearchValue('')
-                                                setAllCategory(categorys)
+                                                setAllCategory(categories)
                                             }}>{c.name} </span>
                                         )}
                                     </div>

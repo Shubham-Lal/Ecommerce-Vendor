@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import Header from '../components/Header';
 import Banner from '../components/Banner';
-import Categorys from '../components/Categorys';
+import Categories from '../components/Categories';
 import FeatureProducts from '../components/products/FeatureProducts';
 import Products from '../components/products/Products';
 import Footer from '../components/Footer';
@@ -20,7 +20,7 @@ const Home = () => {
         <div className='w-full'>
             <Header />
             <Banner />
-            <Categorys />
+            <Categories />
 
             <div className='py-[45px]'>
                 <FeatureProducts products={products} />

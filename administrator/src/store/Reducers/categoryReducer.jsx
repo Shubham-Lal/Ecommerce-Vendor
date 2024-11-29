@@ -67,7 +67,7 @@ export const categoryReducer = createSlice({
         successMessage: '',
         errorMessage: '',
         loader: false,
-        categorys: [],
+        categories: [],
         totalCategory: 0
     },
     reducers: {
@@ -87,13 +87,13 @@ export const categoryReducer = createSlice({
             .addCase(categoryAdd.fulfilled, (state, { payload }) => {
                 state.loader = false;
                 state.successMessage = payload.message
-                state.categorys = [...state.categorys, payload.category]
+                state.categories = [...state.categories, payload.category]
 
             })
 
             .addCase(get_category.fulfilled, (state, { payload }) => {
                 state.totalCategory = payload.totalCategory;
-                state.categorys = payload.categorys;
+                state.categories = payload.categories;
 
             })
 
@@ -107,15 +107,15 @@ export const categoryReducer = createSlice({
             .addCase(updateCategory.fulfilled, (state, { payload }) => {
                 state.loader = false;
                 state.successMessage = payload.message
-                const index = state.categorys.findIndex((cat) => cat._id === payload.category._id);
+                const index = state.categories.findIndex((cat) => cat._id === payload.category._id);
                 if (index !== -1) {
-                    state.categorys[index] = payload.category;
+                    state.categories[index] = payload.category;
                 }
 
             })
 
             .addCase(deleteCategory.fulfilled, (state, action) => {
-                state.categorys = state.categorys.filter(cat => cat._id !== action.meta.arg);
+                state.categories = state.categories.filter(cat => cat._id !== action.meta.arg);
                 state.successMessage = action.payload.message;
             })
             .addCase(deleteCategory.rejected, (state, action) => {

@@ -27,11 +27,11 @@ class homeControllers {
         return productArray
     }
 
-    get_categorys = async (req, res) => {
+    get_categories = async (req, res) => {
         try {
-            const categorys = await categoryModel.find({})
+            const categories = await categoryModel.find({})
 
-            responseReturn(res, 200, { categorys })
+            responseReturn(res, 200, { categories })
         }
         catch (error) { }
     }

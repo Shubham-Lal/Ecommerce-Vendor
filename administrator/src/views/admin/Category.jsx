@@ -13,7 +13,7 @@ import Search from '../components/Search';
 
 const Category = () => {
     const dispatch = useDispatch()
-    const { loader, successMessage, errorMessage, categorys } = useSelector(state => state.category)
+    const { loader, successMessage, errorMessage, categories } = useSelector(state => state.category)
 
     const [currentPage, setCurrentPage] = useState(1)
     const [searchValue, setSearchValue] = useState('')
@@ -117,7 +117,7 @@ const Category = () => {
                                 </thead>
 
                                 <tbody>
-                                    {categorys.map((d, i) =>
+                                    {categories.map((d, i) =>
                                         <tr key={i}>
                                             <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>{i + 1}</td>
                                             <td scope='row' className='py-1 px-4 font-medium whitespace-nowrap'>
