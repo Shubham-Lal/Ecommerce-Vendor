@@ -7,7 +7,7 @@ import { FadeLoader } from 'react-spinners';
 import axios from 'axios';
 
 const load = async () => {
-    return await loadStripe('pk_test_51Oml5cGAwoXiNtjJgPPyQngDj9WTjawya4zCsqTn3LPFhl4VvLZZJIh9fW9wqVweFYC5f0YEb9zjUqRpXbkEKT7T00eU1xQvjp')
+    return await loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY)
 }
 
 const ConfirmOrder = () => {
