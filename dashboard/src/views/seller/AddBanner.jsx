@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { FaRegImage } from "react-icons/fa";
 import { PropagateLoader } from 'react-spinners';
 import { overrideStyle } from '../../utils/utils';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { add_banner, get_banner, messageClear, update_banner } from '../../store/Reducers/bannerReducer';
 import toast from 'react-hot-toast';
+import { FaRegImage } from "react-icons/fa";
 
 const AddBanner = () => {
     const { productId } = useParams()

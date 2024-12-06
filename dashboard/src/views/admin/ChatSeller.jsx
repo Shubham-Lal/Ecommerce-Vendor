@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { FaList } from 'react-icons/fa6';
-import { IoMdClose } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import { get_admin_message, get_sellers, send_message_seller_admin, messageClear, updateSellerMessage } from '../../store/Reducers/chatReducer'
 import { Link, useParams } from 'react-router-dom';
-import { FaRegFaceGrinHearts } from "react-icons/fa6";
 import toast from 'react-hot-toast';
 import { socket } from '../../utils/utils'
+import { FaRegFaceGrinHearts, FaList } from "react-icons/fa6";
+import { IoMdClose } from "react-icons/io";
 
 const ChatSeller = () => {
     const { userInfo } = useSelector(state => state.auth)

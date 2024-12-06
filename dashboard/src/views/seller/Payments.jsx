@@ -1,10 +1,10 @@
 import { forwardRef, useEffect, useState } from 'react';
-import { MdCurrencyExchange } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { FixedSizeList as List } from 'react-window';
 import { get_seller_payment_details, messageClear, send_withdrawal_request } from '../../store/Reducers/PaymentReducer';
 import toast from 'react-hot-toast';
 import moment from 'moment';
+import { MdCurrencyExchange } from "react-icons/md";
 
 function handleOnWheel({ deltaY }) {
     console.log('handleOnWheel', deltaY)

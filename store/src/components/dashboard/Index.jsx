@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { RiShoppingCart2Fill } from "react-icons/ri";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { get_dashboard_index_data } from '../../store/reducers/dashboardReducer';
+import { RiShoppingCart2Fill } from "react-icons/ri";
 
 const Index = () => {
     const navigate = useNavigate()

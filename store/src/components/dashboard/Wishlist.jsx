@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { FaEye, FaRegHeart } from "react-icons/fa";
-import { RiShoppingCartLine } from "react-icons/ri";
 import Rating from '../Rating';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_wishlist_products, remove_wishlist, messageClear } from '../../store/reducers/cartReducer';
 import toast from 'react-hot-toast';
+import { FaEye, FaRegHeart } from "react-icons/fa";
+import { RiShoppingCartLine } from "react-icons/ri";
 
 const Wishlist = () => {
     const dispatch = useDispatch()

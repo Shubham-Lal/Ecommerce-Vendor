@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { FaList } from 'react-icons/fa6';
-import { IoMdClose } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import { get_customer_message, get_customers, messageClear, send_message, updateMessage } from '../../store/Reducers/chatReducer';
 import { Link, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { socket } from '../../utils/utils';
+import { FaList } from 'react-icons/fa6';
+import { IoMdClose } from "react-icons/io";
 
 const SellerToCustomer = () => {
     const scrollRef = useRef()

@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import Search from '../components/Search';
 import { Link } from 'react-router-dom';
 import Pagination from '../Pagination';
-import { FaEdit, FaEye, FaTrash } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_products } from '../../store/Reducers/productReducer';
+import { FaEdit, FaEye, FaTrash } from 'react-icons/fa';
 import { LuImageMinus } from "react-icons/lu";
 
 const Products = () => {

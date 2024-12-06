@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from '../Pagination';
-import { FaEye } from "react-icons/fa";
 import { useDispatch, useSelector } from 'react-redux';
 import Search from '../components/Search';
 import { get_seller_request } from '../../store/Reducers/sellerReducer';
+import { FaEye } from "react-icons/fa";
 
 const SellerRequest = () => {
     const dispatch = useDispatch()

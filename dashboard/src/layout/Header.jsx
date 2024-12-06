@@ -1,5 +1,5 @@
-import { FaList } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
+import { FaList } from 'react-icons/fa';
 
 const Header = ({ showSidebar, setShowSidebar }) => {
   const { userInfo } = useSelector(state => state.auth)

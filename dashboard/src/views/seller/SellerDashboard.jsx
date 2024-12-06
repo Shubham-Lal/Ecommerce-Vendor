@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
-import { MdCurrencyExchange, MdProductionQuantityLimits } from "react-icons/md";
-import { FaCartShopping } from "react-icons/fa6";
 import Chart from 'react-apexcharts';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { get_seller_dashboard_data } from '../../store/Reducers/dashboardReducer';
 import moment from 'moment';
 import customer from '../../assets/demo.jpg';
+import { MdCurrencyExchange, MdProductionQuantityLimits } from "react-icons/md";
+import { FaCartShopping } from "react-icons/fa6";
 
 const SellerDashboard = () => {
     const dispatch = useDispatch()

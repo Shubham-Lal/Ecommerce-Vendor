@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { AiOutlineMessage, AiOutlinePlus } from 'react-icons/ai'
-import { GrEmoji } from 'react-icons/gr'
-import { IoSend } from 'react-icons/io5'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom'
 import { add_friend, messageClear, send_message, updateMessage } from '../../store/reducers/chatReducer';
 import toast from 'react-hot-toast';
 import io from 'socket.io-client'
+import { AiOutlineMessage, AiOutlinePlus } from 'react-icons/ai'
+import { GrEmoji } from 'react-icons/gr'
+import { IoSend } from 'react-icons/io5'
 import { FaList } from 'react-icons/fa'
 
 const socket = io(import.meta.env.VITE_SERVER_URL)

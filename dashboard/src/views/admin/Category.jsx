@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Pagination from '../Pagination';
-import { FaEdit, FaTrash } from 'react-icons/fa';
-import { FaImage } from "react-icons/fa";
-import { IoMdCloseCircle } from "react-icons/io";
 import { PropagateLoader } from 'react-spinners';
 import { overrideStyle } from '../../utils/utils';
 import { categoryAdd, messageClear, get_category, updateCategory, deleteCategory } from '../../store/Reducers/categoryReducer';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 import Search from '../components/Search';
+import { FaEdit, FaTrash, FaImage } from 'react-icons/fa';
+import { IoMdCloseCircle } from "react-icons/io";
 
 const Category = () => {
     const dispatch = useDispatch()
