@@ -1,11 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { FaFacebookF } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
 import { useSelector } from 'react-redux';
-import { FaHeart } from "react-icons/fa6";
-import { FaCartShopping } from "react-icons/fa6";
+import { FaTwitter, FaHeart, FaCartShopping } from "react-icons/fa6";
+import { FaLinkedin, FaFacebookF, FaGithub } from "react-icons/fa";
 
 const Footer = () => {
     const navigate = useNavigate()
@@ -19,7 +15,7 @@ const Footer = () => {
                     <div className='flex flex-col gap-3'>
                         <img className='w-[190px] h-[70px]' src="/images/logo.png" alt="logo" />
                         <ul className='flex flex-col gap-2 text-slate-600'>
-                            <li>Address:  2504 Ivins Avenue, Egg Harbor Township, NJ 08234,</li>
+                            <li>Address: 2504 Ivins Avenue, Egg Harbor Township, NJ 08234,</li>
                             <li>Phone: 4343434344</li>
                             <li>Email: support@easylearingbd.com</li>
                         </ul>

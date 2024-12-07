@@ -4,11 +4,11 @@ import RatingTemp from './RatingTemp';
 import Pagination from './Pagination';
 import { Link } from 'react-router-dom';
 import RatingReact from 'react-rating'
-import { FaStar } from 'react-icons/fa';
-import { CiStar } from 'react-icons/ci';
 import { useDispatch, useSelector } from 'react-redux';
 import { customer_review, get_reviews, messageClear, product_details } from '../store/reducers/homeReducer';
 import toast from 'react-hot-toast';
+import { FaStar } from 'react-icons/fa';
+import { CiStar } from 'react-icons/ci';
 
 const Reviews = ({ product }) => {
     const dispatch = useDispatch()

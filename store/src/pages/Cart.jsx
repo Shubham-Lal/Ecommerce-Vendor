@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link, useNavigate } from 'react-router-dom';
-import { IoIosArrowForward } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import { get_cart_products, delete_cart_product, messageClear, quantity_inc, quantity_dec } from '../store/reducers/cartReducer';
 import toast from 'react-hot-toast';
+import { IoIosArrowForward } from "react-icons/io";
 
 const Cart = () => {
     const dispatch = useDispatch()

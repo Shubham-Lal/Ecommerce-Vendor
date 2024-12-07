@@ -1,18 +1,11 @@
 import { useEffect, useState } from 'react';
-import { MdEmail } from "react-icons/md";
-import { IoMdPhonePortrait } from "react-icons/io";
-import { FaFacebookF, FaList, FaLock, FaUser } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
-import { IoMdArrowDropdown } from "react-icons/io";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FaHeart } from "react-icons/fa6";
-import { FaCartShopping } from "react-icons/fa6";
-import { FaPhoneAlt, FaSearch } from "react-icons/fa";
-import { IoIosArrowDown } from "react-icons/io";
 import { useDispatch, useSelector } from 'react-redux';
 import { get_cart_products, get_wishlist_products } from '../store/reducers/cartReducer';
+import { MdEmail } from "react-icons/md";
+import { IoMdPhonePortrait, IoMdArrowDropdown, IoIosArrowDown } from "react-icons/io";
+import { FaFacebookF, FaList, FaLock, FaUser, FaLinkedin, FaGithub, FaPhoneAlt, FaSearch } from "react-icons/fa";
+import { FaHeart, FaTwitter, FaCartShopping } from "react-icons/fa6";
 
 const Header = () => {
     const dispatch = useDispatch()

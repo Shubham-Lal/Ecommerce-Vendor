@@ -2,17 +2,17 @@ import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link, useSearchParams } from 'react-router-dom';
-import { IoIosArrowForward } from "react-icons/io";
 import { Range } from 'react-range';
-import { AiFillStar } from 'react-icons/ai'
-import { CiStar } from 'react-icons/ci'
 // import Products from '../components/products/Products';
-import { BsFillGridFill } from 'react-icons/bs'
-import { FaThList } from 'react-icons/fa'
 import ShopProducts from '../components/products/ShopProducts';
 import Pagination from '../components/Pagination';
 import { useDispatch, useSelector } from 'react-redux';
 import { price_range_product, query_products } from '../store/reducers/homeReducer';
+import { IoIosArrowForward } from "react-icons/io";
+import { AiFillStar } from 'react-icons/ai'
+import { CiStar } from 'react-icons/ci'
+import { BsFillGridFill } from 'react-icons/bs'
+import { FaThList } from 'react-icons/fa'
 
 const SearchProducts = () => {
     const searchParams = useSearchParams()

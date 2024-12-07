@@ -2,15 +2,9 @@ import { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { IoIosArrowForward } from "react-icons/io";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css'
 import Rating from '../components/Rating';
-import { FaHeart } from "react-icons/fa6";
-import { FaFacebookF } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
 import Reviews from '../components/Reviews';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -20,6 +14,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { product_details } from '../store/reducers/homeReducer';
 import toast from 'react-hot-toast';
 import { add_to_cart, messageClear, add_to_wishlist } from '../store/reducers/cartReducer';
+import { IoIosArrowForward } from "react-icons/io";
+import { FaTwitter, FaHeart} from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaFacebookF } from "react-icons/fa";
 
 
 const Details = () => {
