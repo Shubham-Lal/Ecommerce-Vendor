@@ -3,7 +3,7 @@ const ChangePassword = () => {
         <div className='p-4 bg-white'>
             <h2 className='text-xl text-slate-600 pb-5'>Change Password </h2>
 
-            <form>
+            <form onSubmit={e => e.preventDefault()}>
                 <div className='flex flex-col gap-1 mb-2'>
                     <label htmlFor="old_password">Old Password</label>
                     <input className='outline-none px-3 py-1 border rounded-md text-slate-600' type="password" name="old_password" id="old_password" placeholder='Old Password' />
